@@ -31,7 +31,22 @@ public class SubjectTag extends BodyTagSupport {
 
     private static final long serialVersionUID = 8340048766447465216L;
 
+    private String charset;
+
     public SubjectTag() {
+        init();
+    }
+
+    private void init() {
+        charset = null;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
     @Override
@@ -44,10 +59,18 @@ public class SubjectTag extends BodyTagSupport {
         try {
             EmailTag emailtag = (EmailTag)TagSupport.findAncestorWithClass(this, EmailTag.class);
             if(emailtag == null) throw new JspException("SubjectTag not inside EmailTag");
-            emailtag.setSubject(getBodyContent().getString().trim());
+            emailtag.setSubject(getBodyContent().getString().trim(), charset);
             return EVAL_PAGE;
         } catch(MessagingException err) {
             throw new JspException(err.getMessage(), err);
+        } finally {
+            init();
         }
+    }
+
+    @Override
+    public void release() {
+        super.release();
+        init();
     }
 }

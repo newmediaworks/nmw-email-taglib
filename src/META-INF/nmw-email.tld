@@ -125,6 +125,13 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
         <name>subject</name>
         <tag-class>com.newmediaworks.email.taglib.SubjectTag</tag-class>
         <body-content>JSP</body-content>
+        <attribute>
+            <description>The optional charset for the subject.</description>
+            <name>charset</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
     </tag>
     <tag>
         <description>

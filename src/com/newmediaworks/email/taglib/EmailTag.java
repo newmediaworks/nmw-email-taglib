@@ -142,8 +142,9 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
         message.setFrom(new InternetAddress(from));
     }
 
-    void setSubject(String subject) throws MessagingException {
-        message.setSubject(subject);
+    void setSubject(String subject, String charset) throws MessagingException {
+        if(charset==null) message.setSubject(subject);
+        else message.setSubject(subject, charset);
     }
 
     @Override
