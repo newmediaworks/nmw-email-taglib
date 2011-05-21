@@ -22,6 +22,8 @@
  */
 package com.newmediaworks.email.taglib;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +36,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 
@@ -46,6 +49,8 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
     public static final String ERROR_REQUEST_PARAMETER_NAME = EmailTag.class.getName()+".error";
 
     private String smtpHost;
+    private String var;
+    private String scope;
     private MimeMessage message;
 
     public EmailTag() {
@@ -54,6 +59,8 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
     private void init() {
         smtpHost = System.getProperty("mail.smtp.host");
+        var = null;
+        scope = null;
         message = null;
     }
 
@@ -63,6 +70,22 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
     public void setSmtpHost(String smtpHost) {
         this.smtpHost = smtpHost;
+    }
+
+    public String getVar() {
+        return var;
+    }
+
+    public void setVar(String var) {
+        this.var = var;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 
     @Override
@@ -77,10 +100,28 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
     @Override
     public int doEndTag() throws JspException {
         try {
-            Transport.send(message);
-            pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
-            return EVAL_PAGE;
+            if(var!=null) {
+                // Capture as a byte[] into variable
+                int scopeInt;
+                if(scope==null || "page".equals(scope)) scopeInt = PageContext.PAGE_SCOPE;
+                else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
+                else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
+                else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
+                else throw new JspException("Unexpected scope: "+scope);
+                ByteArrayOutputStream bout = new ByteArrayOutputStream();
+                message.writeTo(bout);
+                pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
+                pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
+                return EVAL_PAGE;
+            } else {
+                // Send the message
+                Transport.send(message);
+                pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
+                return EVAL_PAGE;
+            }
         } catch(MessagingException err) {
+            throw new JspException(err.getMessage(), err);
+        } catch(IOException err) {
             throw new JspException(err.getMessage(), err);
         } finally {
             init();

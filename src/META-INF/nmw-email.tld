@@ -72,6 +72,32 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             <rtexprvalue>true</rtexprvalue>
             <type>java.lang.String</type>
         </attribute>
+        <attribute>
+            <description>
+                If provided, the email will not be sent.  Instead, it will be converted to
+                a byte[] format and stored in the variable with the this name.
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[
+                Provides the scope of the variable that will be set when the var
+                attribute is provided.   Must be one of:
+                <ul>
+                    <li>page (the default)</li>
+                    <li>request</li>
+                    <li>session</li>
+                    <li>application</li>
+                </ul>
+            ]]></description>
+            <name>scope</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
     </tag>
     <tag>
         <description>
