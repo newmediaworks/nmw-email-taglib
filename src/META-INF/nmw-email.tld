@@ -37,6 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
                 Email:multipart -> Multipart
                 Email:bodypart -> BodyPart
                 Email:header -> Part.addHeader or Part.setHeader (can be applied to Email:email or Email:bodypart)
+                    Email:contentId -> Sets the Content-ID header, adding < ... > and trimming the body.
                 Email:content -> Part.setContent (can be applied to Email:email or Email:bodypart)
                 Email:file -> Part.setDataHandler (can be applied to Email:email or Email:bodypart)
                 Email:data -> Part.setDataHandler (can be applied to Email:email or Email:bodypart)
@@ -57,8 +58,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
                 multipart
                     + bodypart
                         * header
-            ]]>
-        </description>
+        ]]></description>
         <name>email</name>
         <tag-class>com.newmediaworks.email.taglib.EmailTag</tag-class>
         <body-content>JSP</body-content>
@@ -187,6 +187,15 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             <rtexprvalue>true</rtexprvalue>
             <type>boolean</type>
         </attribute>
+    </tag>
+    <tag>
+        <description><![CDATA[
+            Sets the Content-ID header, adding < ... > and trimming the body of this tag as the content ID value.
+            Allowed within Email:email or Email:bodypart tags.
+        ]]></description>
+        <name>contentId</name>
+        <tag-class>com.newmediaworks.email.taglib.ContentIdTag</tag-class>
+        <body-content>JSP</body-content>
     </tag>
     <tag>
         <description>
