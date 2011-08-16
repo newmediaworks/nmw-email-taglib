@@ -102,7 +102,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
     <tag>
         <description>
             The to recipient of the email.  Multiple tags will send email to multiple recipients.
-            Only allowed with an Email:email tag.
+            Only allowed within an Email:email tag.
         </description>
         <name>to</name>
         <tag-class>com.newmediaworks.email.taglib.ToTag</tag-class>
@@ -111,7 +111,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
     <tag>
         <description>
             The sender of the email.
-            Only allowed with an Email:email tag.
+            Only allowed within an Email:email tag.
         </description>
         <name>from</name>
         <tag-class>com.newmediaworks.email.taglib.FromTag</tag-class>
@@ -120,7 +120,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
     <tag>
         <description>
             The subject of the email.
-            Only allowed with an Email:email tag.
+            Only allowed within an Email:email tag.
         </description>
         <name>subject</name>
         <tag-class>com.newmediaworks.email.taglib.SubjectTag</tag-class>
@@ -156,7 +156,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
     <tag>
         <description>
             A single part of a multipart component.
-            Only allowed with an Email:multipart tag.
+            Only allowed within an Email:multipart tag.
         </description>
         <name>bodypart</name>
         <tag-class>com.newmediaworks.email.taglib.BodyPartTag</tag-class>
