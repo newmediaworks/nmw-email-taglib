@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 new-email-taglib - Java taglib encapsulating the JavaMail API.
-Copyright (C) 2006, 2010, 2011  New Media Works
+Copyright (C) 2006, 2010, 2011, 2012  New Media Works
     info@newmediaworks.com
     PO BOX 853
     Napa, CA 94559
@@ -71,6 +71,16 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                The SMTP port to use for sending email.
+                Defaults to the "mail.smtp.port" system property.
+            </description>
+            <name>smtpPort</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Integer</type>
         </attribute>
         <attribute>
             <description>

@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2012  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -24,7 +24,6 @@ package com.newmediaworks.email.taglib;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +35,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeUtility;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
@@ -50,7 +48,13 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
     public static final String ERROR_REQUEST_PARAMETER_NAME = EmailTag.class.getName()+".error";
 
+    private static Integer parseInteger(String s) throws NumberFormatException {
+        if(s==null || (s=s.trim()).isEmpty()) return null;
+        return Integer.valueOf(s);
+    }
+
     private String smtpHost;
+    private Integer smtpPort;
     private String var;
     private String scope;
     private MimeMessage message;
@@ -61,6 +65,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
     private void init() {
         smtpHost = System.getProperty("mail.smtp.host");
+        smtpPort = parseInteger(System.getProperty("mail.smtp.port"));
         var = null;
         scope = null;
         message = null;
@@ -72,6 +77,14 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
     public void setSmtpHost(String smtpHost) {
         this.smtpHost = smtpHost;
+    }
+
+    public Integer getSmtpPort() {
+        return smtpPort;
+    }
+
+    public void setSmtpPort(Integer smtpPort) {
+        this.smtpPort = smtpPort;
     }
 
     public String getVar() {
@@ -94,7 +107,8 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
     public int doStartTag() {
         pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, "Email not sent");
         Properties properties = new Properties();
-        properties.put("mail.smtp.host", smtpHost);
+        if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
+        if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
         message = new MimeMessage(Session.getInstance(properties, null));
         return EVAL_BODY_INCLUDE;
     }
