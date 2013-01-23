@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011  New Media Works
+ * Copyright (C) 2010, 2011  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -20,34 +20,35 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
-import javax.mail.MessagingException;
+import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
-public class ToTag extends BodyTagSupport {
+/**
+ * Gets the error reason for an email attempt.  Must be nested in an error tag.
+ *
+ * @author  Dan Armstrong of AO Industries, Inc. &lt;dan@aoindustries.com&gt;
+ */
+public class GetErrorReasonTag extends TagSupport {
 
-    private static final long serialVersionUID = -9159760014265376772L;
+    private static final long serialVersionUID = -5884622703073716930L;
 
-    public ToTag() {
+    public GetErrorReasonTag() {
     }
 
     @Override
-    public int doStartTag() {
-        return EVAL_BODY_BUFFERED;
-    }
-
-    @Override
-    public int doEndTag() throws JspException {
+    public int doStartTag() throws JspException {
         try {
-            EmailTag emailtag = (EmailTag)TagSupport.findAncestorWithClass(this, EmailTag.class);
-            if(emailtag == null) throw new JspException("ToTag not inside EmailTag");
-            emailtag.addToAddress(getBodyContent().getString().trim());
-            return EVAL_PAGE;
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
+            ErrorTag errorTag = (ErrorTag)findAncestorWithClass(this, ErrorTag.class);
+            if(errorTag==null) throw new JspException("getErrorReason tag must be within an error tag");
+
+            String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
+            if(error!=null) pageContext.getOut().write(error);
+            return SKIP_BODY;
+        } catch(IOException err) {
+            throw new JspException(err);
         }
     }
 }

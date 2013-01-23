@@ -20,47 +20,42 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
-import javax.mail.BodyPart;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.internet.MimeMultipart;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
-/**
- * A tag representation of the JavaMail Multipart class.
- */
-public class MultipartTag extends BodyTagSupport {
+public class HeaderTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = 1164641608254963685L;
+    private static final long serialVersionUID = 2318039931799092070L;
 
-    private String subtype;
-    private Multipart multipart;
+    private String name;
+    private boolean replace;
 
-    public MultipartTag() {
+    public HeaderTag() {
         init();
     }
 
     private void init() {
-        subtype = "mixed";
-        multipart = null;
+        name = null;
+        replace = true;
     }
 
     @Override
     public int doStartTag() {
-        multipart = new MimeMultipart(subtype);
-        return EVAL_BODY_INCLUDE;
+        return EVAL_BODY_BUFFERED;
     }
 
     @Override
     public int doEndTag() throws JspException {
         try {
             PartTag partTag = (PartTag)TagSupport.findAncestorWithClass(this, PartTag.class);
-            if(partTag == null) throw new JspException("MultipartTag not inside PartTag");
-            partTag.setContent(multipart);
+            if(partTag == null) throw new JspException("HeaderTag not inside PartTag");
+            String value = getBodyContent().getString().trim();
+            if(replace) partTag.setHeader(name, value);
+            else partTag.addHeader(name, value);
             return EVAL_PAGE;
         } catch(MessagingException err) {
             throw new JspException(err.getMessage(), err);
@@ -69,16 +64,25 @@ public class MultipartTag extends BodyTagSupport {
         }
     }
 
-    public String getSubtype() {
-        return subtype;
+    @Override
+    public void release() {
+        super.release();
+        init();
     }
 
-    public void setSubtype(String subtype) {
-        this.subtype = subtype;
+    public String getName() {
+        return name;
     }
 
-    void addBodyPart(BodyPart part) throws MessagingException {
-        multipart.addBodyPart(part);
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public boolean isReplace() {
+        return replace;
+    }
+
+    public void setReplace(boolean replace) {
+        this.replace = replace;
+    }
 }

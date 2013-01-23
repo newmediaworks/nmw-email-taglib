@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2011  New Media Works
+ * Copyright (C) 2006, 2010, 2011  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -20,20 +20,33 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
-public class ContentIdTag extends BodyTagSupport {
+public class SubjectTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = -6345110519765927149L;
+    private static final long serialVersionUID = 8340048766447465216L;
 
-    private static final String CONTENT_ID_HEADER = "Content-ID";
+    private String charset;
 
-    public ContentIdTag() {
+    public SubjectTag() {
+        init();
+    }
+
+    private void init() {
+        charset = null;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
     @Override
@@ -44,13 +57,20 @@ public class ContentIdTag extends BodyTagSupport {
     @Override
     public int doEndTag() throws JspException {
         try {
-            PartTag partTag = (PartTag)TagSupport.findAncestorWithClass(this, PartTag.class);
-            if(partTag == null) throw new JspException("ContentIdTag not inside PartTag");
-            String value = getBodyContent().getString().trim();
-            partTag.setHeader(CONTENT_ID_HEADER, '<'+value+'>');
+            EmailTag emailtag = (EmailTag)TagSupport.findAncestorWithClass(this, EmailTag.class);
+            if(emailtag == null) throw new JspException("SubjectTag not inside EmailTag");
+            emailtag.setSubject(getBodyContent().getString().trim(), charset);
             return EVAL_PAGE;
         } catch(MessagingException err) {
             throw new JspException(err.getMessage(), err);
+        } finally {
+            init();
         }
+    }
+
+    @Override
+    public void release() {
+        super.release();
+        init();
     }
 }

@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;

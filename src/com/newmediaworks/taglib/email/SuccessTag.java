@@ -20,26 +20,24 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
-import javax.activation.DataHandler;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
+import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
- * A tag that provides values to JavaMail part interface.
+ * Includes the body when the email was successfully sent.
+ *
+ * @author  Dan Armstrong of AO Industries, Inc. &lt;dan@aoindustries.com&gt;
  */
-public interface PartTag {
+public class SuccessTag extends BodyTagSupport {
 
-    void addHeader(String name, String value) throws MessagingException;
+    private static final long serialVersionUID = -3950518629224019824L;
 
-    void setHeader(String name, String value) throws MessagingException;
+    public SuccessTag() {
+    }
 
-    void setContent(Multipart content) throws MessagingException;
-
-    void setContent(Object o, String type) throws MessagingException;
-
-    void setDataHandler(DataHandler dh) throws MessagingException;
-
-    void setFileName(String filename) throws MessagingException;
+    @Override
+    public int doStartTag() {
+        return pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME)==null ? EVAL_BODY_INCLUDE : SKIP_BODY;
+    }
 }

@@ -60,7 +60,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
                         * header
         ]]></description>
         <name>email</name>
-        <tag-class>com.newmediaworks.email.taglib.EmailTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.EmailTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <description>
@@ -115,7 +115,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Only allowed within an Email:email tag.
         </description>
         <name>to</name>
-        <tag-class>com.newmediaworks.email.taglib.ToTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.ToTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
     <tag>
@@ -124,7 +124,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Only allowed within an Email:email tag.
         </description>
         <name>from</name>
-        <tag-class>com.newmediaworks.email.taglib.FromTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.FromTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
     <tag>
@@ -133,7 +133,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Only allowed within an Email:email tag.
         </description>
         <name>subject</name>
-        <tag-class>com.newmediaworks.email.taglib.SubjectTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.SubjectTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <description>The optional charset for the subject.</description>
@@ -149,7 +149,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Allowed within Email:email or Email:bodypart tags.
         </description>
         <name>multipart</name>
-        <tag-class>com.newmediaworks.email.taglib.MultipartTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.MultipartTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <description>
@@ -169,7 +169,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Only allowed within an Email:multipart tag.
         </description>
         <name>bodypart</name>
-        <tag-class>com.newmediaworks.email.taglib.BodyPartTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.BodyPartTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
     <tag>
@@ -178,7 +178,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Allowed within Email:email or Email:bodypart tags.
         </description>
         <name>header</name>
-        <tag-class>com.newmediaworks.email.taglib.HeaderTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.HeaderTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <description>The name of the header.</description>
@@ -204,7 +204,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Allowed within Email:email or Email:bodypart tags.
         ]]></description>
         <name>contentId</name>
-        <tag-class>com.newmediaworks.email.taglib.ContentIdTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.ContentIdTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
     <tag>
@@ -214,7 +214,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Allowed within Email:email or Email:bodypart tags.
         </description>
         <name>content</name>
-        <tag-class>com.newmediaworks.email.taglib.ContentTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.ContentTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <description>The MIME content type of the content.  Defaults to text/html.</description>
@@ -232,7 +232,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Allowed within Email:email or Email:bodypart tags.
         </description>
         <name>file</name>
-        <tag-class>com.newmediaworks.email.taglib.FileTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.FileTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
     <tag>
@@ -241,7 +241,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Allowed within Email:email or Email:bodypart tags.
         </description>
         <name>data</name>
-        <tag-class>com.newmediaworks.email.taglib.DataTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.DataTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <description>The MIME content type of the content.</description>
@@ -272,7 +272,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Must follow an Email:email tag.
         </description>
         <name>error</name>
-        <tag-class>com.newmediaworks.email.taglib.ErrorTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.ErrorTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
     <tag>
@@ -281,7 +281,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Must be nested in an Email:error tag.
         </description>
         <name>getErrorReason</name>
-        <tag-class>com.newmediaworks.email.taglib.GetErrorReasonTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.GetErrorReasonTag</tag-class>
         <body-content>empty</body-content>
     </tag>
     <tag>
@@ -290,7 +290,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             Must follow an Email:email tag.
         </description>
         <name>success</name>
-        <tag-class>com.newmediaworks.email.taglib.SuccessTag</tag-class>
+        <tag-class>com.newmediaworks.taglib.email.SuccessTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
 </taglib>

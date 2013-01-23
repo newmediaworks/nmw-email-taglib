@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2006, 2010, 2011  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -20,27 +20,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
-public class HeaderTag extends BodyTagSupport {
+public class ContentTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = 2318039931799092070L;
+    private static final long serialVersionUID = -7055705772215055501L;
 
-    private String name;
-    private boolean replace;
+    private String type;
 
-    public HeaderTag() {
+    public ContentTag() {
         init();
     }
 
     private void init() {
-        name = null;
-        replace = true;
+        type = "text/html";
     }
 
     @Override
@@ -52,10 +50,8 @@ public class HeaderTag extends BodyTagSupport {
     public int doEndTag() throws JspException {
         try {
             PartTag partTag = (PartTag)TagSupport.findAncestorWithClass(this, PartTag.class);
-            if(partTag == null) throw new JspException("HeaderTag not inside PartTag");
-            String value = getBodyContent().getString().trim();
-            if(replace) partTag.setHeader(name, value);
-            else partTag.addHeader(name, value);
+            if(partTag == null) throw new JspException("ContentTag not inside PartTag");
+            partTag.setContent(getBodyContent().getString().trim(), type);
             return EVAL_PAGE;
         } catch(MessagingException err) {
             throw new JspException(err.getMessage(), err);
@@ -70,19 +66,11 @@ public class HeaderTag extends BodyTagSupport {
         init();
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isReplace() {
-        return replace;
-    }
-
-    public void setReplace(boolean replace) {
-        this.replace = replace;
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2011  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -20,35 +20,37 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
-import java.io.IOException;
+import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
-/**
- * Gets the error reason for an email attempt.  Must be nested in an error tag.
- *
- * @author  Dan Armstrong of AO Industries, Inc. &lt;dan@aoindustries.com&gt;
- */
-public class GetErrorReasonTag extends TagSupport {
+public class ContentIdTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = -5884622703073716930L;
+    private static final long serialVersionUID = -6345110519765927149L;
 
-    public GetErrorReasonTag() {
+    private static final String CONTENT_ID_HEADER = "Content-ID";
+
+    public ContentIdTag() {
     }
 
     @Override
-    public int doStartTag() throws JspException {
-        try {
-            ErrorTag errorTag = (ErrorTag)findAncestorWithClass(this, ErrorTag.class);
-            if(errorTag==null) throw new JspException("getErrorReason tag must be within an error tag");
+    public int doStartTag() {
+        return EVAL_BODY_BUFFERED;
+    }
 
-            String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
-            if(error!=null) pageContext.getOut().write(error);
-            return SKIP_BODY;
-        } catch(IOException err) {
-            throw new JspException(err);
+    @Override
+    public int doEndTag() throws JspException {
+        try {
+            PartTag partTag = (PartTag)TagSupport.findAncestorWithClass(this, PartTag.class);
+            if(partTag == null) throw new JspException("ContentIdTag not inside PartTag");
+            String value = getBodyContent().getString().trim();
+            partTag.setHeader(CONTENT_ID_HEADER, '<'+value+'>');
+            return EVAL_PAGE;
+        } catch(MessagingException err) {
+            throw new JspException(err.getMessage(), err);
         }
     }
 }

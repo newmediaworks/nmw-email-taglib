@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -20,21 +20,18 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.email.taglib;
+package com.newmediaworks.taglib.email;
 
-import java.io.File;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
-public class FileTag extends BodyTagSupport {
+public class ToTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = 5606558335805071879L;
+    private static final long serialVersionUID = -9159760014265376772L;
 
-    public FileTag() {
+    public ToTag() {
     }
 
     @Override
@@ -45,17 +42,9 @@ public class FileTag extends BodyTagSupport {
     @Override
     public int doEndTag() throws JspException {
         try {
-            PartTag partTag = (PartTag)TagSupport.findAncestorWithClass(this, PartTag.class);
-            if(partTag == null) throw new JspException("FileTag not inside PartTag");
-            String path = getBodyContent().getString();
-            String realPath = pageContext.getServletContext().getRealPath(path);
-            if(realPath==null) throw new JspException("Unable to find real path for relative path: "+path);
-            File file = new File(realPath);
-            if(!file.exists()) throw new JspException("File does not exist: "+realPath);
-            if(!file.isFile()) throw new JspException("Not a regular file: "+realPath);
-            FileDataSource fds = new FileDataSource(file);
-            partTag.setDataHandler(new DataHandler(fds));
-            partTag.setFileName(fds.getName());
+            EmailTag emailtag = (EmailTag)TagSupport.findAncestorWithClass(this, EmailTag.class);
+            if(emailtag == null) throw new JspException("ToTag not inside EmailTag");
+            emailtag.addToAddress(getBodyContent().getString().trim());
             return EVAL_PAGE;
         } catch(MessagingException err) {
             throw new JspException(err.getMessage(), err);
