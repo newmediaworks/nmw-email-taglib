@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2010, 2011, 2013  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -22,6 +22,7 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -41,9 +42,7 @@ public class GetErrorReasonTag extends TagSupport {
     @Override
     public int doStartTag() throws JspException {
         try {
-            ErrorTag errorTag = (ErrorTag)findAncestorWithClass(this, ErrorTag.class);
-            if(errorTag==null) throw new JspException("getErrorReason tag must be within an error tag");
-
+            ErrorTag errorTag = JspTagUtils.findAncestor(this, ErrorTag.class);
             String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
             if(error!=null) pageContext.getOut().write(error);
             return SKIP_BODY;

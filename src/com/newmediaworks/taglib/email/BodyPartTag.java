@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2010, 2011, 2013  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -22,6 +22,7 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import javax.activation.DataHandler;
 import javax.mail.BodyPart;
 import javax.mail.MessagingException;
@@ -29,7 +30,6 @@ import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * A tag representation of the JavaMail BodyPart interface.
@@ -59,8 +59,7 @@ public class BodyPartTag extends BodyTagSupport implements PartTag {
     @Override
     public int doEndTag() throws JspException {
         try {
-            MultipartTag multipartTag = (MultipartTag)TagSupport.findAncestorWithClass(this, MultipartTag.class);
-            if(multipartTag == null) throw new JspException("BodyPartTag not inside MultipartTag");
+            MultipartTag multipartTag = JspTagUtils.findAncestor(this, MultipartTag.class);
             multipartTag.addBodyPart(bodypart);
             return EVAL_PAGE;
         } catch(MessagingException err) {

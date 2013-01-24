@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2010, 2011, 2013  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -22,13 +22,15 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.servlet.jsp.LocalizedJspException;
+import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import static com.newmediaworks.taglib.email.ApplicationResourcesAccessor.accessor;
 import java.io.File;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * @author  New Media Works &lt;info@newmediaworks.com&gt;
@@ -48,14 +50,13 @@ public class FileTag extends BodyTagSupport {
     @Override
     public int doEndTag() throws JspException {
         try {
-            PartTag partTag = (PartTag)TagSupport.findAncestorWithClass(this, PartTag.class);
-            if(partTag == null) throw new JspException("FileTag not inside PartTag");
+            PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
             String path = getBodyContent().getString();
             String realPath = pageContext.getServletContext().getRealPath(path);
-            if(realPath==null) throw new JspException("Unable to find real path for relative path: "+path);
+            if(realPath==null) throw new LocalizedJspException(accessor, "FileTag.doEndTag.unableToFindRealPath", path);
             File file = new File(realPath);
-            if(!file.exists()) throw new JspException("File does not exist: "+realPath);
-            if(!file.isFile()) throw new JspException("Not a regular file: "+realPath);
+            if(!file.exists()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.fileNotExists", realPath);
+            if(!file.isFile()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.notRegularFile", realPath);
             FileDataSource fds = new FileDataSource(file);
             partTag.setDataHandler(new DataHandler(fds));
             partTag.setFileName(fds.getName());

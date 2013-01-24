@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2010, 2011  New Media Works
+ * Copyright (C) 2006, 2010, 2011, 2013  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -22,10 +22,10 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * @author  New Media Works &lt;info@newmediaworks.com&gt;
@@ -45,8 +45,7 @@ public class FromTag extends BodyTagSupport {
     @Override
     public int doEndTag() throws JspException {
         try {
-            EmailTag emailtag = (EmailTag)TagSupport.findAncestorWithClass(this, EmailTag.class);
-            if(emailtag == null) throw new JspException("FromTag not inside EmailTag");
+            EmailTag emailtag = JspTagUtils.findAncestor(this, EmailTag.class);
             emailtag.setFrom(getBodyContent().getString().trim());
             return EVAL_PAGE;
         } catch(MessagingException err) {

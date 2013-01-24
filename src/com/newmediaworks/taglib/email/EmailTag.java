@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011, 2012  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -22,6 +22,8 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.servlet.jsp.LocalizedJspException;
+import static com.newmediaworks.taglib.email.ApplicationResourcesAccessor.accessor;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -108,7 +110,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
     @Override
     public int doStartTag() {
-        pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, "Email not sent");
+        pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, accessor.getMessage("EmailTag.doStartTag.emailNotSent"));
         Properties properties = new Properties();
         if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
         if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
@@ -126,7 +128,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
                 else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
                 else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
                 else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
-                else throw new JspException("Unexpected scope: "+scope);
+                else throw new LocalizedJspException(accessor, "EmailTag.doEndTag.unexpectedScope", scope);
                 ByteArrayOutputStream bout = new ByteArrayOutputStream();
                 message.writeTo(bout);
                 pageContext.setAttribute(var, bout.toByteArray(), scopeInt);

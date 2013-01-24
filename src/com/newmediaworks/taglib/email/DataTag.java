@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - Java taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2010, 2011, 2013  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -22,6 +22,9 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.servlet.jsp.LocalizedJspException;
+import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import static com.newmediaworks.taglib.email.ApplicationResourcesAccessor.accessor;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.activation.DataHandler;
@@ -64,19 +67,16 @@ public class DataTag extends TagSupport {
         this.data = data;
     }
 
-    
-
     @Override
     public int doStartTag() throws JspException {
         try {
-            PartTag partTag = (PartTag)TagSupport.findAncestorWithClass(this, PartTag.class);
-            if(partTag == null) throw new JspException("DataTag not inside PartTag");
+            PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
             DataSource ds;
             if(data instanceof byte[]) ds = new ByteArrayDataSource((byte[])data, type);
             else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
             else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
             else if(data instanceof DataSource) ds = (DataSource)data;
-            else throw new JspException("data must be byte[], String, InputStream, or DataSource");
+            else throw new LocalizedJspException(accessor, "DataTag.doStartTag.invalidDataType");
             partTag.setDataHandler(new DataHandler(ds));
             if(filename!=null) partTag.setFileName(filename);
             return SKIP_BODY;
