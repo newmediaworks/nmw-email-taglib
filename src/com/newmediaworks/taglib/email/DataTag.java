@@ -31,6 +31,9 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+/**
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
+ */
 public class DataTag extends TagSupport {
 
     private static final long serialVersionUID = -4452366609111031502L;

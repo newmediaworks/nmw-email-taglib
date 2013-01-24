@@ -28,6 +28,8 @@ import javax.mail.Multipart;
 
 /**
  * A tag that provides values to JavaMail part interface.
+ *
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
  */
 public interface PartTag {
 

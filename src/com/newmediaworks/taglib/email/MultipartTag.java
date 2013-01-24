@@ -32,6 +32,8 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * A tag representation of the JavaMail Multipart class.
+ *
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
  */
 public class MultipartTag extends BodyTagSupport {
 

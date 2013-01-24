@@ -33,6 +33,8 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * A tag representation of the JavaMail BodyPart interface.
+ *
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
  */
 public class BodyPartTag extends BodyTagSupport implements PartTag {
 

@@ -27,7 +27,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * Includes the body when the email was successfully sent.
  *
- * @author  Dan Armstrong of AO Industries, Inc. &lt;dan@aoindustries.com&gt;
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
  */
 public class SuccessTag extends BodyTagSupport {
 

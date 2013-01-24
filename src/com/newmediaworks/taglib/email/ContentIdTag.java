@@ -27,6 +27,9 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
+/**
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
+ */
 public class ContentIdTag extends BodyTagSupport {
 
     private static final long serialVersionUID = -6345110519765927149L;

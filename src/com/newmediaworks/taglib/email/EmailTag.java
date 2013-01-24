@@ -40,6 +40,9 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 
+/**
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
+ */
 public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally {
 
     private static final Logger logger = Logger.getLogger(EmailTag.class.getName());

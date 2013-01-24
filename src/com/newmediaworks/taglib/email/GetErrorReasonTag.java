@@ -29,7 +29,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 /**
  * Gets the error reason for an email attempt.  Must be nested in an error tag.
  *
- * @author  Dan Armstrong of AO Industries, Inc. &lt;dan@aoindustries.com&gt;
+ * @author  New Media Works &lt;info@newmediaworks.com&gt;
  */
 public class GetErrorReasonTag extends TagSupport {
 
