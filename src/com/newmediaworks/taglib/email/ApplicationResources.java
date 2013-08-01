@@ -24,9 +24,9 @@ package com.newmediaworks.taglib.email;
 
 import com.aoindustries.util.i18n.EditableResourceBundle;
 import com.aoindustries.util.i18n.EditableResourceBundleSet;
+import com.aoindustries.util.i18n.Locales;
 import java.io.File;
 import java.util.Arrays;
-import java.util.Locale;
 
 /**
  * Do not use directly.
@@ -38,16 +38,16 @@ public final class ApplicationResources extends EditableResourceBundle {
     public static final EditableResourceBundleSet bundleSet = new EditableResourceBundleSet(
         ApplicationResources.class.getName(),
         Arrays.asList(
-            Locale.ROOT,
-            new Locale("ar"),
-            Locale.GERMAN,
-            Locale.ENGLISH,
-            new Locale("es"),
-            Locale.FRENCH,
-            Locale.ITALIAN,
-            Locale.JAPANESE,
-            new Locale("pt"),
-            Locale.CHINESE
+            Locales.ROOT,
+            Locales.ARABIC,
+            Locales.GERMAN,
+            Locales.ENGLISH,
+            Locales.SPANISH,
+            Locales.FRENCH,
+            Locales.ITALIAN,
+            Locales.JAPANESE,
+            Locales.PORTUGUESE,
+            Locales.CHINESE
         )
     );
 
@@ -65,7 +65,7 @@ public final class ApplicationResources extends EditableResourceBundle {
      */
     public ApplicationResources() {
         super(
-            Locale.ROOT,
+            Locales.ROOT,
             bundleSet,
             getSourceDirectories("ApplicationResources.properties")
         );

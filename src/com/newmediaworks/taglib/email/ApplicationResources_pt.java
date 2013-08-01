@@ -23,7 +23,7 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.util.i18n.EditableResourceBundle;
-import java.util.Locale;
+import com.aoindustries.util.i18n.Locales;
 
 /**
  * Do not use directly.
@@ -37,7 +37,7 @@ public final class ApplicationResources_pt extends EditableResourceBundle {
      */
     public ApplicationResources_pt() {
         super(
-            new Locale("pt"),
+            Locales.PORTUGUESE,
             ApplicationResources.bundleSet,
             ApplicationResources.getSourceDirectories("ApplicationResources_pt.properties")
         );
