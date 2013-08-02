@@ -51,7 +51,7 @@ public final class ApplicationResources extends EditableResourceBundle {
         )
     );
 
-    static File[] getSourceDirectories(String filename) {
+    static File[] getSourceFiles(String filename) {
         return new File[] {
             // Linux development system
             new File(System.getProperty("user.home")+"/common/newmediaworks/cvswork/nmw-email-taglib/src/com/newmediaworks/taglib/email", filename),
@@ -67,7 +67,7 @@ public final class ApplicationResources extends EditableResourceBundle {
         super(
             Locales.ROOT,
             bundleSet,
-            getSourceDirectories("ApplicationResources.properties")
+            getSourceFiles("ApplicationResources.properties")
         );
     }
 }

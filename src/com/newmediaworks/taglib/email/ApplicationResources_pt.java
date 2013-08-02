@@ -39,7 +39,7 @@ public final class ApplicationResources_pt extends EditableResourceBundle {
         super(
             Locales.PORTUGUESE,
             ApplicationResources.bundleSet,
-            ApplicationResources.getSourceDirectories("ApplicationResources_pt.properties")
+            ApplicationResources.getSourceFiles("ApplicationResources_pt.properties")
         );
     }
 }
