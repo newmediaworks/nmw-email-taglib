@@ -35,6 +35,7 @@ public class HeaderTag extends BodyTagSupport {
     private static final long serialVersionUID = 2318039931799092070L;
 
     private String name;
+	private String value;
     private boolean replace;
 
     public HeaderTag() {
@@ -43,21 +44,46 @@ public class HeaderTag extends BodyTagSupport {
 
     private void init() {
         name = null;
+		value = null;
         replace = true;
     }
 
-    @Override
+	/* Removed 2013-09-29
+    public String getName() {
+        return name;
+    }
+	*/
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	/* Removed 2013-09-29
+    public boolean isReplace() {
+        return replace;
+    }
+	*/
+
+    public void setReplace(boolean replace) {
+        this.replace = replace;
+    }
+
+	@Override
     public int doStartTag() {
-        return EVAL_BODY_BUFFERED;
+        return value!=null ? SKIP_BODY : EVAL_BODY_BUFFERED;
     }
 
     @Override
     public int doEndTag() throws JspException {
         try {
             PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
-            String value = getBodyContent().getString().trim();
-            if(replace) partTag.setHeader(name, value);
-            else partTag.addHeader(name, value);
+            String headerValue = value!=null ? value : getBodyContent().getString().trim();
+            if(replace) partTag.setHeader(name, headerValue);
+            else partTag.addHeader(name, headerValue);
             return EVAL_PAGE;
         } catch(MessagingException err) {
             throw new JspException(err.getMessage(), err);
@@ -70,21 +96,5 @@ public class HeaderTag extends BodyTagSupport {
     public void release() {
         super.release();
         init();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isReplace() {
-        return replace;
-    }
-
-    public void setReplace(boolean replace) {
-        this.replace = replace;
     }
 }

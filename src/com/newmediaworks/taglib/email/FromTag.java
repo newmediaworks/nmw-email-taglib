@@ -32,24 +32,43 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class FromTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = 5888471778870521398L;
+    private static final long serialVersionUID = 2L;
+
+	private String address;
 
     public FromTag() {
+        init();
+    }
+
+    private void init() {
+        address = null;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public int doStartTag() {
-        return EVAL_BODY_BUFFERED;
+        return address!=null ? SKIP_BODY : EVAL_BODY_BUFFERED;
     }
 
     @Override
     public int doEndTag() throws JspException {
         try {
             EmailTag emailtag = JspTagUtils.findAncestor(this, EmailTag.class);
-            emailtag.setFrom(getBodyContent().getString().trim());
+            emailtag.setFrom(address!=null ? address : getBodyContent().getString().trim());
             return EVAL_PAGE;
         } catch(MessagingException err) {
             throw new JspException(err.getMessage(), err);
+        } finally {
+            init();
         }
+    }
+
+	@Override
+    public void release() {
+        super.release();
+        init();
     }
 }

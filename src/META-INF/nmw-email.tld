@@ -117,6 +117,16 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
         <name>to</name>
         <tag-class>com.newmediaworks.taglib.email.ToTag</tag-class>
         <body-content>JSP</body-content>
+        <attribute>
+            <description>
+				Provides the To: address.  If not provided, the body content trimmed
+				will be used as the address.
+            </description>
+            <name>address</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
     </tag>
     <tag>
         <description>
@@ -126,6 +136,16 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
         <name>from</name>
         <tag-class>com.newmediaworks.taglib.email.FromTag</tag-class>
         <body-content>JSP</body-content>
+        <attribute>
+            <description>
+				Provides the From: address.  If not provided, the body content trimmed
+				will be used as the address.
+            </description>
+            <name>address</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
     </tag>
     <tag>
         <description>
@@ -184,6 +204,16 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
             <description>The name of the header.</description>
             <name>name</name>
             <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+				Provides the header value.  If not provided, the body content trimmed
+				will be used as the value.
+            </description>
+            <name>value</name>
+            <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <type>java.lang.String</type>
         </attribute>
