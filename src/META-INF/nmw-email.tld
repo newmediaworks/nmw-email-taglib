@@ -323,4 +323,14 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
         <tag-class>com.newmediaworks.taglib.email.SuccessTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
+	<function>
+        <description>
+            Gets the error reason for an email attempt.
+            Must be nested in an Email:error tag.
+        </description>
+        <name>getErrorReason</name>
+		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
+		<function-signature>java.lang.String getErrorReason()</function-signature>
+		<example>${Email:getErrorReason()}</example>
+	</function>
 </taglib>
