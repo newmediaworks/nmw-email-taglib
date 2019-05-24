@@ -33,6 +33,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 	<packaging>bundle</packaging>
 
 	<properties>
+		<shortTitle>Email Taglib</shortTitle>
 		<javadoc.taglibReference><![CDATA[<li><a target="_top" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>]]></javadoc.taglibReference>
 	</properties>
 
