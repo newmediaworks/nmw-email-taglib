@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013, 2019  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -140,9 +140,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
                 pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
                 return EVAL_PAGE;
             }
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        } catch(IOException err) {
+        } catch(MessagingException | IOException err) {
             throw new JspException(err.getMessage(), err);
         } finally {
             init();

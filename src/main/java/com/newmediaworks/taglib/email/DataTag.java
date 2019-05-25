@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -80,9 +80,7 @@ public class DataTag extends TagSupport {
             partTag.setDataHandler(new DataHandler(ds));
             if(filename!=null) partTag.setFileName(filename);
             return SKIP_BODY;
-        } catch(IOException err) {
-            throw new JspException(err.getMessage(), err);
-        } catch(MessagingException err) {
+        } catch(IOException | MessagingException err) {
             throw new JspException(err.getMessage(), err);
         } finally {
             init();
