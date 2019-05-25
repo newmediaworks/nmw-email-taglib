@@ -24,7 +24,7 @@
 	</a>
 </p>
 
-JSP taglib encapsulating the JavaMail API.
+JSP taglib encapsulating the [JavaMail API](https://javaee.github.io/javamail/).
 
 ## Project Links
 * [Project Home](https://oss.newmediaworks.com/email-taglib/)
