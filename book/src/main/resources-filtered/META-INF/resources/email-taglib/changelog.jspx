@@ -37,6 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
+		dateModified="2019-05-24T19:17:11-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-email-taglib:pom.version}" />
@@ -54,7 +55,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>Project moved to GitHub and Maven.</li>
-					<!-- TODO: Minimum Java version changed from 1.6 to 1.7. -->
+					<li>Minimum Java version changed from 1.6 to 1.7.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
