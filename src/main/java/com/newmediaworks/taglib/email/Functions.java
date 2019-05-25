@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2013  New Media Works
+ * Copyright (C) 2013, 2019  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -24,6 +24,9 @@ package com.newmediaworks.taglib.email;
 
 import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
 
+/**
+ * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
+ */
 final public class Functions {
 
     private Functions() {
