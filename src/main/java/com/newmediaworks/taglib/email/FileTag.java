@@ -37,32 +37,32 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class FileTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = 5606558335805071879L;
+	private static final long serialVersionUID = 5606558335805071879L;
 
-    public FileTag() {
-    }
+	public FileTag() {
+	}
 
-    @Override
-    public int doStartTag() {
-        return EVAL_BODY_BUFFERED;
-    }
+	@Override
+	public int doStartTag() {
+		return EVAL_BODY_BUFFERED;
+	}
 
-    @Override
-    public int doEndTag() throws JspException {
-        try {
-            PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
-            String path = getBodyContent().getString();
-            String realPath = pageContext.getServletContext().getRealPath(path);
-            if(realPath==null) throw new LocalizedJspException(accessor, "FileTag.doEndTag.unableToFindRealPath", path);
-            File file = new File(realPath);
-            if(!file.exists()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.fileNotExists", realPath);
-            if(!file.isFile()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.notRegularFile", realPath);
-            FileDataSource fds = new FileDataSource(file);
-            partTag.setDataHandler(new DataHandler(fds));
-            partTag.setFileName(fds.getName());
-            return EVAL_PAGE;
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        }
-    }
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
+			String path = getBodyContent().getString();
+			String realPath = pageContext.getServletContext().getRealPath(path);
+			if(realPath==null) throw new LocalizedJspException(accessor, "FileTag.doEndTag.unableToFindRealPath", path);
+			File file = new File(realPath);
+			if(!file.exists()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.fileNotExists", realPath);
+			if(!file.isFile()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.notRegularFile", realPath);
+			FileDataSource fds = new FileDataSource(file);
+			partTag.setDataHandler(new DataHandler(fds));
+			partTag.setFileName(fds.getName());
+			return EVAL_PAGE;
+		} catch(MessagingException err) {
+			throw new JspException(err.getMessage(), err);
+		}
+	}
 }

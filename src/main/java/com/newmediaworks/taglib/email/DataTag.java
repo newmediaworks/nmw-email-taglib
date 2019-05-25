@@ -39,51 +39,51 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class DataTag extends TagSupport {
 
-    private static final long serialVersionUID = -4452366609111031502L;
+	private static final long serialVersionUID = -4452366609111031502L;
 
-    private String type;
-    private String filename;
-    private Object data;
+	private String type;
+	private String filename;
+	private Object data;
 
-    public DataTag() {
-        init();
-    }
+	public DataTag() {
+		init();
+	}
 
-    private void init() {
-        type = null;
-        filename = null;
-        data = null;
-    }
+	private void init() {
+		type = null;
+		filename = null;
+		data = null;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
-    public void setData(Object data) {
-        this.data = data;
-    }
+	public void setData(Object data) {
+		this.data = data;
+	}
 
-    @Override
-    public int doStartTag() throws JspException {
-        try {
-            PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
-            DataSource ds;
-            if(data instanceof byte[]) ds = new ByteArrayDataSource((byte[])data, type);
-            else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
-            else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
-            else if(data instanceof DataSource) ds = (DataSource)data;
-            else throw new LocalizedJspException(accessor, "DataTag.doStartTag.invalidDataType");
-            partTag.setDataHandler(new DataHandler(ds));
-            if(filename!=null) partTag.setFileName(filename);
-            return SKIP_BODY;
-        } catch(IOException | MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        } finally {
-            init();
-        }
-    }
+	@Override
+	public int doStartTag() throws JspException {
+		try {
+			PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
+			DataSource ds;
+			if(data instanceof byte[]) ds = new ByteArrayDataSource((byte[])data, type);
+			else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
+			else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
+			else if(data instanceof DataSource) ds = (DataSource)data;
+			else throw new LocalizedJspException(accessor, "DataTag.doStartTag.invalidDataType");
+			partTag.setDataHandler(new DataHandler(ds));
+			if(filename!=null) partTag.setFileName(filename);
+			return SKIP_BODY;
+		} catch(IOException | MessagingException err) {
+			throw new JspException(err.getMessage(), err);
+		} finally {
+			init();
+		}
+	}
 }

@@ -38,64 +38,64 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class BodyPartTag extends BodyTagSupport implements PartTag {
 
-    private static final long serialVersionUID = 2918414786024763557L;
+	private static final long serialVersionUID = 2918414786024763557L;
 
-    private BodyPart bodypart;
+	private BodyPart bodypart;
 
-    public BodyPartTag() {
-        init();
-    }
+	public BodyPartTag() {
+		init();
+	}
 
-    private void init() {
-        bodypart = null;
-    }
+	private void init() {
+		bodypart = null;
+	}
 
-    @Override
-    public int doStartTag() {
-        bodypart = new MimeBodyPart();
-        return EVAL_BODY_INCLUDE;
-    }
+	@Override
+	public int doStartTag() {
+		bodypart = new MimeBodyPart();
+		return EVAL_BODY_INCLUDE;
+	}
 
-    @Override
-    public int doEndTag() throws JspException {
-        try {
-            MultipartTag multipartTag = JspTagUtils.findAncestor(this, MultipartTag.class);
-            multipartTag.addBodyPart(bodypart);
-            return EVAL_PAGE;
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        } finally {
-            init();
-        }
-    }
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			MultipartTag multipartTag = JspTagUtils.findAncestor(this, MultipartTag.class);
+			multipartTag.addBodyPart(bodypart);
+			return EVAL_PAGE;
+		} catch(MessagingException err) {
+			throw new JspException(err.getMessage(), err);
+		} finally {
+			init();
+		}
+	}
 
-    @Override
-    public void addHeader(String name, String value) throws MessagingException {
-        bodypart.addHeader(name, value);
-    }
+	@Override
+	public void addHeader(String name, String value) throws MessagingException {
+		bodypart.addHeader(name, value);
+	}
 
-    @Override
-    public void setHeader(String name, String value) throws MessagingException {
-        bodypart.setHeader(name, value);
-    }
+	@Override
+	public void setHeader(String name, String value) throws MessagingException {
+		bodypart.setHeader(name, value);
+	}
 
-    @Override
-    public void setContent(Multipart content) throws MessagingException {
-        bodypart.setContent(content);
-    }
+	@Override
+	public void setContent(Multipart content) throws MessagingException {
+		bodypart.setContent(content);
+	}
 
-    @Override
-    public void setContent(Object o, String type) throws MessagingException {
-        bodypart.setContent(o, type);
-    }
+	@Override
+	public void setContent(Object o, String type) throws MessagingException {
+		bodypart.setContent(o, type);
+	}
 
-    @Override
-    public void setDataHandler(DataHandler dh) throws MessagingException {
-        bodypart.setDataHandler(dh);
-    }
+	@Override
+	public void setDataHandler(DataHandler dh) throws MessagingException {
+		bodypart.setDataHandler(dh);
+	}
 
-    @Override
-    public void setFileName(String filename) throws MessagingException {
-        bodypart.setFileName(filename);
-    }
+	@Override
+	public void setFileName(String filename) throws MessagingException {
+		bodypart.setFileName(filename);
+	}
 }

@@ -35,39 +35,39 @@ import java.util.Arrays;
  */
 public final class ApplicationResources extends EditableResourceBundle {
 
-    public static final EditableResourceBundleSet bundleSet = new EditableResourceBundleSet(
-        ApplicationResources.class.getName(),
-        Arrays.asList(
-            Locales.ROOT,
-            Locales.ARABIC,
-            Locales.GERMAN,
-            Locales.ENGLISH,
-            Locales.SPANISH,
-            Locales.FRENCH,
-            Locales.ITALIAN,
-            Locales.JAPANESE,
-            Locales.PORTUGUESE,
-            Locales.CHINESE
-        )
-    );
+	public static final EditableResourceBundleSet bundleSet = new EditableResourceBundleSet(
+		ApplicationResources.class.getName(),
+		Arrays.asList(
+			Locales.ROOT,
+			Locales.ARABIC,
+			Locales.GERMAN,
+			Locales.ENGLISH,
+			Locales.SPANISH,
+			Locales.FRENCH,
+			Locales.ITALIAN,
+			Locales.JAPANESE,
+			Locales.PORTUGUESE,
+			Locales.CHINESE
+		)
+	);
 
-    static File[] getSourceFiles(String filename) {
-        return new File[] {
-            // Linux development system
-            new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email", filename),
-            // Windows development system
-            // new File("C:/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email", filename)
-        };
-    }
+	static File[] getSourceFiles(String filename) {
+		return new File[] {
+			// Linux development system
+			new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email", filename),
+			// Windows development system
+			// new File("C:/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email", filename)
+		};
+	}
 
-    /**
-     * Do not use directly.
-     */
-    public ApplicationResources() {
-        super(
-            Locales.ROOT,
-            bundleSet,
-            getSourceFiles("ApplicationResources.properties")
-        );
-    }
+	/**
+	 * Do not use directly.
+	 */
+	public ApplicationResources() {
+		super(
+			Locales.ROOT,
+			bundleSet,
+			getSourceFiles("ApplicationResources.properties")
+		);
+	}
 }

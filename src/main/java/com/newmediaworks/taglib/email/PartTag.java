@@ -33,15 +33,15 @@ import javax.mail.Multipart;
  */
 public interface PartTag {
 
-    void addHeader(String name, String value) throws MessagingException;
+	void addHeader(String name, String value) throws MessagingException;
 
-    void setHeader(String name, String value) throws MessagingException;
+	void setHeader(String name, String value) throws MessagingException;
 
-    void setContent(Multipart content) throws MessagingException;
+	void setContent(Multipart content) throws MessagingException;
 
-    void setContent(Object o, String type) throws MessagingException;
+	void setContent(Object o, String type) throws MessagingException;
 
-    void setDataHandler(DataHandler dh) throws MessagingException;
+	void setDataHandler(DataHandler dh) throws MessagingException;
 
-    void setFileName(String filename) throws MessagingException;
+	void setFileName(String filename) throws MessagingException;
 }

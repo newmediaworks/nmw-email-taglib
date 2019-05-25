@@ -29,18 +29,18 @@ package com.newmediaworks.taglib.email;
  */
 public final class ApplicationResourcesAccessor {
 
-    /**
-     * Make no instances.
-     */
-    private ApplicationResourcesAccessor() {
-    }
+	/**
+	 * Make no instances.
+	 */
+	private ApplicationResourcesAccessor() {
+	}
 
-    public static final com.aoindustries.util.i18n.ApplicationResourcesAccessor accessor;
-    static {
-        // Use correct package after any potential obfuscation
-        String classname = ApplicationResourcesAccessor.class.getName();
-        accessor = com.aoindustries.util.i18n.ApplicationResourcesAccessor.getInstance(
-            classname.substring(0, classname.lastIndexOf('.') + 1) + "ApplicationResources"
-        );
-    }
+	public static final com.aoindustries.util.i18n.ApplicationResourcesAccessor accessor;
+	static {
+		// Use correct package after any potential obfuscation
+		String classname = ApplicationResourcesAccessor.class.getName();
+		accessor = com.aoindustries.util.i18n.ApplicationResourcesAccessor.getInstance(
+			classname.substring(0, classname.lastIndexOf('.') + 1) + "ApplicationResources"
+		);
+	}
 }

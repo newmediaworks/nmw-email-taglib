@@ -31,13 +31,13 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ErrorTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = -4181809894278592208L;
+	private static final long serialVersionUID = -4181809894278592208L;
 
-    public ErrorTag() {
-    }
+	public ErrorTag() {
+	}
 
-    @Override
-    public int doStartTag() {
-        return pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME)!=null ? EVAL_BODY_INCLUDE : SKIP_BODY;
-    }
+	@Override
+	public int doStartTag() {
+		return pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME)!=null ? EVAL_BODY_INCLUDE : SKIP_BODY;
+	}
 }

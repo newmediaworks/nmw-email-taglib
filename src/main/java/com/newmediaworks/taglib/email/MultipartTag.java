@@ -37,49 +37,49 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class MultipartTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = 1164641608254963685L;
+	private static final long serialVersionUID = 1164641608254963685L;
 
-    private String subtype;
-    private Multipart multipart;
+	private String subtype;
+	private Multipart multipart;
 
-    public MultipartTag() {
-        init();
-    }
+	public MultipartTag() {
+		init();
+	}
 
-    private void init() {
-        subtype = "mixed";
-        multipart = null;
-    }
+	private void init() {
+		subtype = "mixed";
+		multipart = null;
+	}
 
-    @Override
-    public int doStartTag() {
-        multipart = new MimeMultipart(subtype);
-        return EVAL_BODY_INCLUDE;
-    }
+	@Override
+	public int doStartTag() {
+		multipart = new MimeMultipart(subtype);
+		return EVAL_BODY_INCLUDE;
+	}
 
-    @Override
-    public int doEndTag() throws JspException {
-        try {
-            PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
-            partTag.setContent(multipart);
-            return EVAL_PAGE;
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        } finally {
-            init();
-        }
-    }
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
+			partTag.setContent(multipart);
+			return EVAL_PAGE;
+		} catch(MessagingException err) {
+			throw new JspException(err.getMessage(), err);
+		} finally {
+			init();
+		}
+	}
 
-    public String getSubtype() {
-        return subtype;
-    }
+	public String getSubtype() {
+		return subtype;
+	}
 
-    public void setSubtype(String subtype) {
-        this.subtype = subtype;
-    }
+	public void setSubtype(String subtype) {
+		this.subtype = subtype;
+	}
 
-    void addBodyPart(BodyPart part) throws MessagingException {
-        multipart.addBodyPart(part);
-    }
+	void addBodyPart(BodyPart part) throws MessagingException {
+		multipart.addBodyPart(part);
+	}
 
 }

@@ -29,8 +29,8 @@ import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
  */
 final public class Functions {
 
-    private Functions() {
-    }
+	private Functions() {
+	}
 
 	public static String getErrorReason() {
 		return (String)getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);

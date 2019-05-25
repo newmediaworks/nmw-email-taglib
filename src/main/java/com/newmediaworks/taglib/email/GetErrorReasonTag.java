@@ -34,20 +34,20 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class GetErrorReasonTag extends TagSupport {
 
-    private static final long serialVersionUID = -5884622703073716930L;
+	private static final long serialVersionUID = -5884622703073716930L;
 
-    public GetErrorReasonTag() {
-    }
+	public GetErrorReasonTag() {
+	}
 
-    @Override
-    public int doStartTag() throws JspException {
-        try {
-            ErrorTag errorTag = JspTagUtils.findAncestor(this, ErrorTag.class);
-            String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
-            if(error!=null) pageContext.getOut().write(error);
-            return SKIP_BODY;
-        } catch(IOException err) {
-            throw new JspException(err);
-        }
-    }
+	@Override
+	public int doStartTag() throws JspException {
+		try {
+			ErrorTag errorTag = JspTagUtils.findAncestor(this, ErrorTag.class);
+			String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
+			if(error!=null) pageContext.getOut().write(error);
+			return SKIP_BODY;
+		} catch(IOException err) {
+			throw new JspException(err);
+		}
+	}
 }
