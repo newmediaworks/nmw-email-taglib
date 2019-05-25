@@ -29,7 +29,7 @@ import javax.mail.Multipart;
 /**
  * A tag that provides values to JavaMail part interface.
  *
- * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
  */
 public interface PartTag {
 

@@ -25,7 +25,7 @@ package com.newmediaworks.taglib.email;
 /**
  * Provides a simplified interface for obtaining localized values from the ApplicationResources.properties files.
  *
- * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
  */
 public final class ApplicationResourcesAccessor {
 

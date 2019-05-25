@@ -34,7 +34,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * A tag representation of the JavaMail BodyPart interface.
  *
- * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
  */
 public class BodyPartTag extends BodyTagSupport implements PartTag {
 

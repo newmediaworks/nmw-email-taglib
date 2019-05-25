@@ -25,7 +25,7 @@ package com.newmediaworks.taglib.email;
 import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
 
 /**
- * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
  */
 final public class Functions {
 
