@@ -1,6 +1,6 @@
 /*
  * new-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011  New Media Works
+ * Copyright (C) 2010, 2011, 2019  New Media Works
  *     info@newmediaworks.com
  *     PO BOX 853
  *     Napa, CA 94559
@@ -27,7 +27,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * Includes the body when the email was successfully sent.
  *
- * @author  New Media Works &lt;info@newmediaworks.com&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
  */
 public class SuccessTag extends BodyTagSupport {
 

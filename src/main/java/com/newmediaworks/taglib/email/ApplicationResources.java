@@ -31,7 +31,7 @@ import java.util.Arrays;
 /**
  * Do not use directly.
  *
- * @author  New Media Works &lt;info@newmediaworks.com&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
  */
 public final class ApplicationResources extends EditableResourceBundle {
 
