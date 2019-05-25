@@ -32,14 +32,14 @@ import com.aoindustries.util.i18n.Locales;
  */
 public final class ApplicationResources_en extends EditableResourceBundle {
 
-    /**
-     * Do not use directly.
-     */
-    public ApplicationResources_en() {
-        super(
-            Locales.ENGLISH,
-            ApplicationResources.bundleSet,
-            ApplicationResources.getSourceFiles("ApplicationResources_en.properties")
-        );
-    }
+	/**
+	 * Do not use directly.
+	 */
+	public ApplicationResources_en() {
+		super(
+			Locales.ENGLISH,
+			ApplicationResources.bundleSet,
+			ApplicationResources.getSourceFiles("ApplicationResources_en.properties")
+		);
+	}
 }

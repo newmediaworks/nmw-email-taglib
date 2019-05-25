@@ -47,172 +47,172 @@ import javax.servlet.jsp.tagext.TryCatchFinally;
  */
 public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally {
 
-    private static final Logger logger = Logger.getLogger(EmailTag.class.getName());
+	private static final Logger logger = Logger.getLogger(EmailTag.class.getName());
 
-    private static final long serialVersionUID = -345960017501587726L;
+	private static final long serialVersionUID = -345960017501587726L;
 
-    public static final String ERROR_REQUEST_PARAMETER_NAME = EmailTag.class.getName()+".error";
+	public static final String ERROR_REQUEST_PARAMETER_NAME = EmailTag.class.getName()+".error";
 
-    private static Integer parseInteger(String s) throws NumberFormatException {
-        if(s==null || (s=s.trim()).isEmpty()) return null;
-        return Integer.valueOf(s);
-    }
+	private static Integer parseInteger(String s) throws NumberFormatException {
+		if(s==null || (s=s.trim()).isEmpty()) return null;
+		return Integer.valueOf(s);
+	}
 
-    private String smtpHost;
-    private Integer smtpPort;
-    private String var;
-    private String scope;
-    private MimeMessage message;
+	private String smtpHost;
+	private Integer smtpPort;
+	private String var;
+	private String scope;
+	private MimeMessage message;
 
-    public EmailTag() {
-        init();
-    }
+	public EmailTag() {
+		init();
+	}
 
-    private void init() {
-        smtpHost = System.getProperty("mail.smtp.host");
-        smtpPort = parseInteger(System.getProperty("mail.smtp.port"));
-        var = null;
-        scope = null;
-        message = null;
-    }
+	private void init() {
+		smtpHost = System.getProperty("mail.smtp.host");
+		smtpPort = parseInteger(System.getProperty("mail.smtp.port"));
+		var = null;
+		scope = null;
+		message = null;
+	}
 
-    public String getSmtpHost() {
-        return smtpHost;
-    }
+	public String getSmtpHost() {
+		return smtpHost;
+	}
 
-    public void setSmtpHost(String smtpHost) {
-        this.smtpHost = smtpHost;
-    }
+	public void setSmtpHost(String smtpHost) {
+		this.smtpHost = smtpHost;
+	}
 
-    public Integer getSmtpPort() {
-        return smtpPort;
-    }
+	public Integer getSmtpPort() {
+		return smtpPort;
+	}
 
-    public void setSmtpPort(Integer smtpPort) {
-        this.smtpPort = smtpPort;
-    }
+	public void setSmtpPort(Integer smtpPort) {
+		this.smtpPort = smtpPort;
+	}
 
-    public String getVar() {
-        return var;
-    }
+	public String getVar() {
+		return var;
+	}
 
-    public void setVar(String var) {
-        this.var = var;
-    }
+	public void setVar(String var) {
+		this.var = var;
+	}
 
-    public String getScope() {
-        return scope;
-    }
+	public String getScope() {
+		return scope;
+	}
 
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
 
-    @Override
-    public int doStartTag() {
-        pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, accessor.getMessage("EmailTag.doStartTag.emailNotSent"));
-        Properties properties = new Properties();
-        if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
-        if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
-        message = new MimeMessage(Session.getInstance(properties, null));
-        return EVAL_BODY_INCLUDE;
-    }
+	@Override
+	public int doStartTag() {
+		pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, accessor.getMessage("EmailTag.doStartTag.emailNotSent"));
+		Properties properties = new Properties();
+		if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
+		if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
+		message = new MimeMessage(Session.getInstance(properties, null));
+		return EVAL_BODY_INCLUDE;
+	}
 
-    @Override
-    public int doEndTag() throws JspException {
-        try {
-            if(var!=null) {
-                // Capture as a byte[] into variable
-                int scopeInt;
-                if(scope==null || "page".equals(scope)) scopeInt = PageContext.PAGE_SCOPE;
-                else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
-                else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
-                else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
-                else throw new LocalizedJspException(accessor, "EmailTag.doEndTag.unexpectedScope", scope);
-                ByteArrayOutputStream bout = new ByteArrayOutputStream();
-                message.writeTo(bout);
-                pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
-                pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
-                return EVAL_PAGE;
-            } else {
-                // Send the message
-                Transport.send(message);
-                pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
-                return EVAL_PAGE;
-            }
-        } catch(MessagingException | IOException err) {
-            throw new JspException(err.getMessage(), err);
-        } finally {
-            init();
-        }
-    }
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			if(var!=null) {
+				// Capture as a byte[] into variable
+				int scopeInt;
+				if(scope==null || "page".equals(scope)) scopeInt = PageContext.PAGE_SCOPE;
+				else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
+				else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
+				else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
+				else throw new LocalizedJspException(accessor, "EmailTag.doEndTag.unexpectedScope", scope);
+				ByteArrayOutputStream bout = new ByteArrayOutputStream();
+				message.writeTo(bout);
+				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
+				pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
+				return EVAL_PAGE;
+			} else {
+				// Send the message
+				Transport.send(message);
+				pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
+				return EVAL_PAGE;
+			}
+		} catch(MessagingException | IOException err) {
+			throw new JspException(err.getMessage(), err);
+		} finally {
+			init();
+		}
+	}
 
-    @Override
-    public void release() {
-        super.release();
-        init();
-    }
+	@Override
+	public void release() {
+		super.release();
+		init();
+	}
 
-    void addToAddress(String to) throws MessagingException {
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-    }
+	void addToAddress(String to) throws MessagingException {
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+	}
 
-    void setFrom(String from) throws MessagingException {
-        message.setFrom(new InternetAddress(from));
-    }
+	void setFrom(String from) throws MessagingException {
+		message.setFrom(new InternetAddress(from));
+	}
 
-    void setSubject(String subject, String charset) throws MessagingException {
-        if(charset==null) message.setSubject(subject);
-        else {
-            message.setSubject(subject, charset);
-            //try {
-            //    message.setSubject(MimeUtility.encodeText(subject, charset, null));
-            //} catch(UnsupportedEncodingException e) {
-            //    throw new MessagingException(e.toString(), e);
-            //}
-        }
-    }
+	void setSubject(String subject, String charset) throws MessagingException {
+		if(charset==null) message.setSubject(subject);
+		else {
+			message.setSubject(subject, charset);
+			//try {
+			//    message.setSubject(MimeUtility.encodeText(subject, charset, null));
+			//} catch(UnsupportedEncodingException e) {
+			//    throw new MessagingException(e.toString(), e);
+			//}
+		}
+	}
 
-    @Override
-    public void addHeader(String name, String value) throws MessagingException {
-        message.addHeader(name, value);
-    }
+	@Override
+	public void addHeader(String name, String value) throws MessagingException {
+		message.addHeader(name, value);
+	}
 
-    @Override
-    public void setHeader(String name, String value) throws MessagingException {
-        message.setHeader(name, value);
-    }
+	@Override
+	public void setHeader(String name, String value) throws MessagingException {
+		message.setHeader(name, value);
+	}
 
-    @Override
-    public void setContent(Multipart content) throws MessagingException {
-        message.setContent(content);
-    }
+	@Override
+	public void setContent(Multipart content) throws MessagingException {
+		message.setContent(content);
+	}
 
-    @Override
-    public void setContent(Object o, String type) throws MessagingException {
-        message.setContent(o, type);
-    }
+	@Override
+	public void setContent(Object o, String type) throws MessagingException {
+		message.setContent(o, type);
+	}
 
-    @Override
-    public void setDataHandler(DataHandler dh) throws MessagingException {
-        message.setDataHandler(dh);
-    }
+	@Override
+	public void setDataHandler(DataHandler dh) throws MessagingException {
+		message.setDataHandler(dh);
+	}
 
-    @Override
-    public void setFileName(String filename) throws MessagingException {
-        message.setFileName(filename);
-    }
+	@Override
+	public void setFileName(String filename) throws MessagingException {
+		message.setFileName(filename);
+	}
 
-    @Override
-    public void doCatch(Throwable throwable) throws Throwable {
-        logger.log(Level.SEVERE, null, throwable);
-        String errorMessage = throwable.getMessage();
-        if(errorMessage==null || (errorMessage=errorMessage.trim()).length()==0) errorMessage = throwable.toString();
-        pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, errorMessage);
-    }
+	@Override
+	public void doCatch(Throwable throwable) throws Throwable {
+		logger.log(Level.SEVERE, null, throwable);
+		String errorMessage = throwable.getMessage();
+		if(errorMessage==null || (errorMessage=errorMessage.trim()).length()==0) errorMessage = throwable.toString();
+		pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, errorMessage);
+	}
 
-    @Override
-    public void doFinally() {
-        // Do nothing
-    }
+	@Override
+	public void doFinally() {
+		// Do nothing
+	}
 }

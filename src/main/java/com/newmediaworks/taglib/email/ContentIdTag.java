@@ -32,27 +32,27 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ContentIdTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = -6345110519765927149L;
+	private static final long serialVersionUID = -6345110519765927149L;
 
-    private static final String CONTENT_ID_HEADER = "Content-ID";
+	private static final String CONTENT_ID_HEADER = "Content-ID";
 
-    public ContentIdTag() {
-    }
+	public ContentIdTag() {
+	}
 
-    @Override
-    public int doStartTag() {
-        return EVAL_BODY_BUFFERED;
-    }
+	@Override
+	public int doStartTag() {
+		return EVAL_BODY_BUFFERED;
+	}
 
-    @Override
-    public int doEndTag() throws JspException {
-        try {
-            PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
-            String value = getBodyContent().getString().trim();
-            partTag.setHeader(CONTENT_ID_HEADER, '<'+value+'>');
-            return EVAL_PAGE;
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        }
-    }
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
+			String value = getBodyContent().getString().trim();
+			partTag.setHeader(CONTENT_ID_HEADER, '<'+value+'>');
+			return EVAL_PAGE;
+		} catch(MessagingException err) {
+			throw new JspException(err.getMessage(), err);
+		}
+	}
 }

@@ -32,47 +32,47 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class SubjectTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = 8340048766447465216L;
+	private static final long serialVersionUID = 8340048766447465216L;
 
-    private String charset;
+	private String charset;
 
-    public SubjectTag() {
-        init();
-    }
+	public SubjectTag() {
+		init();
+	}
 
-    private void init() {
-        charset = null;
-    }
+	private void init() {
+		charset = null;
+	}
 
-    public String getCharset() {
-        return charset;
-    }
+	public String getCharset() {
+		return charset;
+	}
 
-    public void setCharset(String charset) {
-        this.charset = charset;
-    }
+	public void setCharset(String charset) {
+		this.charset = charset;
+	}
 
-    @Override
-    public int doStartTag() {
-        return EVAL_BODY_BUFFERED;
-    }
+	@Override
+	public int doStartTag() {
+		return EVAL_BODY_BUFFERED;
+	}
 
-    @Override
-    public int doEndTag() throws JspException {
-        try {
-            EmailTag emailtag = JspTagUtils.findAncestor(this, EmailTag.class);
-            emailtag.setSubject(getBodyContent().getString().trim(), charset);
-            return EVAL_PAGE;
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        } finally {
-            init();
-        }
-    }
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			EmailTag emailtag = JspTagUtils.findAncestor(this, EmailTag.class);
+			emailtag.setSubject(getBodyContent().getString().trim(), charset);
+			return EVAL_PAGE;
+		} catch(MessagingException err) {
+			throw new JspException(err.getMessage(), err);
+		} finally {
+			init();
+		}
+	}
 
-    @Override
-    public void release() {
-        super.release();
-        init();
-    }
+	@Override
+	public void release() {
+		super.release();
+		init();
+	}
 }

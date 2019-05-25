@@ -32,47 +32,47 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ContentTag extends BodyTagSupport {
 
-    private static final long serialVersionUID = -7055705772215055501L;
+	private static final long serialVersionUID = -7055705772215055501L;
 
-    private String type;
+	private String type;
 
-    public ContentTag() {
-        init();
-    }
+	public ContentTag() {
+		init();
+	}
 
-    private void init() {
-        type = "text/html";
-    }
+	private void init() {
+		type = "text/html";
+	}
 
-    @Override
-    public int doStartTag() {
-        return EVAL_BODY_BUFFERED;
-    }
+	@Override
+	public int doStartTag() {
+		return EVAL_BODY_BUFFERED;
+	}
 
-    @Override
-    public int doEndTag() throws JspException {
-        try {
-            PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
-            partTag.setContent(getBodyContent().getString().trim(), type);
-            return EVAL_PAGE;
-        } catch(MessagingException err) {
-            throw new JspException(err.getMessage(), err);
-        } finally {
-            init();
-        }
-    }
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
+			partTag.setContent(getBodyContent().getString().trim(), type);
+			return EVAL_PAGE;
+		} catch(MessagingException err) {
+			throw new JspException(err.getMessage(), err);
+		} finally {
+			init();
+		}
+	}
 
-    @Override
-    public void release() {
-        super.release();
-        init();
-    }
+	@Override
+	public void release() {
+		super.release();
+		init();
+	}
 
-    public String getType() {
-        return type;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 }
