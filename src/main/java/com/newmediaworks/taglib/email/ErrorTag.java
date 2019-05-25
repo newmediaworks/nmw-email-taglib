@@ -27,7 +27,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * Includes the body when the email resulted in an error.
  *
- * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
  */
 public class ErrorTag extends BodyTagSupport {
 

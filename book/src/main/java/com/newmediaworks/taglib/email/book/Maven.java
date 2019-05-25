@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * @author  "New Media Works" &lt;<a href="mailto:oss@newmediaworks.com">oss@newmediaworks.com</a>&gt;
+ * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
  */
 class Maven {
 
