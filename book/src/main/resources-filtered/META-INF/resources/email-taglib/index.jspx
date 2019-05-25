@@ -34,7 +34,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="@{documented.shortTitle}"
 		description="@{documented.description}"
 		datePublished="2019-05-24T18:19:41-0500"
-		dateModified="2019-05-24T19:02:18-0500"
+		dateModified="2019-05-25T03:11:20-0500"
 	>
 		<core:child page="changelog.jspx" />
 		<core:child page="nmw-email.tld/" />
@@ -50,7 +50,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 			arg.license="${currentPage.property.license}"
 		/>
 		<p>
-			@{documented.description}
+			JSP taglib encapsulating the <ao:a href="https://javaee.github.io/javamail/">JavaMail API</ao:a>.
 		</p>
 		<section:section label="Project Links">
 			<ul>

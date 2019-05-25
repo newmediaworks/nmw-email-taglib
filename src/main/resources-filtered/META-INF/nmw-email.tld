@@ -38,7 +38,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
     <tag>
         <description><![CDATA[
             Sends email.  All the other email tags are to be nested within an email tag.
-            The structure of the tags matches that of the underlying JavaMail API with
+            The structure of the tags matches that of the underlying <a href="https://javaee.github.io/javamail/">JavaMail API</a> with
             the following mapping:
                 Email:email -&gt; Message
                 Email:to -&gt; Message.addRecipient
