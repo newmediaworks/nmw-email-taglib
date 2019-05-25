@@ -31,8 +31,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 	<jsp:directive.page language="java" pageEncoding="UTF-8" session="false" />
 	<core:page
 		title="@{documented.name}"
+		shortTitle="@{documented.shortTitle}"
 		description="@{documented.description}"
 		datePublished="2019-05-24T18:19:41-0500"
+		dateModified="2019-05-24T19:02:18-0500"
 	>
 		<core:child page="changelog.jspx" />
 		<core:child page="nmw-email.tld/" />
