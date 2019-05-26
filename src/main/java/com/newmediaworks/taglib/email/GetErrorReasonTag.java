@@ -30,7 +30,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 /**
  * Gets the error reason for an email attempt.  Must be nested in an error tag.
  *
- * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
+ * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class GetErrorReasonTag extends TagSupport {
 
