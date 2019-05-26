@@ -453,6 +453,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				A multipart component of the email.
 			</p>
 			<p>
+				Must contain one or more nested <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+			</p>
+			<p>
 				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
 				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
 			</p>
