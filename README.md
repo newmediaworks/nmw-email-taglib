@@ -1,4 +1,4 @@
-# [<img src="nmw-logo.png" alt="NMW Logo" width="46" height="46">](https://github.com/newmediaworks) [NMW OSS](https://github.com/newmediaworks/nmw-oss) / [Email Taglib](https://github.com/newmediaworks/nmw-email-taglib)
+# [<img src="nmw-logo.png" alt="NMW Logo" width="40" height="40">](https://github.com/newmediaworks) [NMW OSS](https://github.com/newmediaworks/nmw-oss) / [Email Taglib](https://github.com/newmediaworks/nmw-email-taglib)
 <p>
 	<a href="https://aoindustries.com/life-cycle#project-current-stable">
 		<img src="https://aoindustries.com/ao-badges/project-current-stable.svg" alt="project: current stable" />
