@@ -27,6 +27,108 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	version="2.1">
 	<description><![CDATA[
 		<p>@{description.html}</p>
+		<p>
+			The structure of the tags matches that of the underlying <a href="https://javaee.github.io/javamail/">JavaMail API</a> with
+			the following mapping:
+		</p>
+		<ul>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Message.html">Message</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-to">&lt;email:to&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Message.html#addRecipient(javax.mail.Message.RecipientType, javax.mail.Address)">Message.addRecipient(…)</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-from">&lt;email:from&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Message.html#setFrom(javax.mail.Address)">Message.setFrom(…)</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-subject">&lt;email:subject&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Message.html#setSubject(java.lang.String)">Message.setSubject(…)</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-multipart">&lt;email:multipart&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Multipart.html">Multipart</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/BodyPart.html">BodyPart</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-header">&lt;email:header&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Part.html#addHeader(java.lang.String, java.lang.String)">Part.addHeader(…)</a>
+				or <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Part.html#setHeader(java.lang.String, java.lang.String)">Part.setHeader(…)</a>
+				<ul>
+					<li>
+						<a href="@{project.url}nmw-email.tld/tag-contentId">&lt;email:contentId&gt;</a>
+						⟶ Sets the <code>Content-ID:</code> header while trimming the body and surrounding with <code>&lt;…&gt;</code>.
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-content">&lt;email:content&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Part.html#setContent(java.lang.Object, java.lang.String)">Part.setContent(…)</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-file">&lt;email:file&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Part.html#setDataHandler(javax.activation.DataHandler)">Part.setDataHandler(…)</a>
+			</li>
+			<li>
+				<a href="@{project.url}nmw-email.tld/tag-data">&lt;email:data&gt;</a>
+				⟶ <a rel="nofollow" href="@{javac.link.javaeeApi.6}javax/mail/Part.html#setDataHandler(javax.activation.DataHandler)">Part.setDataHandler(…)</a>
+			</li>
+		</ul>
+		<p>
+			The nesting allowed is:
+		</p>
+		<ul>
+			<li style="list-style:none"><a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				<ul>
+					<li style="list-style:none"><em style="font-family:monospace">+</em> <a href="@{project.url}nmw-email.tld/tag-to">&lt;email:to&gt;</a></li>
+					<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-from">&lt;email:from&gt;</a></li>
+					<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-subject">&lt;email:subject&gt;</a></li>
+					<li style="list-style:none"><em style="font-family:monospace">*</em> <a href="@{project.url}nmw-email.tld/tag-header">&lt;email:header&gt;</a></li>
+					<li style="list-style:none"><em style="font-family:monospace">?</em> <a href="@{project.url}nmw-email.tld/tag-contentId">&lt;email:contentId&gt;</a></li>
+					<li style="list-style:none"><em style="font-family:monospace">!</em> Exactly one of:
+						<ul>
+							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-content">&lt;email:content&gt;</a></li>
+							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-file">&lt;email:file&gt;</a></li>
+							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-data">&lt;email:data&gt;</a></li>
+							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-multipart">&lt;email:multipart&gt;</a>
+								<ul>
+									<li style="list-style:none"><em style="font-family:monospace">+</em> <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a>
+										<ul>
+											<li style="list-style:none"><em style="font-family:monospace">*</em> <a href="@{project.url}nmw-email.tld/tag-header">&lt;email:header&gt;</a></li>
+											<li style="list-style:none"><em style="font-family:monospace">?</em> <a href="@{project.url}nmw-email.tld/tag-contentId">&lt;email:contentId&gt;</a></li>
+											<li style="list-style:none"><em style="font-family:monospace">!</em> Exactly one of:
+												<ul>
+													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-content">&lt;email:content&gt;</a></li>
+													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-file">&lt;email:file&gt;</a></li>
+													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-data">&lt;email:data&gt;</a></li>
+													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}nmw-email.tld/tag-multipart">&lt;email:multipart&gt;</a>
+														<ul>
+															<li style="list-style:none"><em style="font-family:monospace">+</em> …</li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<p>
+			<em style="font-family:monospace">*</em> indicates zero or more uses allowed<br />
+			<em style="font-family:monospace">?</em> indicates zero or one use allowed<br />
+			<em style="font-family:monospace">+</em> indicates one or more uses required<br />
+			<em style="font-family:monospace">!</em> indicates exactly one use required
+		</p>
 	]]></description>
 	<display-name>@{project.name}</display-name>
 	<tlib-version>
@@ -37,66 +139,49 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<uri>http://taglibs.newmediaworks.com/email</uri>
 	<tag>
 		<description><![CDATA[
-			Sends email.  All the other email tags are to be nested within an email tag.
-			The structure of the tags matches that of the underlying <a href="https://javaee.github.io/javamail/">JavaMail API</a> with
-			the following mapping:
-				Email:email -&gt; Message
-				Email:to -&gt; Message.addRecipient
-				Email:from -&gt; Message.setFrom
-				Email:subject -&gt; Message.setSubject
-				Email:multipart -&gt; Multipart
-				Email:bodypart -&gt; BodyPart
-				Email:header -&gt; Part.addHeader or Part.setHeader (can be applied to Email:email or Email:bodypart)
-					Email:contentId -&gt; Sets the Content-ID header, adding &lt; ... &gt; and trimming the body.
-				Email:content -&gt; Part.setContent (can be applied to Email:email or Email:bodypart)
-				Email:file -&gt; Part.setDataHandler (can be applied to Email:email or Email:bodypart)
-				Email:data -&gt; Part.setDataHandler (can be applied to Email:email or Email:bodypart)
-
-			* indicates zero or more uses allowed
-			+ indicates one or more uses allowed
-			! indicates exactly one use required
-
-			The nesting allowed is:
-				email
-					+ to
-					! from
-					! subject
-					* header
-					! data (one of content, file, data, or multipart tags)
-
-			Multipart tags may contain the following nested tags, including additional multipart tags:
-				multipart
-					+ bodypart
-						* header
+			<p class="semanticcms-tag-reference-summary">
+				Formats an email then sends the message or stores in an attribute.  The message is constructed through nested tags.
+			</p>
+			<p>
+				The <a href="@{project.url}nmw-email.tld/tag-error">&lt;email:error&gt;</a>
+				and <a href="@{project.url}nmw-email.tld/tag-success">&lt;email:success&gt;</a>
+				tags may be used to determine the results.
+			</p>
 		]]></description>
 		<name>email</name>
 		<tag-class>com.newmediaworks.taglib.email.EmailTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>
-				The SMTP host to use for sending email.
-				Defaults to the "mail.smtp.host" system property.
-			</description>
+			<description><![CDATA[
+				<p>
+					The SMTP host to use for sending email.
+					Defaults to the <code>mail.smtp.host</code> <a rel="nofollow" href="@{javac.link.javaApi}java/lang/System.html#getProperty(java.lang.String)">system property</a>.
+				</p>
+			]]></description>
 			<name>smtpHost</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>
-				The SMTP port to use for sending email.
-				Defaults to the "mail.smtp.port" system property.
-			</description>
+			<description><![CDATA[
+				<p>
+					The SMTP port to use for sending email.
+					Defaults to the <code>mail.smtp.port</code> <a rel="nofollow" href="@{javac.link.javaApi}java/lang/System.html#getProperty(java.lang.String)">system property</a>.
+				</p>
+			]]></description>
 			<name>smtpPort</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description>
-				If provided, the email will not be sent.  Instead, it will be converted to
-				a byte[] format and stored in the variable with the this name.
-			</description>
+			<description><![CDATA[
+				<p>
+					When provided, the email will not be sent.  Instead, it will be converted to
+					a <code>byte[]</code> binary format and stored in the variable with the this name.
+				</p>
+			]]></description>
 			<name>var</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -104,13 +189,18 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				Provides the scope of the variable that will be set when the var
-				attribute is provided.   Must be one of:
+				<p class="semanticcms-tag-reference-summary">
+					Provides the scope of the variable that will be set when the var
+					attribute is provided.
+				</p>
+				<p>
+					Must be one of:
+				</p>
 				<ul>
-					<li>page (the default)</li>
-					<li>request</li>
-					<li>session</li>
-					<li>application</li>
+					<li><code>page</code> (the default)</li>
+					<li><code>request</code></li>
+					<li><code>session</code></li>
+					<li><code>application</code></li>
 				</ul>
 			]]></description>
 			<name>scope</name>
@@ -120,18 +210,24 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
-		<description>
-			The to recipient of the email.  Multiple tags will send email to multiple recipients.
-			Only allowed within an Email:email tag.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
+			</p>
+			<p>
+				Only allowed within an <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a> tag.
+			</p>
+		]]></description>
 		<name>to</name>
 		<tag-class>com.newmediaworks.taglib.email.ToTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>
-				Provides the To: address.  If not provided, the body content trimmed
-				will be used as the address.
-			</description>
+			<description><![CDATA[
+				<p>
+					Provides the <code>To:</code> address.  When not provided, the body content trimmed
+					will be used as the address.
+				</p>
+			]]></description>
 			<name>address</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -139,18 +235,24 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
-		<description>
-			The sender of the email.
-			Only allowed within an Email:email tag.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				The <code>From:</code> address of the sender of the email.
+			</p>
+			<p>
+				Only allowed within an <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a> tag.
+			</p>
+		]]></description>
 		<name>from</name>
 		<tag-class>com.newmediaworks.taglib.email.FromTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>
-				Provides the From: address.  If not provided, the body content trimmed
-				will be used as the address.
-			</description>
+			<description><![CDATA[
+				<p>
+					Provides the <code>From:</code> address.  When not provided, the body content trimmed
+					will be used as the address.
+				</p>
+			]]></description>
 			<name>address</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -158,15 +260,23 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
-		<description>
-			The subject of the email.
-			Only allowed within an Email:email tag.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				The <code>Subject:</code> of the email.
+			</p>
+			<p>
+				Only allowed within an <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a> tag.
+			</p>
+		]]></description>
 		<name>subject</name>
 		<tag-class>com.newmediaworks.taglib.email.SubjectTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>The optional charset for the subject.</description>
+			<description><![CDATA[
+				<p>
+					The optional charset for the subject.
+				</p>
+			]]></description>
 			<name>charset</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -174,64 +284,50 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
-		<description>
-			A multipart component of the email.
-			Allowed within Email:email or Email:bodypart tags.
-		</description>
-		<name>multipart</name>
-		<tag-class>com.newmediaworks.taglib.email.MultipartTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<description>
-				The multipart subtype.
-				Defaults to "mixed".
-				Some other values include "alternative" and "related".
-			</description>
-			<name>subtype</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<description>
-			A single part of a multipart component.
-			Only allowed within an Email:multipart tag.
-		</description>
-		<name>bodypart</name>
-		<tag-class>com.newmediaworks.taglib.email.BodyPartTag</tag-class>
-		<body-content>JSP</body-content>
-	</tag>
-	<tag>
-		<description>
-			The body of this tag provides the header value to the email or any of its parts.
-			Allowed within Email:email or Email:bodypart tags.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Adds or sets a header value to the email or any of its parts.
+			</p>
+			<p>
+				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+			</p>
+		]]></description>
 		<name>header</name>
 		<tag-class>com.newmediaworks.taglib.email.HeaderTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>The name of the header.</description>
+			<description><![CDATA[
+				<p>
+					The name of the header.
+				</p>
+			]]></description>
 			<name>name</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>
-				Provides the header value.  If not provided, the body content trimmed
-				will be used as the value.
-			</description>
+			<description><![CDATA[
+				<p>
+					Provides the header value.  When not provided, the body content trimmed
+					will be used as the value.
+				</p>
+			]]></description>
 			<name>value</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>
-				When true, the default, any existing headers will be replaced.
-				When false, the header will be added the any existing values.
-			</description>
+			<description><![CDATA[
+				<p>
+					When <code>true</code>, the default, any existing headers will be replaced.
+				</p>
+				<p>
+					When <code>false</code>, the header will be added the any existing values.
+				</p>
+			]]></description>
 			<name>replace</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -240,24 +336,40 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			Sets the Content-ID header, adding &lt; ... &gt; and trimming the body of this tag as the content ID value.
-			Allowed within Email:email or Email:bodypart tags.
+			<p class="semanticcms-tag-reference-summary">
+				Sets the <code>Content-ID:</code> header while trimming the body and surrounding with <code>&lt;…&gt;</code>.
+			</p>
+			<p>
+				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+			</p>
 		]]></description>
 		<name>contentId</name>
 		<tag-class>com.newmediaworks.taglib.email.ContentIdTag</tag-class>
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
-		<description>
-			The body of this tag provides the content to the email or any of its parts.
-			Leading and trailing whitespace on the content is trimmed.
-			Allowed within Email:email or Email:bodypart tags.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				The body of this tag provides the content to the email or any of its parts.
+			</p>
+			<p>
+				Leading and trailing whitespace on the content is trimmed.
+			</p>
+			<p>
+				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+			</p>
+		]]></description>
 		<name>content</name>
 		<tag-class>com.newmediaworks.taglib.email.ContentTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>The MIME content type of the content.  Defaults to text/html.</description>
+			<description><![CDATA[
+				<p>
+					The MIME content type of the content.  Defaults to <code>text/html</code>.
+				</p>
+			]]></description>
 			<name>type</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -265,40 +377,70 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
-		<description>
-			Reads the contents of this email or part from a file.
-			The context-relative path to the file is provided in the body of this tag.
-			The path is not trimmed so be careful of any extra whitespace.
-			Allowed within Email:email or Email:bodypart tags.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Reads the contents of this email or part from a file.
+			</p>
+			<p>
+				The context-relative path to the file is provided in the body of this tag.
+				The path is not trimmed so be careful of any extra whitespace.
+			</p>
+			<p>
+				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+			</p>
+		]]></description>
 		<name>file</name>
 		<tag-class>com.newmediaworks.taglib.email.FileTag</tag-class>
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
-		<description>
-			Provides the raw bytes of the contents of this email or part from a file.
-			Allowed within Email:email or Email:bodypart tags.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Provides the raw data of this email or part content.
+			</p>
+			<p>
+				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+			</p>
+		]]></description>
 		<name>data</name>
 		<tag-class>com.newmediaworks.taglib.email.DataTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
-			<description>The MIME content type of the content.</description>
+			<description><![CDATA[
+				<p>
+					The MIME content type of the content.
+				</p>
+			]]></description>
 			<name>type</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>The filename used for the attachmented content.</description>
+			<description><![CDATA[
+				<p>
+					The filename used for the attachmented content.
+				</p>
+			]]></description>
 			<name>filename</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>The byte[], String, InputStream, or DataSource providing the raw byte of the content.</description>
+			<description><![CDATA[
+				<p>
+					Must be one of:
+				</p>
+				<ul>
+					<li><code>byte[]</code></li>
+					<li><a rel="nofollow" href="@{javac.link.javaApi}java/lang/String.html">String</a></li>
+					<li><a rel="nofollow" href="@{javac.link.javaApi}java/io/InputStream.html">InputStream</a></li>
+					<li><a rel="nofollow" href="@{javac.link.javaApi}javax/activation/DataSource.html">DataSource</a></li>
+				</ul>
+			]]></description>
 			<name>data</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -306,41 +448,102 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
-		<description>
-			The body of this tag will be processed if there was any type of error formatting or sending the email.
-			May use Email:getErrorReason to get the reason for the error
-			Must follow an Email:email tag.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				A multipart component of the email.
+			</p>
+			<p>
+				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
+				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+			</p>
+		]]></description>
+		<name>multipart</name>
+		<tag-class>com.newmediaworks.taglib.email.MultipartTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					The multipart subtype.
+					Defaults to <code>mixed</code>.
+					Some other values include <code>alternative</code> and <code>related</code>.
+				</p>
+			]]></description>
+			<name>subtype</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				A single part of a multipart component.
+			</p>
+			<p>
+				Only allowed within an <a href="@{project.url}nmw-email.tld/tag-multipart">&lt;email:multipart&gt;</a> tag.
+			</p>
+		]]></description>
+		<name>bodypart</name>
+		<tag-class>com.newmediaworks.taglib.email.BodyPartTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				The body of this tag will be processed when there was any type of error while formatting or sending the email.
+			</p>
+			<p>
+				May then use <a href="@{project.url}nmw-email.tld/tag-getErrorReason">&lt;email:getErrorReason&gt;</a>
+				or <a href="@{project.url}nmw-email.tld/function-getErrorReason">${email:getErrorReason()}</a>
+				to get the reason for the error.
+			</p>
+			<p>
+				Must follow an <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a> tag.
+			</p>
+		]]></description>
 		<name>error</name>
 		<tag-class>com.newmediaworks.taglib.email.ErrorTag</tag-class>
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
-		<description>
-			Gets the error reason for an email attempt.
-			Must be nested in an Email:error tag.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Gets the error reason for an email attempt.
+			</p>
+			<p>
+				Must be nested in an <a href="@{project.url}nmw-email.tld/tag-error">&lt;email:error&gt;</a> tag.
+			</p>
+		]]></description>
 		<name>getErrorReason</name>
 		<tag-class>com.newmediaworks.taglib.email.GetErrorReasonTag</tag-class>
 		<body-content>empty</body-content>
 	</tag>
 	<tag>
-		<description>
-			The body of this tag will be processed if the email was successfully sent.
-			Must follow an Email:email tag.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				The body of this tag will be processed when the email was successfully formatted and sent (or stored in a variable).
+			</p>
+			<p>
+				Must follow an <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a> tag.
+			</p>
+		]]></description>
 		<name>success</name>
 		<tag-class>com.newmediaworks.taglib.email.SuccessTag</tag-class>
 		<body-content>JSP</body-content>
 	</tag>
+	<!-- TODO: Better JSTL interaction: Add a email:hasError function, allow email:getErrorReason to be used outside of email:error tag -->
 	<function>
-		<description>
-			Gets the error reason for an email attempt.
-			Must be nested in an Email:error tag.
-		</description>
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Gets the error reason for an email attempt.
+			</p>
+			<p>
+				Must be nested in an <a href="@{project.url}nmw-email.tld/tag-error">&lt;email:error&gt;</a> tag.
+			</p>
+		]]></description>
 		<name>getErrorReason</name>
 		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
 		<function-signature>java.lang.String getErrorReason()</function-signature>
-		<example>${Email:getErrorReason()}</example>
+		<example><![CDATA[<code>${email:getErrorReason()}</code>]]></example>
 	</function>
 </taglib>
