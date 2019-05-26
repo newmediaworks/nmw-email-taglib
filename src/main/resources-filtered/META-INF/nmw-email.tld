@@ -325,7 +325,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 					When <code>true</code>, the default, any existing headers will be replaced.
 				</p>
 				<p>
-					When <code>false</code>, the header will be added the any existing values.
+					When <code>false</code>, the header will be added to any existing values.
 				</p>
 			]]></description>
 			<name>replace</name>
