@@ -179,7 +179,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<description><![CDATA[
 				<p>
 					When provided, the email will not be sent.  Instead, it will be converted to
-					a <code>byte[]</code> binary format and stored in the variable with the this name.
+					a <code>byte[]</code> binary format and stored in the variable with this name.
 				</p>
 			]]></description>
 			<name>var</name>
