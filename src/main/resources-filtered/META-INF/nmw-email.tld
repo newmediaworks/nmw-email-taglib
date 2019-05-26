@@ -421,7 +421,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					The filename used for the attachmented content.
+					The filename used for the attached content.
 				</p>
 			]]></description>
 			<name>filename</name>
