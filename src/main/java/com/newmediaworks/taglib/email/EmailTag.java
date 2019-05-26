@@ -43,7 +43,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
- * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
+ * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally {
 

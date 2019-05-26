@@ -28,7 +28,7 @@ import com.aoindustries.util.i18n.Locales;
 /**
  * Do not use directly.
  *
- * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
+ * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public final class ApplicationResources_ja extends EditableResourceBundle {
 

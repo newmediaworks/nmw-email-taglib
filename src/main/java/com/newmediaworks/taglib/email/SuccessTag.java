@@ -27,7 +27,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * Includes the body when the email was successfully sent.
  *
- * @author  "New Media Works" &lt;<a href="mailto:info@newmediaworks.com">info@newmediaworks.com</a>&gt;
+ * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class SuccessTag extends BodyTagSupport {
 
