@@ -34,6 +34,9 @@ JSP taglib encapsulating the [JavaMail API](https://javaee.github.io/javamail/).
 * [Maven Central Repository](https://search.maven.org/#search%7Cgav%7C1%7Cg:%22com.newmediaworks%22%20AND%20a:%22nmw-email-taglib%22)
 * [GitHub](https://github.com/newmediaworks/nmw-email-taglib)
 
+## Related Projects
+* [JavaMail API](https://javaee.github.io/javamail/)
+
 ## Contact Us
 For questions or support, please [contact us](https://www.newmediaworks.com/html/contact.html):
 
