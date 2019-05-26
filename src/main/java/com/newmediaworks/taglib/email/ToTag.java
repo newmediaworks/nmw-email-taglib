@@ -1,5 +1,5 @@
 /*
- * new-email-taglib - JSP taglib encapsulating the JavaMail API.
+ * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
  * Copyright (C) 2006, 2008, 2010, 2011, 2013, 2019  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465

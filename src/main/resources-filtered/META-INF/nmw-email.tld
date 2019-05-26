@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-new-email-taglib - JSP taglib encapsulating the JavaMail API.
+nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
 Copyright (C) 2006, 2010, 2011, 2012, 2019  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
