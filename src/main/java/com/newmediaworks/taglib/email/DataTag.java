@@ -40,7 +40,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  *
  * @see  Part#setDataHandler(javax.activation.DataHandler)
  * @see  ByteArrayDataSource
- * @see  DataSourc
+ * @see  DataSource
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
