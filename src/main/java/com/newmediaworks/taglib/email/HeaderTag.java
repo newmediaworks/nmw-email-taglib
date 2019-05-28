@@ -28,6 +28,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
+ * Adds or sets a header value to the email or any of its parts.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class HeaderTag extends BodyTagSupport {

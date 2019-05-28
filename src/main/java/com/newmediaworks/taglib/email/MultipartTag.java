@@ -31,7 +31,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
- * A tag representation of the JavaMail Multipart class.
+ * A multipart component of the email.
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

@@ -43,6 +43,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
+ * Formats an email then sends the message or stores in an attribute.  The message is constructed through nested tags.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally {

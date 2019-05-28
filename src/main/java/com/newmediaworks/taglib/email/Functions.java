@@ -32,6 +32,11 @@ final public class Functions {
 	private Functions() {
 	}
 
+	/**
+	 * Gets the error reason for an email attempt.
+	 *
+	 * @see  GetErrorReasonTag
+	 */
 	public static String getErrorReason() {
 		return (String)getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
 	}

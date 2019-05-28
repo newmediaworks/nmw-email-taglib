@@ -25,7 +25,7 @@ package com.newmediaworks.taglib.email;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
- * Includes the body when the email was successfully sent.
+ * The body of this tag will be processed when the email was successfully formatted and sent (or stored in a variable).
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
