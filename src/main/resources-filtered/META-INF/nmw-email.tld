@@ -129,6 +129,11 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<em style="font-family:monospace">+</em> indicates one or more uses required<br />
 			<em style="font-family:monospace">!</em> indicates exactly one use required
 		</p>
+		<p>
+			TODO: Better JSTL interaction: Add a ${email:hasError} function,
+			allow <a href="@{project.url}nmw-email.tld/tag-getErrorReason">&lt;email:getErrorReason&gt;</a>
+			to be used outside of <a href="@{project.url}nmw-email.tld/tag-error">&lt;email:error&gt;</a> tag.
+		</p>
 	]]></description>
 	<display-name>@{project.name}</display-name>
 	<tlib-version>
@@ -322,7 +327,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					When <code>true</code>, the default, any existing headers will be replaced.
+					When <code>true</code> (the default), any existing headers will be replaced.
 				</p>
 				<p>
 					When <code>false</code>, the header will be added to any existing values.
@@ -534,7 +539,6 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<tag-class>com.newmediaworks.taglib.email.SuccessTag</tag-class>
 		<body-content>JSP</body-content>
 	</tag>
-	<!-- TODO: Better JSTL interaction: Add a email:hasError function, allow email:getErrorReason to be used outside of email:error tag -->
 	<function>
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
