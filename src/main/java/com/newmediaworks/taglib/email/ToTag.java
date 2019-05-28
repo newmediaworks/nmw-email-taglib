@@ -23,12 +23,15 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
+ *
+ * @see  Message#addRecipient(javax.mail.Message.RecipientType, javax.mail.Address)
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

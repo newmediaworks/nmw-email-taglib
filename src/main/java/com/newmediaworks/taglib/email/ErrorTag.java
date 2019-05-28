@@ -27,6 +27,9 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * The body of this tag will be processed when there was any type of error while formatting or sending the email.
  *
+ * @see  GetErrorReasonTag
+ * @see  Functions#getErrorReason()
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class ErrorTag extends BodyTagSupport {

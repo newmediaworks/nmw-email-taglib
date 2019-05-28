@@ -30,6 +30,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 /**
  * Gets the error reason for an email attempt.
  *
+ * @see  ErrorTag
  * @see  Functions#getErrorReason()
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>

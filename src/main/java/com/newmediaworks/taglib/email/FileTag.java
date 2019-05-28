@@ -29,11 +29,15 @@ import java.io.File;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
+import javax.mail.Part;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * Reads the contents of this email or part from a file.
+ *
+ * @see  Part#setDataHandler(javax.activation.DataHandler)
+ * @see  FileDataSource
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

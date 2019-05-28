@@ -30,12 +30,17 @@ import java.io.InputStream;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.MessagingException;
+import javax.mail.Part;
 import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * Provides the raw data of this email or part content.
+ *
+ * @see  Part#setDataHandler(javax.activation.DataHandler)
+ * @see  ByteArrayDataSource
+ * @see  DataSourc
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

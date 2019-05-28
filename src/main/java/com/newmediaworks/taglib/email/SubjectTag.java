@@ -23,12 +23,15 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The <code>Subject:</code> of the email.
+ *
+ * @see  Message#setSubject(java.lang.String)
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

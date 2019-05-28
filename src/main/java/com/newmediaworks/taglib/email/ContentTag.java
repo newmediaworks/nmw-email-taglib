@@ -24,11 +24,14 @@ package com.newmediaworks.taglib.email;
 
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import javax.mail.MessagingException;
+import javax.mail.Part;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The body of this tag provides the content to the email or any of its parts.
+ *
+ * @see  Part#setContent(java.lang.Object, java.lang.String)
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

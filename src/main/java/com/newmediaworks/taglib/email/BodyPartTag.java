@@ -34,6 +34,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * A single part of a multipart component.
  *
+ * @see  BodyPart
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class BodyPartTag extends BodyTagSupport implements PartTag {
