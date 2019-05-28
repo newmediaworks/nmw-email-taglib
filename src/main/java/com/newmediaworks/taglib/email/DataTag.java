@@ -35,6 +35,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
+ * Provides the raw data of this email or part content.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class DataTag extends TagSupport {

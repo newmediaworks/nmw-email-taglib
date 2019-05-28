@@ -28,6 +28,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
+ * The body of this tag provides the content to the email or any of its parts.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class ContentTag extends BodyTagSupport {

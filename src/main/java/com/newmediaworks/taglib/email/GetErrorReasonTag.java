@@ -28,7 +28,9 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
- * Gets the error reason for an email attempt.  Must be nested in an error tag.
+ * Gets the error reason for an email attempt.
+ *
+ * @see  Functions#getErrorReason()
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

@@ -28,6 +28,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
+ * The <code>From:</code> address of the sender of the email.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class FromTag extends BodyTagSupport {

@@ -25,9 +25,10 @@ package com.newmediaworks.taglib.email;
 import javax.activation.DataHandler;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.Part;
 
 /**
- * A tag that provides values to JavaMail part interface.
+ * A tag that provides values to JavaMail {@link Part} interface.
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

@@ -28,6 +28,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
+ * The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class ToTag extends BodyTagSupport {
