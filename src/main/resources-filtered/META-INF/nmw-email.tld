@@ -129,11 +129,13 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<em style="font-family:monospace">+</em> indicates one or more uses required<br />
 			<em style="font-family:monospace">!</em> indicates exactly one use required
 		</p>
+		<!--
 		<p>
 			TODO: Better JSTL interaction: Add a ${email:hasError} function,
 			allow <a href="@{project.url}nmw-email.tld/tag-getErrorReason">&lt;email:getErrorReason&gt;</a>
 			to be used outside of <a href="@{project.url}nmw-email.tld/tag-error">&lt;email:error&gt;</a> tag.
 		</p>
+		-->
 	]]></description>
 	<display-name>@{project.name}</display-name>
 	<tlib-version>
