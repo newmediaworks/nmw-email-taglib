@@ -33,6 +33,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * A multipart component of the email.
  *
+ * @see  Multipart
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class MultipartTag extends BodyTagSupport {

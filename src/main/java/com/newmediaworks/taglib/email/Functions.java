@@ -35,6 +35,7 @@ final public class Functions {
 	/**
 	 * Gets the error reason for an email attempt.
 	 *
+	 * @see  ErrorTag
 	 * @see  GetErrorReasonTag
 	 */
 	public static String getErrorReason() {

@@ -30,6 +30,8 @@ import javax.mail.Part;
 /**
  * A tag that provides values to JavaMail {@link Part} interface.
  *
+ * @see  Part
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public interface PartTag {
