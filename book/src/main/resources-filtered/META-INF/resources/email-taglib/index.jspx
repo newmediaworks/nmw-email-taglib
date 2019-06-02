@@ -34,7 +34,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="@{documented.shortTitle}"
 		description="@{documented.description}"
 		datePublished="2019-05-24T18:19:41-0500"
-		dateModified="2019-06-01T00:46:53-0500"
+		dateModified="2019-06-01T18:51:51-0500"
 	>
 		<core:child page="changelog.jspx" />
 		<core:child page="nmw-email.tld/" />
@@ -54,7 +54,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		<p>
 			JSP taglib encapsulating the <ao:a href="https://javaee.github.io/javamail/">JavaMail API</ao:a>.
 		</p>
-		<section:section label="Project Links">
+		<section:nav label="Project Links">
 			<ul>
 				<li><core:link page="index.jspx">Project Home</core:link></li>
 				<li><core:link page="changelog.jspx">Changelog</core:link></li>
@@ -63,11 +63,11 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				<li><ao:a href="https://search.maven.org/#search%7Cgav%7C1%7Cg:%22@{documented.groupId}%22%20AND%20a:%22@{documented.artifactId}%22">Maven Central Repository</ao:a></li>
 				<li><ao:a href="@{documented.scm.url}">GitHub</ao:a></li>
 			</ul>
-		</section:section>
-		<section:section label="Related Projects">
+		</section:nav>
+		<section:aside label="Related Projects">
 			<ul>
 				<li><ao:a href="https://javaee.github.io/javamail/">JavaMail API</ao:a></li>
 			</ul>
-		</section:section>
+		</section:aside>
 	</core:page>
 </jsp:root>
