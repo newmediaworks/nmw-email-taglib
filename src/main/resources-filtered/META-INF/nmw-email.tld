@@ -25,6 +25,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
+	<!-- datePublished="2011-05-20T04:37:04-0500" -->
+	<!-- dateModified="2019-05-27T23:16:08-0500" -->
 	<description><![CDATA[
 		<p>@{description.html}</p>
 		<p>
@@ -145,6 +147,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<short-name>email</short-name>
 	<uri>http://taglibs.newmediaworks.com/email</uri>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-26T02:10:51-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Formats an email then sends the message or stores in an attribute.  The message is constructed through nested tags.
@@ -217,6 +221,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
@@ -242,6 +248,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The <code>From:</code> address of the sender of the email.
@@ -267,6 +275,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The <code>Subject:</code> of the email.
@@ -291,6 +301,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-27T23:05:34-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Adds or sets a header value to the email or any of its parts.
@@ -342,6 +354,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-28T01:44:29-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Sets the <code>Content-ID:</code> header while trimming the body and surrounding with <code>&lt;…&gt;</code>.
@@ -356,6 +370,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag provides the content to the email or any of its parts.
@@ -384,6 +400,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Reads the contents of this email or part from a file.
@@ -402,6 +420,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-26T02:20:45-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Provides the raw data of this email or part content.
@@ -455,6 +475,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:31:49-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A multipart component of the email.
@@ -485,6 +507,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A single part of a multipart component.
@@ -498,6 +522,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag will be processed when there was any type of error while formatting or sending the email.
@@ -516,6 +542,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets the error reason for an email attempt.
@@ -529,6 +557,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>empty</body-content>
 	</tag>
 	<tag>
+		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag will be processed when the email was successfully formatted and sent (or stored in a variable).
@@ -542,6 +572,8 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>JSP</body-content>
 	</tag>
 	<function>
+		<!-- datePublished="2013-10-02T07:06:03-0600" -->
+		<!-- dateModified="2019-05-25T21:03:55-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets the error reason for an email attempt.
