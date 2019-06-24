@@ -33,7 +33,7 @@ public class NmwEmailTldInitializer extends TagReferenceInitializer {
 		// Self
 		additionalApiLinks.put("com.newmediaworks.taglib.email.", Maven.properties.getProperty("documented.url") + "apidocs/");
 		// Dependencies
-		// TODO: additionalApiLinks.put("com.aoindustries.util.", "https://aoindustries.com/aocode-public/apidocs/");
+		// additionalApiLinks.put("com.aoindustries.util.", "https://aoindustries.com/aocode-public/apidocs/");
 	}
 
 	public NmwEmailTldInitializer() {
