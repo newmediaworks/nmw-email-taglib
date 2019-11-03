@@ -33,6 +33,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 	<packaging>bundle</packaging>
 
 	<properties>
+		<javaVersion>1.8</javaVersion>
+		<compiler.bootclasspath>${bootclasspath.jdk8}</compiler.bootclasspath>
+		<javac.bootclasspath>${bootclasspath.jdk8}</javac.bootclasspath>
+		<javac.link.javaApi>${javac.link.javaApi.jdk8}</javac.link.javaApi>
 		<shortTitle>Email Taglib</shortTitle>
 		<description.html><![CDATA[JSP taglib encapsulating the <a target="_top" href="https://javaee.github.io/javamail/">JavaMail API</a>.]]></description.html>
 		<javadoc.taglibReference><![CDATA[<li><a target="_top" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>]]></javadoc.taglibReference>
