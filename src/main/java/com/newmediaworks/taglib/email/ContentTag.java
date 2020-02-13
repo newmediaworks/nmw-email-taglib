@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2010, 2011, 2013, 2019  New Media Works
+ * Copyright (C) 2006, 2010, 2011, 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -22,6 +22,7 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.io.ContentType;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import javax.mail.MessagingException;
 import javax.mail.Part;
@@ -46,7 +47,7 @@ public class ContentTag extends BodyTagSupport {
 	}
 
 	private void init() {
-		type = "text/html";
+		type = ContentType.HTML;
 	}
 
 	@Override
