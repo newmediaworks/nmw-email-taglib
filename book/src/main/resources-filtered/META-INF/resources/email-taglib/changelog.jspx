@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-02-13T13:31:08-0600"
+		dateModified="2020-03-07T06:01:29-0600"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-email-taglib:pom.version}" />
@@ -49,12 +49,16 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 			<changelog:release
 				projectName="@{documented.name}"
 				version="#{version}"
-				groupId="@{documented.groupId}"
+				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
-				scmUrl="@{documented.scm.url}"
+				scmUrl="@{project.scm.url}"
 			>
 				<ul>
 					<li>Minimum Java version changed from 1.7 to 1.8.</li>
+					<li>
+						Reduced use of property substitutions in <code>pom.xml</code>.
+						This is to help 3rd-party parsers that fail to perform full Maven-compatible substitutions.
+					</li>
 					<li>Using constants from new <code>ContentType</code> class.</li>
 				</ul>
 			</changelog:release>
@@ -64,9 +68,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 			projectName="@{documented.name}"
 			version="1.0.1"
 			datePublished="2019-10-12T10:17:26-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Updated dependencies.</li>
@@ -77,9 +81,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 			projectName="@{documented.name}"
 			version="1.0.0"
 			datePublished="2019-06-24T16:21:01-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Project moved to GitHub and Maven.</li>
