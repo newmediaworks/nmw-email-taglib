@@ -36,32 +36,32 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<ul>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Message.html">Message</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html">Message</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-to">&lt;email:to&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Message.html#addRecipient-javax.mail.Message.RecipientType-javax.mail.Address-">Message.addRecipient(…)</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#addRecipient-javax.mail.Message.RecipientType-javax.mail.Address-">Message.addRecipient(…)</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-from">&lt;email:from&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Message.html#setFrom-javax.mail.Address-">Message.setFrom(…)</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setFrom-javax.mail.Address-">Message.setFrom(…)</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-subject">&lt;email:subject&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Message.html#setSubject-java.lang.String-">Message.setSubject(…)</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setSubject-java.lang.String-">Message.setSubject(…)</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-multipart">&lt;email:multipart&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Multipart.html">Multipart</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Multipart.html">Multipart</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/BodyPart.html">BodyPart</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/BodyPart.html">BodyPart</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-header">&lt;email:header&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Part.html#addHeader-java.lang.String-java.lang.String-">Part.addHeader(…)</a>
-				or <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Part.html#setHeader-java.lang.String-java.lang.String-">Part.setHeader(…)</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#addHeader-java.lang.String-java.lang.String-">Part.addHeader(…)</a>
+				or <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setHeader-java.lang.String-java.lang.String-">Part.setHeader(…)</a>
 				<ul>
 					<li>
 						<a href="@{project.url}nmw-email.tld/tag-contentId">&lt;email:contentId&gt;</a>
@@ -71,15 +71,15 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-content">&lt;email:content&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Part.html#setContent-java.lang.Object-java.lang.String-">Part.setContent(…)</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setContent-java.lang.Object-java.lang.String-">Part.setContent(…)</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-file">&lt;email:file&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
 			</li>
 			<li>
 				<a href="@{project.url}nmw-email.tld/tag-data">&lt;email:data&gt;</a>
-				⟶ <a rel="nofollow" href="@{javac.link.javamailApi}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
+				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
 			</li>
 		</ul>
 		<p>
@@ -166,7 +166,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<description><![CDATA[
 				<p>
 					The SMTP host to use for sending email.
-					Defaults to the <code>mail.smtp.host</code> <a rel="nofollow" href="@{javac.link.javaApi}java/lang/System.html#getProperty(java.lang.String)">system property</a>.
+					Defaults to the <code>mail.smtp.host</code> <a rel="nofollow" href="@{javadoc.link.javase}java/lang/System.html#getProperty(java.lang.String)">system property</a>.
 				</p>
 			]]></description>
 			<name>smtpHost</name>
@@ -178,7 +178,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<description><![CDATA[
 				<p>
 					The SMTP port to use for sending email.
-					Defaults to the <code>mail.smtp.port</code> <a rel="nofollow" href="@{javac.link.javaApi}java/lang/System.html#getProperty(java.lang.String)">system property</a>.
+					Defaults to the <code>mail.smtp.port</code> <a rel="nofollow" href="@{javadoc.link.javase}java/lang/System.html#getProperty(java.lang.String)">system property</a>.
 				</p>
 			]]></description>
 			<name>smtpPort</name>
@@ -463,9 +463,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				</p>
 				<ul>
 					<li><code>byte[]</code></li>
-					<li><a rel="nofollow" href="@{javac.link.javaApi}java/lang/String.html">String</a></li>
-					<li><a rel="nofollow" href="@{javac.link.javaApi}java/io/InputStream.html">InputStream</a></li>
-					<li><a rel="nofollow" href="@{javac.link.javaApi}javax/activation/DataSource.html">DataSource</a></li>
+					<li><a rel="nofollow" href="@{javadoc.link.javase}java/lang/String.html">String</a></li>
+					<li><a rel="nofollow" href="@{javadoc.link.javase}java/io/InputStream.html">InputStream</a></li>
+					<li><a rel="nofollow" href="@{javadoc.link.javase}javax/activation/DataSource.html">DataSource</a></li>
 				</ul>
 			]]></description>
 			<name>data</name>
