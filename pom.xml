@@ -51,6 +51,11 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		<tag>HEAD</tag>
 	</scm>
 
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/newmediaworks/nmw-email-taglib/issues</url>
+	</issueManagement>
+
 	<profiles>
 		<profile>
 			<id>release</id>
