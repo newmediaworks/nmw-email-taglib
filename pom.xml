@@ -44,7 +44,6 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 	<inceptionYear>2006</inceptionYear>
 
 	<scm>
-		<!-- Can't inherit due to multi-module -->
 		<connection>scm:git:git://github.com/newmediaworks/nmw-email-taglib.git</connection>
 		<developerConnection>scm:git:git@github.com:newmediaworks/nmw-email-taglib.git</developerConnection>
 		<url>https://github.com/newmediaworks/nmw-email-taglib</url>
