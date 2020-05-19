@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-03-30T02:32:25-05:00"
+		dateModified="2020-05-19T05:25:52-05:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-email-taglib:pom.version}" />
@@ -52,7 +52,14 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{project.scm.url}"
-			/>
+			>
+				<ul>
+					<li>
+						Fixed French translations properly encode <code>'</code> as <code>''</code> inside
+						resource bundles.
+					</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release
