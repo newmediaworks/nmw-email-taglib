@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2019  New Media Works
+ * Copyright (C) 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -23,18 +23,11 @@
 package com.newmediaworks.taglib.email.book;
 
 import com.semanticcms.tagreference.TagReferenceInitializer;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class NmwEmailTldInitializer extends TagReferenceInitializer {
-
-	private static final Map<String,String> additionalApiLinks = new LinkedHashMap<>();
-	static {
-		// Self
-		additionalApiLinks.put("com.newmediaworks.taglib.email.", Maven.properties.getProperty("project.url") + "apidocs/");
-		// Dependencies
-		// additionalApiLinks.put("com.aoindustries.util.", "https://aoindustries.com/aocode-public/apidocs/");
-	}
 
 	public NmwEmailTldInitializer() {
 		super(
@@ -44,7 +37,8 @@ public class NmwEmailTldInitializer extends TagReferenceInitializer {
 			"/nmw-email.tld",
 			Maven.properties.getProperty("documented.javadoc.link.javase"),
 			Maven.properties.getProperty("documented.javadoc.link.javaee"),
-			additionalApiLinks
+			// Self
+			Collections.singletonMap("com.newmediaworks.taglib.email", Maven.properties.getProperty("project.url") + "apidocs/")
 		);
 	}
 }
