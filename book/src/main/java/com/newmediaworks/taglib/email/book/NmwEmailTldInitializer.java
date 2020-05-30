@@ -33,6 +33,7 @@ public class NmwEmailTldInitializer extends TagReferenceInitializer {
 			"Taglib Reference",
 			"/email-taglib",
 			"/nmw-email.tld",
+			true,
 			Maven.properties.getProperty("documented.javadoc.link.javase"),
 			Maven.properties.getProperty("documented.javadoc.link.javaee"),
 			// Self
