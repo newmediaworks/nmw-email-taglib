@@ -24,14 +24,12 @@ package com.newmediaworks.taglib.email.book;
 
 import com.semanticcms.tagreference.TagReferenceInitializer;
 import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class NmwEmailTldInitializer extends TagReferenceInitializer {
 
 	public NmwEmailTldInitializer() {
 		super(
-			"NMW Email Taglib Reference",
+			Maven.properties.getProperty("project.name") + " Reference",
 			"Taglib Reference",
 			"/email-taglib",
 			"/nmw-email.tld",
