@@ -28,7 +28,7 @@ public class NmwEmailTldInitializer extends TagReferenceInitializer {
 
 	public NmwEmailTldInitializer() {
 		super(
-			Maven.properties.getProperty("project.name") + " Reference",
+			Maven.properties.getProperty("documented.name") + " Reference",
 			"Taglib Reference",
 			"/email-taglib",
 			"/nmw-email.tld",
