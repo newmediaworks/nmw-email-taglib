@@ -58,8 +58,8 @@ public class ContentTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
-			partTag.setContent(getBodyContent().getString().trim(), type);
+			JspTagUtils.requireAncestor("<email:content>", this, "<email:bodypart> or <email:email>", PartTag.class)
+				.setContent(getBodyContent().getString().trim(), type);
 			return EVAL_PAGE;
 		} catch(MessagingException err) {
 			throw new JspException(err.getMessage(), err);

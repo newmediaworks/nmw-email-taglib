@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -45,7 +45,7 @@ public class GetErrorReasonTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			ErrorTag errorTag = JspTagUtils.findAncestor(this, ErrorTag.class);
+			JspTagUtils.requireAncestor("<email:getErrorReason>", this, "<email:error>", ErrorTag.class);
 			String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
 			if(error!=null) pageContext.getOut().write(error);
 			return SKIP_BODY;

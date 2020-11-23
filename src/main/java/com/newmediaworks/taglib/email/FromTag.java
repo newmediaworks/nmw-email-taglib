@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2010, 2011, 2013, 2019  New Media Works
+ * Copyright (C) 2006, 2010, 2011, 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -61,8 +61,8 @@ public class FromTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			EmailTag emailtag = JspTagUtils.findAncestor(this, EmailTag.class);
-			emailtag.setFrom(address!=null ? address : getBodyContent().getString().trim());
+			JspTagUtils.requireAncestor("<email:from>", this, "<email:email>", EmailTag.class)
+				.setFrom(address!=null ? address : getBodyContent().getString().trim());
 			return EVAL_PAGE;
 		} catch(MessagingException err) {
 			throw new JspException(err.getMessage(), err);

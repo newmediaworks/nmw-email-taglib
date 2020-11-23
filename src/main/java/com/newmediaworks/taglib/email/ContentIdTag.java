@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2011, 2013, 2019  New Media Works
+ * Copyright (C) 2011, 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -52,7 +52,7 @@ public class ContentIdTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			PartTag partTag = JspTagUtils.findAncestor(this, PartTag.class);
+			PartTag partTag = JspTagUtils.requireAncestor("<email:contentId>", this, "<email:bodypart> or <email:email>", PartTag.class);
 			String value = getBodyContent().getString().trim();
 			partTag.setHeader(CONTENT_ID_HEADER, '<'+value+'>');
 			return EVAL_PAGE;
