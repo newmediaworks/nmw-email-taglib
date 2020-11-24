@@ -37,6 +37,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class SubjectTag extends BodyTagSupport {
 
+	static final String TAG_NAME = "<email:subject>";
+
 	private static final long serialVersionUID = 8340048766447465216L;
 
 	private String charset;
@@ -65,7 +67,7 @@ public class SubjectTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			JspTagUtils.requireAncestor("<email:subject>", this, "<email:email>", EmailTag.class)
+			JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
 				.setSubject(getBodyContent().getString().trim(), charset);
 			return EVAL_PAGE;
 		} catch(MessagingException err) {

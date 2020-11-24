@@ -38,6 +38,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class HeaderTag extends BodyTagSupport {
 
+	static final String TAG_NAME = "<email:header>";
+
 	private static final long serialVersionUID = 2318039931799092070L;
 
 	private String name;
@@ -86,7 +88,7 @@ public class HeaderTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			PartTag partTag = JspTagUtils.requireAncestor("<email:header>", this, "<email:bodypart> or <email:email>", PartTag.class);
+			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			String headerValue = value!=null ? value : getBodyContent().getString().trim();
 			if(replace) partTag.setHeader(name, headerValue);
 			else partTag.addHeader(name, headerValue);

@@ -46,6 +46,8 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class DataTag extends TagSupport {
 
+	static final String TAG_NAME = "<email:data>";
+
 	private static final long serialVersionUID = -4452366609111031502L;
 
 	private String type;
@@ -77,7 +79,7 @@ public class DataTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			PartTag partTag = JspTagUtils.requireAncestor("<email:data>", this, "<email:bodypart> or <email:email>", PartTag.class);
+			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			DataSource ds;
 			if(data instanceof byte[]) ds = new ByteArrayDataSource((byte[])data, type);
 			else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);

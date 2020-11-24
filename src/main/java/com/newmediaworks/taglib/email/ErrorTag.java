@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2019  New Media Works
+ * Copyright (C) 2010, 2011, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -33,6 +33,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class ErrorTag extends BodyTagSupport {
+
+	static final String TAG_NAME = "<email:error>";
 
 	private static final long serialVersionUID = -4181809894278592208L;
 

@@ -38,6 +38,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ContentTag extends BodyTagSupport {
 
+	static final String TAG_NAME = "<email:content>";
+
 	private static final long serialVersionUID = -7055705772215055501L;
 
 	private String type;
@@ -58,7 +60,7 @@ public class ContentTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			JspTagUtils.requireAncestor("<email:content>", this, "<email:bodypart> or <email:email>", PartTag.class)
+			JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
 				.setContent(getBodyContent().getString().trim(), type);
 			return EVAL_PAGE;
 		} catch(MessagingException err) {

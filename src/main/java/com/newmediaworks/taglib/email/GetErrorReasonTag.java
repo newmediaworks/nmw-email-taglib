@@ -37,6 +37,8 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class GetErrorReasonTag extends TagSupport {
 
+	static final String TAG_NAME = "<email:getErrorReason>";
+
 	private static final long serialVersionUID = -5884622703073716930L;
 
 	public GetErrorReasonTag() {
@@ -45,7 +47,7 @@ public class GetErrorReasonTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			JspTagUtils.requireAncestor("<email:getErrorReason>", this, "<email:error>", ErrorTag.class);
+			JspTagUtils.requireAncestor(TAG_NAME, this, ErrorTag.TAG_NAME, ErrorTag.class);
 			String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
 			if(error!=null) pageContext.getOut().write(error);
 			return SKIP_BODY;

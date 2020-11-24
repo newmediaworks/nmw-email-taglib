@@ -40,6 +40,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class BodyPartTag extends BodyTagSupport implements PartTag {
 
+	static final String TAG_NAME = "<email:bodypart>";
+
 	private static final long serialVersionUID = 2918414786024763557L;
 
 	private BodyPart bodypart;
@@ -61,7 +63,7 @@ public class BodyPartTag extends BodyTagSupport implements PartTag {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			JspTagUtils.requireAncestor("<email:bodypart>", this, "<email:multipart>", MultipartTag.class)
+			JspTagUtils.requireAncestor(TAG_NAME, this, MultipartTag.TAG_NAME, MultipartTag.class)
 				.addBodyPart(bodypart);
 			return EVAL_PAGE;
 		} catch(MessagingException err) {

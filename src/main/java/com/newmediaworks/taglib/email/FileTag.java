@@ -43,6 +43,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class FileTag extends BodyTagSupport {
 
+	static final String TAG_NAME = "<email:file>";
+
 	private static final long serialVersionUID = 5606558335805071879L;
 
 	public FileTag() {
@@ -56,7 +58,7 @@ public class FileTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			PartTag partTag = JspTagUtils.requireAncestor("<email:file>", this, "<email:bodypart> or <email:email>", PartTag.class);
+			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			String path = getBodyContent().getString();
 			String realPath = pageContext.getServletContext().getRealPath(path);
 			if(realPath==null) throw new LocalizedJspException(accessor, "FileTag.doEndTag.unableToFindRealPath", path);

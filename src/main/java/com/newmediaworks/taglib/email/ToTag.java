@@ -37,6 +37,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ToTag extends BodyTagSupport {
 
+	static final String TAG_NAME = "<email:to>";
+
 	private static final long serialVersionUID = 2L;
 
 	private String address;
@@ -61,7 +63,7 @@ public class ToTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			JspTagUtils.requireAncestor("<email:to>", this, "<email:email>", EmailTag.class)
+			JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
 				.addToAddress(address!=null ? address : getBodyContent().getString().trim());
 			return EVAL_PAGE;
 		} catch(MessagingException err) {

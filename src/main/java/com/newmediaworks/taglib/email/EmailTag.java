@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013, 2019  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -53,7 +53,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	private static final Logger logger = Logger.getLogger(EmailTag.class.getName());
 
-	private static final long serialVersionUID = -345960017501587726L;
+	static final String TAG_NAME = "<email:email>";
 
 	public static final String ERROR_REQUEST_PARAMETER_NAME = EmailTag.class.getName()+".error";
 
@@ -61,6 +61,8 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		if(s==null || (s=s.trim()).isEmpty()) return null;
 		return Integer.valueOf(s);
 	}
+
+	private static final long serialVersionUID = -345960017501587726L;
 
 	private String smtpHost;
 	private Integer smtpPort;

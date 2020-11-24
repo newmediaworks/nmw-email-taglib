@@ -39,6 +39,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class MultipartTag extends BodyTagSupport {
 
+	static final String TAG_NAME = "<email:multipart>";
+
 	private static final long serialVersionUID = 1164641608254963685L;
 
 	private String subtype;
@@ -62,7 +64,7 @@ public class MultipartTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			JspTagUtils.requireAncestor("<email:multipart>", this, "<email:bodypart> or <email:email>", PartTag.class)
+			JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
 				.setContent(multipart);
 			return EVAL_PAGE;
 		} catch(MessagingException err) {

@@ -37,6 +37,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ContentIdTag extends BodyTagSupport {
 
+	static final String TAG_NAME = "<email:contentId>";
+
 	private static final long serialVersionUID = -6345110519765927149L;
 
 	private static final String CONTENT_ID_HEADER = "Content-ID";
@@ -52,7 +54,7 @@ public class ContentIdTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			PartTag partTag = JspTagUtils.requireAncestor("<email:contentId>", this, "<email:bodypart> or <email:email>", PartTag.class);
+			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			String value = getBodyContent().getString().trim();
 			partTag.setHeader(CONTENT_ID_HEADER, '<'+value+'>');
 			return EVAL_PAGE;
