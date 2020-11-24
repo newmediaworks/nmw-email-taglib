@@ -46,7 +46,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class DataTag extends TagSupport {
 
-	static final String TAG_NAME = "<email:data>";
+	public static final String TAG_NAME = "<email:data>";
 
 	private static final long serialVersionUID = -4452366609111031502L;
 

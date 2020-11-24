@@ -38,7 +38,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ContentTag extends BodyTagSupport {
 
-	static final String TAG_NAME = "<email:content>";
+	public static final String TAG_NAME = "<email:content>";
 
 	private static final long serialVersionUID = -7055705772215055501L;
 

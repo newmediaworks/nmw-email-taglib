@@ -40,7 +40,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class BodyPartTag extends BodyTagSupport implements PartTag {
 
-	static final String TAG_NAME = "<email:bodypart>";
+	public static final String TAG_NAME = "<email:bodypart>";
 
 	private static final long serialVersionUID = 2918414786024763557L;
 

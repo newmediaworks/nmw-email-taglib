@@ -39,7 +39,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class MultipartTag extends BodyTagSupport {
 
-	static final String TAG_NAME = "<email:multipart>";
+	public static final String TAG_NAME = "<email:multipart>";
 
 	private static final long serialVersionUID = 1164641608254963685L;
 

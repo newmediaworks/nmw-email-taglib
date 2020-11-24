@@ -37,7 +37,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class FromTag extends BodyTagSupport {
 
-	static final String TAG_NAME = "<email:from>";
+	public static final String TAG_NAME = "<email:from>";
 
 	private static final long serialVersionUID = 2L;
 

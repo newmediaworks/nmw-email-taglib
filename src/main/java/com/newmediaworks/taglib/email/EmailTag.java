@@ -53,7 +53,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	private static final Logger logger = Logger.getLogger(EmailTag.class.getName());
 
-	static final String TAG_NAME = "<email:email>";
+	public static final String TAG_NAME = "<email:email>";
 
 	public static final String ERROR_REQUEST_PARAMETER_NAME = EmailTag.class.getName()+".error";
 

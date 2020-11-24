@@ -37,7 +37,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class GetErrorReasonTag extends TagSupport {
 
-	static final String TAG_NAME = "<email:getErrorReason>";
+	public static final String TAG_NAME = "<email:getErrorReason>";
 
 	private static final long serialVersionUID = -5884622703073716930L;
 

@@ -38,7 +38,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class HeaderTag extends BodyTagSupport {
 
-	static final String TAG_NAME = "<email:header>";
+	public static final String TAG_NAME = "<email:header>";
 
 	private static final long serialVersionUID = 2318039931799092070L;
 

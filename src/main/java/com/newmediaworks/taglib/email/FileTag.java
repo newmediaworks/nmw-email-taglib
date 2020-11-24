@@ -43,7 +43,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class FileTag extends BodyTagSupport {
 
-	static final String TAG_NAME = "<email:file>";
+	public static final String TAG_NAME = "<email:file>";
 
 	private static final long serialVersionUID = 5606558335805071879L;
 

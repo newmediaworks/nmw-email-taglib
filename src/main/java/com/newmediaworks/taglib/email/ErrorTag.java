@@ -34,7 +34,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class ErrorTag extends BodyTagSupport {
 
-	static final String TAG_NAME = "<email:error>";
+	public static final String TAG_NAME = "<email:error>";
 
 	private static final long serialVersionUID = -4181809894278592208L;
 
