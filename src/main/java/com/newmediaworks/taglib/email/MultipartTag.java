@@ -28,6 +28,7 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
@@ -56,7 +57,7 @@ public class MultipartTag extends BodyTagSupport {
 	}
 
 	@Override
-	public int doStartTag() {
+	public int doStartTag() throws JspException {
 		multipart = new MimeMultipart(subtype);
 		return EVAL_BODY_INCLUDE;
 	}
@@ -68,7 +69,7 @@ public class MultipartTag extends BodyTagSupport {
 				.setContent(multipart);
 			return EVAL_PAGE;
 		} catch(MessagingException err) {
-			throw new JspException(err.getMessage(), err);
+			throw new JspTagException(err.getMessage(), err);
 		} finally {
 			init();
 		}

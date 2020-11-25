@@ -25,6 +25,7 @@ package com.newmediaworks.taglib.email;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
@@ -52,7 +53,7 @@ public class GetErrorReasonTag extends TagSupport {
 			if(error!=null) pageContext.getOut().write(error);
 			return SKIP_BODY;
 		} catch(IOException err) {
-			throw new JspException(err);
+			throw new JspTagException(err);
 		}
 	}
 }

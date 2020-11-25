@@ -22,7 +22,7 @@
  */
 package com.newmediaworks.taglib.email;
 
-import com.aoindustries.servlet.jsp.LocalizedJspException;
+import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import static com.newmediaworks.taglib.email.ApplicationResourcesAccessor.accessor;
 import java.io.File;
@@ -31,6 +31,7 @@ import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
@@ -51,7 +52,7 @@ public class FileTag extends BodyTagSupport {
 	}
 
 	@Override
-	public int doStartTag() {
+	public int doStartTag() throws JspException {
 		return EVAL_BODY_BUFFERED;
 	}
 
@@ -61,16 +62,16 @@ public class FileTag extends BodyTagSupport {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			String path = getBodyContent().getString();
 			String realPath = pageContext.getServletContext().getRealPath(path);
-			if(realPath==null) throw new LocalizedJspException(accessor, "FileTag.doEndTag.unableToFindRealPath", path);
+			if(realPath==null) throw new LocalizedJspTagException(accessor, "FileTag.doEndTag.unableToFindRealPath", path);
 			File file = new File(realPath);
-			if(!file.exists()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.fileNotExists", realPath);
-			if(!file.isFile()) throw new LocalizedJspException(accessor, "FileTag.doEndTag.notRegularFile", realPath);
+			if(!file.exists()) throw new LocalizedJspTagException(accessor, "FileTag.doEndTag.fileNotExists", realPath);
+			if(!file.isFile()) throw new LocalizedJspTagException(accessor, "FileTag.doEndTag.notRegularFile", realPath);
 			FileDataSource fds = new FileDataSource(file);
 			partTag.setDataHandler(new DataHandler(fds));
 			partTag.setFileName(fds.getName());
 			return EVAL_PAGE;
 		} catch(MessagingException err) {
-			throw new JspException(err.getMessage(), err);
+			throw new JspTagException(err.getMessage(), err);
 		}
 	}
 }

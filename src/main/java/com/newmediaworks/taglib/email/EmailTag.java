@@ -22,7 +22,7 @@
  */
 package com.newmediaworks.taglib.email;
 
-import com.aoindustries.servlet.jsp.LocalizedJspException;
+import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import static com.newmediaworks.taglib.email.ApplicationResourcesAccessor.accessor;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,6 +38,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TryCatchFinally;
@@ -115,7 +116,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 	}
 
 	@Override
-	public int doStartTag() {
+	public int doStartTag() throws JspException {
 		pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, accessor.getMessage("EmailTag.doStartTag.emailNotSent"));
 		Properties properties = new Properties();
 		if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
@@ -134,7 +135,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 				else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
 				else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
 				else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
-				else throw new LocalizedJspException(accessor, "EmailTag.doEndTag.unexpectedScope", scope);
+				else throw new LocalizedJspTagException(accessor, "EmailTag.doEndTag.unexpectedScope", scope);
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				message.writeTo(bout);
 				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
@@ -147,7 +148,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 				return EVAL_PAGE;
 			}
 		} catch(MessagingException | IOException err) {
-			throw new JspException(err.getMessage(), err);
+			throw new JspTagException(err.getMessage(), err);
 		} finally {
 			init();
 		}

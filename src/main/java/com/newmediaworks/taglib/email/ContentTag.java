@@ -27,6 +27,7 @@ import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
@@ -53,7 +54,7 @@ public class ContentTag extends BodyTagSupport {
 	}
 
 	@Override
-	public int doStartTag() {
+	public int doStartTag() throws JspException {
 		return EVAL_BODY_BUFFERED;
 	}
 
@@ -64,7 +65,7 @@ public class ContentTag extends BodyTagSupport {
 				.setContent(getBodyContent().getString().trim(), type);
 			return EVAL_PAGE;
 		} catch(MessagingException err) {
-			throw new JspException(err.getMessage(), err);
+			throw new JspTagException(err.getMessage(), err);
 		} finally {
 			init();
 		}

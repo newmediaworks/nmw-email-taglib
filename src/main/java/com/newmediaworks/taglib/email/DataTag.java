@@ -22,7 +22,7 @@
  */
 package com.newmediaworks.taglib.email;
 
-import com.aoindustries.servlet.jsp.LocalizedJspException;
+import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import static com.newmediaworks.taglib.email.ApplicationResourcesAccessor.accessor;
 import java.io.IOException;
@@ -33,6 +33,7 @@ import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
@@ -85,12 +86,12 @@ public class DataTag extends TagSupport {
 			else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
 			else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
 			else if(data instanceof DataSource) ds = (DataSource)data;
-			else throw new LocalizedJspException(accessor, "DataTag.doStartTag.invalidDataType");
+			else throw new LocalizedJspTagException(accessor, "DataTag.doStartTag.invalidDataType");
 			partTag.setDataHandler(new DataHandler(ds));
 			if(filename!=null) partTag.setFileName(filename);
 			return SKIP_BODY;
 		} catch(IOException | MessagingException err) {
-			throw new JspException(err.getMessage(), err);
+			throw new JspTagException(err.getMessage(), err);
 		} finally {
 			init();
 		}

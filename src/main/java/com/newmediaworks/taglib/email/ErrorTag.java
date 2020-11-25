@@ -22,6 +22,7 @@
  */
 package com.newmediaworks.taglib.email;
 
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
@@ -42,7 +43,7 @@ public class ErrorTag extends BodyTagSupport {
 	}
 
 	@Override
-	public int doStartTag() {
+	public int doStartTag() throws JspException {
 		return pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME)!=null ? EVAL_BODY_INCLUDE : SKIP_BODY;
 	}
 }
