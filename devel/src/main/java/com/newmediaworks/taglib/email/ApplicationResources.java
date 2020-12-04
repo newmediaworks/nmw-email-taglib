@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2013, 2019  New Media Works
+ * Copyright (C) 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -26,48 +26,32 @@ import com.aoindustries.util.i18n.EditableResourceBundle;
 import com.aoindustries.util.i18n.EditableResourceBundleSet;
 import com.aoindustries.util.i18n.Locales;
 import java.io.File;
-import java.util.Arrays;
+import java.util.Locale;
 
 /**
- * Do not use directly.
- *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public final class ApplicationResources extends EditableResourceBundle {
 
 	public static final EditableResourceBundleSet bundleSet = new EditableResourceBundleSet(
-		ApplicationResources.class.getName(),
-		Arrays.asList(
-			Locales.ROOT,
-			Locales.ARABIC,
-			Locales.GERMAN,
-			Locales.ENGLISH,
-			Locales.SPANISH,
-			Locales.FRENCH,
-			Locales.ITALIAN,
-			Locales.JAPANESE,
-			Locales.PORTUGUESE,
-			Locales.CHINESE
-		)
+		ApplicationResources.class,
+		Locale.ROOT,
+		Locales.ARABIC,
+		Locale.GERMAN,
+		Locale.ENGLISH,
+		Locales.SPANISH,
+		Locale.FRENCH,
+		Locale.ITALIAN,
+		Locale.JAPANESE,
+		Locales.PORTUGUESE,
+		Locale.CHINESE
 	);
 
-	static File[] getSourceFiles(String filename) {
-		return new File[] {
-			// Linux development system
-			new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email", filename),
-			// Windows development system
-			// new File("C:/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email", filename)
-		};
+	static File getSourceFile(String filename) {
+		return new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email", filename);
 	}
 
-	/**
-	 * Do not use directly.
-	 */
 	public ApplicationResources() {
-		super(
-			Locales.ROOT,
-			bundleSet,
-			getSourceFiles("ApplicationResources.properties")
-		);
+		super(Locale.ROOT, bundleSet, getSourceFile("ApplicationResources.properties"));
 	}
 }

@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-11-25T07:09:05-06:00"
+		dateModified="2020-12-04T00:40:31-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-email-taglib:pom.version}" />
@@ -62,6 +62,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 						both declare and throw <code>JspTagException</code>.
 					</li>
 					<li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
+					<li>
+						Split development-only classes into a new sub-project in <code>devel/</code>.  This
+						sub-project is used development only and is never deployed to artifact repositories.
+					</li>
 					<!-- TODO: Integrate with ao-encoding-taglib for the 2.0.0 release -->
 				</ul>
 			</changelog:release>

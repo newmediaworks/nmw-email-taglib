@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2013, 2019  New Media Works
+ * Copyright (C) 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -23,23 +23,18 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.util.i18n.EditableResourceBundle;
-import com.aoindustries.util.i18n.Locales;
+import java.util.Locale;
 
 /**
- * Do not use directly.
- *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public final class ApplicationResources_en extends EditableResourceBundle {
+public final class ApplicationResources_zh extends EditableResourceBundle {
 
-	/**
-	 * Do not use directly.
-	 */
-	public ApplicationResources_en() {
+	public ApplicationResources_zh() {
 		super(
-			Locales.ENGLISH,
+			Locale.CHINESE,
 			ApplicationResources.bundleSet,
-			ApplicationResources.getSourceFiles("ApplicationResources_en.properties")
+			ApplicationResources.getSourceFile("ApplicationResources_zh.properties")
 		);
 	}
 }

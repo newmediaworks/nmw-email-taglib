@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2013, 2019  New Media Works
+ * Copyright (C) 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -22,25 +22,19 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.util.i18n.EditableResourceBundle;
+import java.util.Locale;
+
 /**
- * Provides a simplified interface for obtaining localized values from the ApplicationResources.properties files.
- *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public final class ApplicationResourcesAccessor {
+public final class ApplicationResources_en extends EditableResourceBundle {
 
-	/**
-	 * Make no instances.
-	 */
-	private ApplicationResourcesAccessor() {
-	}
-
-	public static final com.aoindustries.util.i18n.ApplicationResourcesAccessor accessor;
-	static {
-		// Use correct package after any potential obfuscation
-		String classname = ApplicationResourcesAccessor.class.getName();
-		accessor = com.aoindustries.util.i18n.ApplicationResourcesAccessor.getInstance(
-			classname.substring(0, classname.lastIndexOf('.') + 1) + "ApplicationResources"
+	public ApplicationResources_en() {
+		super(
+			Locale.ENGLISH,
+			ApplicationResources.bundleSet,
+			ApplicationResources.getSourceFile("ApplicationResources_en.properties")
 		);
 	}
 }

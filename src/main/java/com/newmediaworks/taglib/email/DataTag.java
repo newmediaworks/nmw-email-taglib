@@ -22,9 +22,9 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.i18n.Resources;
 import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
-import static com.newmediaworks.taglib.email.ApplicationResourcesAccessor.accessor;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.activation.DataHandler;
@@ -46,6 +46,8 @@ import javax.servlet.jsp.tagext.TagSupport;
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class DataTag extends TagSupport {
+
+	private static final Resources RESOURCES = Resources.getResources(DataTag.class.getPackage());
 
 	public static final String TAG_NAME = "<email:data>";
 
@@ -86,7 +88,7 @@ public class DataTag extends TagSupport {
 			else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
 			else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
 			else if(data instanceof DataSource) ds = (DataSource)data;
-			else throw new LocalizedJspTagException(accessor, "DataTag.doStartTag.invalidDataType");
+			else throw new LocalizedJspTagException(RESOURCES, "DataTag.doStartTag.invalidDataType");
 			partTag.setDataHandler(new DataHandler(ds));
 			if(filename!=null) partTag.setFileName(filename);
 			return SKIP_BODY;
