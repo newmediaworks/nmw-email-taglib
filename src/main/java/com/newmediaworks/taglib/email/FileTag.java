@@ -44,7 +44,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class FileTag extends BodyTagSupport {
 
-	private static final Resources RESOURCES = Resources.getResources(FileTag.class.getPackage());
+	private static final Resources RESOURCES = Resources.getResources(FileTag.class);
 
 	public static final String TAG_NAME = "<email:file>";
 
@@ -64,10 +64,10 @@ public class FileTag extends BodyTagSupport {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			String path = getBodyContent().getString();
 			String realPath = pageContext.getServletContext().getRealPath(path);
-			if(realPath==null) throw new LocalizedJspTagException(RESOURCES, "FileTag.doEndTag.unableToFindRealPath", path);
+			if(realPath==null) throw new LocalizedJspTagException(RESOURCES, "doEndTag.unableToFindRealPath", path);
 			File file = new File(realPath);
-			if(!file.exists()) throw new LocalizedJspTagException(RESOURCES, "FileTag.doEndTag.fileNotExists", realPath);
-			if(!file.isFile()) throw new LocalizedJspTagException(RESOURCES, "FileTag.doEndTag.notRegularFile", realPath);
+			if(!file.exists()) throw new LocalizedJspTagException(RESOURCES, "doEndTag.fileNotExists", realPath);
+			if(!file.isFile()) throw new LocalizedJspTagException(RESOURCES, "doEndTag.notRegularFile", realPath);
 			FileDataSource fds = new FileDataSource(file);
 			partTag.setDataHandler(new DataHandler(fds));
 			partTag.setFileName(fds.getName());

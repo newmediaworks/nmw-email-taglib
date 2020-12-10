@@ -47,7 +47,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class DataTag extends TagSupport {
 
-	private static final Resources RESOURCES = Resources.getResources(DataTag.class.getPackage());
+	private static final Resources RESOURCES = Resources.getResources(DataTag.class);
 
 	public static final String TAG_NAME = "<email:data>";
 
@@ -88,7 +88,7 @@ public class DataTag extends TagSupport {
 			else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
 			else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
 			else if(data instanceof DataSource) ds = (DataSource)data;
-			else throw new LocalizedJspTagException(RESOURCES, "DataTag.doStartTag.invalidDataType");
+			else throw new LocalizedJspTagException(RESOURCES, "doStartTag.invalidDataType");
 			partTag.setDataHandler(new DataHandler(ds));
 			if(filename!=null) partTag.setFileName(filename);
 			return SKIP_BODY;

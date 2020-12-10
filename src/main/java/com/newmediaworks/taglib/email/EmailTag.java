@@ -54,7 +54,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	private static final Logger logger = Logger.getLogger(EmailTag.class.getName());
 
-	private static final Resources RESOURCES = Resources.getResources(EmailTag.class.getPackage());
+	private static final Resources RESOURCES = Resources.getResources(EmailTag.class);
 
 	public static final String TAG_NAME = "<email:email>";
 
@@ -119,7 +119,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	@Override
 	public int doStartTag() throws JspException {
-		pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, RESOURCES.getMessage("EmailTag.doStartTag.emailNotSent"));
+		pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, RESOURCES.getMessage("doStartTag.emailNotSent"));
 		Properties properties = new Properties();
 		if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
 		if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
@@ -137,7 +137,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 				else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
 				else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
 				else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
-				else throw new LocalizedJspTagException(RESOURCES, "EmailTag.doEndTag.unexpectedScope", scope);
+				else throw new LocalizedJspTagException(RESOURCES, "doEndTag.unexpectedScope", scope);
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				message.writeTo(bout);
 				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
