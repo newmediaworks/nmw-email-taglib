@@ -50,7 +50,7 @@ public class BodyPartTag extends BodyTagSupport implements PartTag, TryCatchFina
 
 	private static final long serialVersionUID = 2918414786024763557L;
 
-	private BodyPart bodypart;
+	private transient BodyPart bodypart;
 
 	private void init() {
 		bodypart = null;

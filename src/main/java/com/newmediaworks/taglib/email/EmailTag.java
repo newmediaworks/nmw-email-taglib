@@ -97,7 +97,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		this.scope = scope;
 	}
 
-	private MimeMessage message;
+	private transient MimeMessage message;
 
 	private void init() {
 		smtpHost = System.getProperty("mail.smtp.host");
