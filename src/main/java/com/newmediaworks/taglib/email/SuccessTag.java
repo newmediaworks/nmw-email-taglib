@@ -39,6 +39,7 @@ public class SuccessTag extends BodyTagSupport {
 
 	@Override
 	public int doStartTag() throws JspException {
-		return pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME)==null ? EVAL_BODY_INCLUDE : SKIP_BODY;
+		return pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME) == null
+			? EVAL_BODY_INCLUDE : SKIP_BODY;
 	}
 }

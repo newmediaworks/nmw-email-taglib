@@ -58,7 +58,13 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	public static final String TAG_NAME = "<email:email>";
 
-	public static final String ERROR_REQUEST_PARAMETER_NAME = EmailTag.class.getName()+".error";
+	public static final String ERROR_REQUEST_ATTRIBUTE_NAME = EmailTag.class.getName() + ".error";
+
+	/**
+	 * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE_NAME} directly.
+	 */
+	@Deprecated
+	public static final String ERROR_REQUEST_PARAMETER_NAME = ERROR_REQUEST_ATTRIBUTE_NAME;
 
 	private static Integer parseInteger(String s) throws NumberFormatException {
 		if(s==null || (s=s.trim()).isEmpty()) return null;
@@ -119,7 +125,10 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	@Override
 	public int doStartTag() throws JspException {
-		pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, RESOURCES.getMessage("doStartTag.emailNotSent"));
+		pageContext.getRequest().setAttribute(
+			ERROR_REQUEST_ATTRIBUTE_NAME,
+			RESOURCES.getMessage("doStartTag.emailNotSent")
+		);
 		Properties properties = new Properties();
 		if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
 		if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
@@ -141,14 +150,12 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				message.writeTo(bout);
 				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
-				pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
-				return EVAL_PAGE;
 			} else {
 				// Send the message
 				Transport.send(message);
-				pageContext.getRequest().removeAttribute(ERROR_REQUEST_PARAMETER_NAME);
-				return EVAL_PAGE;
 			}
+			pageContext.getRequest().removeAttribute(ERROR_REQUEST_ATTRIBUTE_NAME);
+			return EVAL_PAGE;
 		} catch(MessagingException | IOException err) {
 			throw new JspTagException(err.getMessage(), err);
 		} finally {
@@ -217,7 +224,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		logger.log(Level.SEVERE, null, throwable);
 		String errorMessage = throwable.getMessage();
 		if(errorMessage==null || (errorMessage=errorMessage.trim()).length()==0) errorMessage = throwable.toString();
-		pageContext.getRequest().setAttribute(ERROR_REQUEST_PARAMETER_NAME, errorMessage);
+		pageContext.getRequest().setAttribute(ERROR_REQUEST_ATTRIBUTE_NAME, errorMessage);
 	}
 
 	@Override

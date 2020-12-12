@@ -49,8 +49,8 @@ public class GetErrorReasonTag extends TagSupport {
 	public int doStartTag() throws JspException {
 		try {
 			JspTagUtils.requireAncestor(TAG_NAME, this, ErrorTag.TAG_NAME, ErrorTag.class);
-			String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
-			if(error!=null) pageContext.getOut().write(error);
+			String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
+			if(error != null) pageContext.getOut().write(error);
 			return SKIP_BODY;
 		} catch(IOException err) {
 			throw new JspTagException(err);

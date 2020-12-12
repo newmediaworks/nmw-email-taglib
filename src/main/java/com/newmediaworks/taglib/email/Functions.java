@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2013, 2019  New Media Works
+ * Copyright (C) 2013, 2019, 2020  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -39,6 +39,6 @@ final public class Functions {
 	 * @see  GetErrorReasonTag
 	 */
 	public static String getErrorReason() {
-		return (String)getRequest().getAttribute(EmailTag.ERROR_REQUEST_PARAMETER_NAME);
+		return (String)getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
 	}
 }
