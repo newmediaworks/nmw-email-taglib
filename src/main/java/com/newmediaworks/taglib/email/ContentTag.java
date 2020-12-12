@@ -22,19 +22,27 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.Doctype;
 import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.MediaValidator;
+import com.aoindustries.encoding.Serialization;
+import com.aoindustries.encoding.servlet.DoctypeEE;
+import com.aoindustries.encoding.servlet.SerializationEE;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
-import com.aoindustries.io.ContentType;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.util.Locale;
 import javax.mail.MessagingException;
 import javax.mail.Part;
+import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * The body of this tag provides the content to the email or any of its parts.
@@ -47,6 +55,16 @@ public class ContentTag extends EncodingBufferedTag {
 
 /* SimpleTag only: */
 	public static final String TAG_NAME = "<email:content>";
+
+	/**
+	 * The old Struts XHTML mode page attribute.  To avoiding picking-up a big
+	 * legacy dependency, we've copied the value here instead of depending on
+	 * Globals.  Once we no longer have any code running on old Struts, this
+	 * value may be removed.
+	 */
+	// Java 9: module-private
+	// Matches ao-taglib:HtmlTag.java
+	public static final String STRUTS_XHTML_KEY = "org.apache.struts.globals.XHTML";
 /**/
 
 	public ContentTag() {
@@ -77,9 +95,71 @@ public class ContentTag extends EncodingBufferedTag {
 		this.type = type;
 	}
 
-	private void init() {
-		type = ContentType.HTML;
+	private Serialization serialization;
+	public void setSerialization(String serialization) {
+		this.serialization = Serialization.valueOf(serialization.trim().toUpperCase(Locale.ROOT));
 	}
+
+	private Doctype doctype;
+	public void setDoctype(String doctype) {
+		doctype = doctype.trim();
+		this.doctype = "default".equalsIgnoreCase(doctype) ? Doctype.DEFAULT : Doctype.valueOf(doctype.toUpperCase(Locale.ROOT));
+	}
+
+/* BodyTag only:
+	// Values that are used in doFinally
+	private transient Serialization oldSerialization;
+	private transient Object oldStrutsXhtml;
+	private transient boolean setSerialization;
+	private transient Doctype oldDoctype;
+	private transient boolean setDoctype;
+/**/
+
+	private void init() {
+		type = null;
+		serialization = Serialization.SGML;
+		doctype = Doctype.DEFAULT;
+/* BodyTag only:
+		// Values that are used in doFinally
+		oldSerialization = null;
+		oldStrutsXhtml = null;
+		setSerialization = false;
+		oldDoctype = null;
+		setDoctype = false;
+/**/
+	}
+
+/* BodyTag only:
+	protected int doStartTag(Writer out) throws JspException, IOException {
+		oldSerialization = SerializationEE.replace(request, serialization);
+		oldStrutsXhtml = pageContext.getAttribute(STRUTS_XHTML_KEY, PageContext.PAGE_SCOPE);
+		pageContext.setAttribute(STRUTS_XHTML_KEY, Boolean.toString(serialization == Serialization.XML), PageContext.PAGE_SCOPE);
+		setSerialization = true;
+		oldDoctype = DoctypeEE.replace(request, doctype);
+		setDoctype = true;
+	}
+/**/
+/* SimpleTag only: */
+	@Override
+	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+		PageContext pageContext = (PageContext)getJspContext();
+		ServletRequest request = pageContext.getRequest();
+		Serialization oldSerialization = SerializationEE.replace(request, serialization);
+		Object oldStrutsXhtml = pageContext.getAttribute(STRUTS_XHTML_KEY, PageContext.PAGE_SCOPE);
+		pageContext.setAttribute(STRUTS_XHTML_KEY, Boolean.toString(serialization == Serialization.XML), PageContext.PAGE_SCOPE);
+		try {
+			Doctype oldDoctype = DoctypeEE.replace(request, doctype);
+			try {
+				super.invoke(body, captureValidator);
+			} finally {
+				DoctypeEE.set(request, oldDoctype);
+			}
+		} finally {
+			SerializationEE.set(request, oldSerialization);
+			pageContext.setAttribute(STRUTS_XHTML_KEY, oldStrutsXhtml, PageContext.PAGE_SCOPE);
+		}
+	}
+/**/
 
 	@Override
 /* BodyTag only:
@@ -90,7 +170,10 @@ public class ContentTag extends EncodingBufferedTag {
 /**/
 		try {
 			JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
-				.setContent(capturedBody.trim().toString(), type); // TODO: Optimization opportunity here between BufferResult and byte[], String, InputStream, or DataSource?
+				.setContent(
+					capturedBody.trim().toString(), // TODO: Optimization opportunity here between BufferResult and byte[], String, InputStream, or DataSource?
+					(type != null) ? type : serialization.getContentType()
+				);
 /* BodyTag only:
 			return EVAL_PAGE;
 /**/
@@ -103,7 +186,15 @@ public class ContentTag extends EncodingBufferedTag {
 	@Override
 	public void doFinally() {
 		try {
-			init();
+			try {
+				if(setDoctype) DoctypeEE.set(request, oldDoctype);
+				if(setSerialization) {
+					SerializationEE.set(request, oldSerialization);
+					pageContext.setAttribute(STRUTS_XHTML_KEY, oldStrutsXhtml, PageContext.PAGE_SCOPE);
+				}
+			} finally {
+				init();
+			}
 		} finally {
 			super.doFinally();
 		}

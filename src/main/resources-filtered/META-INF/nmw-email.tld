@@ -400,7 +400,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-11T21:39:57-06:00" -->
+		<!-- dateModified="2020-12-12T02:04:51-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag provides the content to the email or any of its parts.
@@ -419,10 +419,40 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					The MIME content type of the content.  Defaults to <code>text/html</code>.
+					The MIME content type of the content.
+					Defaults to the content type of the current <code>serialization</code>.
 				</p>
 			]]></description>
 			<name>type</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					When <code>SGML</code> (the default), sets the content-type to <code>text/html</code>.
+					When <code>XML</code>, sets the content-type to <code>application/xhtml+xml</code>.
+				</p>
+			]]></description>
+			<name>serialization</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					The <a href="https://www.w3schools.com/tags/tag_doctype.asp">&lt;!DOCTYPE&gt;</a> to use,
+					must be one of <code>default</code>, <code>HTML5</code>, <code>STRICT</code>, <code>TRANSITIONAL</code>,
+					<code>FRAMESET</code>, or <code>NONE</code>.
+				</p>
+				<p>
+					Defaults to <code><a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</a></code>,
+					which is currently <code><a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</a></code>.
+				</p>
+			]]></description>
+			<name>doctype</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>

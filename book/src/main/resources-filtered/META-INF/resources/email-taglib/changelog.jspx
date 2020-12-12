@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-12T01:32:46-06:00"
+		dateModified="2020-12-12T02:04:51-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -90,6 +90,12 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 						integration.  Implementations still fall-back to body content when the attribute is not specified.
 					</li>
 					<li><core:link page="nmw-email.tld/tag-file" /> now supports page-relative paths.</li>
+					<li>
+						<core:link page="nmw-email.tld/tag-content" /> has new <code>serialization</code> and <code>doctype</code>
+						attributes, that default to <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Serialization.html#SGML">SGML</ao:a></code>
+						and <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
+						is currently <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
+					</li>
 					<!-- TODO: Create legacy version of the taglib with full JSP scriptlet support -->
 				</ul>
 			</changelog:release>
