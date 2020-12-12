@@ -23,6 +23,7 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.MediaValidator;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.i18n.Resources;
 import com.aoindustries.io.FileUtils;
@@ -42,6 +43,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * Reads the contents of this email or part from a file.
@@ -59,6 +61,10 @@ public class FileTag extends EncodingBufferedTag {
 
 	private static final Resources RESOURCES = Resources.getResources(FileTag.class);
 
+	public FileTag() {
+		init();
+	}
+
 	@Override
 	public MediaType getContentType() {
 		return MediaType.TEXT;
@@ -70,8 +76,28 @@ public class FileTag extends EncodingBufferedTag {
 	}
 
 /* BodyTag only:
-	private static final long serialVersionUID = 5606558335805071879L;
+	private static final long serialVersionUID = 2L;
 /**/
+
+	private String path;
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	private void init() {
+		path = null;
+	}
+
+	@Override
+/* BodyTag only:
+	protected int doStartTag(Writer out) throws JspException, IOException {
+		return (path != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
+/**/
+/* SimpleTag only: */
+	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+		if(path == null) super.invoke(body, captureValidator);
+/**/
+	}
 
 	@Override
 /* BodyTag only:
@@ -84,11 +110,11 @@ public class FileTag extends EncodingBufferedTag {
 		try {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			ServletContext servletContext = pageContext.getServletContext();
-			String path = capturedBody.toString();
-			String fileName = path.substring(path.lastIndexOf('/') + 1);
+			String _path = (path != null) ? path : capturedBody.toString();
+			String fileName = _path.substring(_path.lastIndexOf('/') + 1);
 			File file;
 			{
-				String realPath = servletContext.getRealPath(path);
+				String realPath = servletContext.getRealPath(_path);
 				if(realPath != null) {
 					// The file is directly accessible
 					file = new File(realPath);
@@ -97,8 +123,8 @@ public class FileTag extends EncodingBufferedTag {
 				} else {
 					// Copy from web resource into a temporary file, to run from *.war file directly or to access
 					// resources in /META-INF/resources/ within /WEB-INF/lib/*.jar
-					try (InputStream in = servletContext.getResourceAsStream(path)) {
-						if(in == null) throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", path);
+					try (InputStream in = servletContext.getResourceAsStream(_path)) {
+						if(in == null) throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", _path);
 						file = TempFileContextEE.get(pageContext.getRequest()).createTempFile(fileName).getFile();
 						FileUtils.copyToFile(in, file);
 					}
@@ -114,4 +140,15 @@ public class FileTag extends EncodingBufferedTag {
 			throw new JspTagException(err.getMessage(), err);
 		}
 	}
+
+/* BodyTag only:
+	@Override
+	public void doFinally() {
+		try {
+			init();
+		} finally {
+			super.doFinally();
+		}
+	}
+/**/
 }

@@ -278,7 +278,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-11T21:39:57-06:00" -->
+		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The <code>Subject:</code> of the email.
@@ -297,6 +297,19 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				</p>
 			]]></description>
 			<name>charset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					Provides the subject.
+					When provided, the body is not invoked.
+					When not provided, the body content trimmed will be used as the subject.
+				</p>
+			]]></description>
+			<name>value</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -358,10 +371,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-28T01:44:29-0500" -->
-		<!-- dateModified="2020-12-11T21:39:57-06:00" -->
+		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
-				Sets the <code>Content-ID:</code> header while trimming the body and surrounding with <code>&lt;…&gt;</code>.
+				Sets the <code>Content-ID:</code> header while surrounding with <code>&lt;…&gt;</code>.
 			</p>
 			<p>
 				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
@@ -371,6 +384,19 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>contentId</name>
 		<tag-class>com.newmediaworks.taglib.email.ContentIdTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					Provides the <code>Content-ID:</code> header value, will be surrounding with <code>&lt;…&gt;</code>.
+					When provided, the body is not invoked.
+					When not provided, the body content trimmed will be used as the value.
+				</p>
+			]]></description>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
@@ -404,14 +430,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-11T21:39:57-06:00" -->
+		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Reads the contents of this email or part from a file.
-			</p>
-			<p>
-				The context-relative path to the file is provided in the body of this tag.
-				The path is not trimmed so be careful of any extra whitespace.
 			</p>
 			<p>
 				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
@@ -421,6 +443,20 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>file</name>
 		<tag-class>com.newmediaworks.taglib.email.FileTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					Provides the context-relative path to the file.
+					When provided, the body is not invoked.
+					When not provided, the body content will be used as the path.
+					The path is not trimmed so be careful of any extra whitespace.
+				</p>
+			]]></description>
+			<name>path</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->

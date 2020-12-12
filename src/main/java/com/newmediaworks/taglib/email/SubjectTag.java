@@ -23,6 +23,7 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.MediaValidator;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
@@ -32,6 +33,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * The <code>Subject:</code> of the email.
@@ -61,7 +63,7 @@ public class SubjectTag extends EncodingBufferedTag {
 	}
 
 /* BodyTag only:
-	private static final long serialVersionUID = 8340048766447465216L;
+	private static final long serialVersionUID = 2L;
 /**/
 
 	private String charset;
@@ -69,8 +71,25 @@ public class SubjectTag extends EncodingBufferedTag {
 		this.charset = charset;
 	}
 
+	private String value;
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 	private void init() {
 		charset = null;
+		value = null;
+	}
+
+	@Override
+/* BodyTag only:
+	protected int doStartTag(Writer out) throws JspException, IOException {
+		return (value != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
+/**/
+/* SimpleTag only: */
+	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+		if(value == null) super.invoke(body, captureValidator);
+/**/
 	}
 
 	@Override
@@ -82,7 +101,7 @@ public class SubjectTag extends EncodingBufferedTag {
 /**/
 		try {
 			JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
-				.setSubject(capturedBody.trim().toString(), charset);
+				.setSubject((value != null) ? value : capturedBody.trim().toString(), charset);
 /* BodyTag only:
 			return EVAL_PAGE;
 /**/

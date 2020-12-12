@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-11T23:29:42-06:00"
+		dateModified="2020-12-12T01:26:29-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -84,6 +84,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 							<li>Access to web resources contained in <code>/META-INF/resources/</code> within <code>/WEB-INF/lib/*.jar</code></li>
 							<li>Access to web resources while running as an unexploded <code>*.war</code> file</li>
 						</ol>
+					</li>
+					<li>
+						Added more attributes for <ao:a rel="nofollow" href="https://docs.oracle.com/cd/E19226-01/820-7627/gjddd/">JSP Expression Language</ao:a>
+						integration.  Implementations still fall-back to body content when the attribute is not specified.
 					</li>
 					<!-- TODO: Create legacy version of the taglib with full JSP scriptlet support -->
 				</ul>
