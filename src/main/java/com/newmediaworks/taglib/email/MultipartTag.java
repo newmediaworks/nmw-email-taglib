@@ -30,6 +30,7 @@ import javax.mail.internet.MimeMultipart;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * A multipart component of the email.
@@ -38,17 +39,27 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class MultipartTag extends BodyTagSupport {
+public class MultipartTag extends BodyTagSupport implements TryCatchFinally {
 
 	public static final String TAG_NAME = "<email:multipart>";
+
+	public MultipartTag() {
+		init();
+	}
 
 	private static final long serialVersionUID = 1164641608254963685L;
 
 	private String subtype;
-	private Multipart multipart;
+	public String getSubtype() {
+		return subtype;
+	}
+	public void setSubtype(String subtype) {
+		this.subtype = subtype;
+	}
 
-	public MultipartTag() {
-		init();
+	private Multipart multipart;
+	void addBodyPart(BodyPart part) throws MessagingException {
+		multipart.addBodyPart(part);
 	}
 
 	private void init() {
@@ -70,21 +81,16 @@ public class MultipartTag extends BodyTagSupport {
 			return EVAL_PAGE;
 		} catch(MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
 		}
 	}
 
-	public String getSubtype() {
-		return subtype;
+	@Override
+	public void doCatch(Throwable t) throws Throwable {
+		throw t;
 	}
 
-	public void setSubtype(String subtype) {
-		this.subtype = subtype;
+	@Override
+	public void doFinally() {
+		init();
 	}
-
-	void addBodyPart(BodyPart part) throws MessagingException {
-		multipart.addBodyPart(part);
-	}
-
 }

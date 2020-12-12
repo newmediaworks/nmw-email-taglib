@@ -71,17 +71,33 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		return Integer.valueOf(s);
 	}
 
-	private static final long serialVersionUID = -345960017501587726L;
-
-	private String smtpHost;
-	private Integer smtpPort;
-	private String var;
-	private String scope;
-	private MimeMessage message;
-
 	public EmailTag() {
 		init();
 	}
+
+	private static final long serialVersionUID = -345960017501587726L;
+
+	private String smtpHost;
+	public void setSmtpHost(String smtpHost) {
+		this.smtpHost = smtpHost;
+	}
+
+	private Integer smtpPort;
+	public void setSmtpPort(Integer smtpPort) {
+		this.smtpPort = smtpPort;
+	}
+
+	private String var;
+	public void setVar(String var) {
+		this.var = var;
+	}
+
+	private String scope;
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
+
+	private MimeMessage message;
 
 	private void init() {
 		smtpHost = System.getProperty("mail.smtp.host");
@@ -89,38 +105,6 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		var = null;
 		scope = null;
 		message = null;
-	}
-
-	public String getSmtpHost() {
-		return smtpHost;
-	}
-
-	public void setSmtpHost(String smtpHost) {
-		this.smtpHost = smtpHost;
-	}
-
-	public Integer getSmtpPort() {
-		return smtpPort;
-	}
-
-	public void setSmtpPort(Integer smtpPort) {
-		this.smtpPort = smtpPort;
-	}
-
-	public String getVar() {
-		return var;
-	}
-
-	public void setVar(String var) {
-		this.var = var;
-	}
-
-	public String getScope() {
-		return scope;
-	}
-
-	public void setScope(String scope) {
-		this.scope = scope;
 	}
 
 	@Override
@@ -134,39 +118,6 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
 		message = new MimeMessage(Session.getInstance(properties, null));
 		return EVAL_BODY_INCLUDE;
-	}
-
-	@Override
-	public int doEndTag() throws JspException {
-		try {
-			if(var!=null) {
-				// Capture as a byte[] into variable
-				int scopeInt;
-				if(scope==null || "page".equals(scope)) scopeInt = PageContext.PAGE_SCOPE;
-				else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
-				else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
-				else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
-				else throw new LocalizedJspTagException(RESOURCES, "unexpectedScope", scope);
-				ByteArrayOutputStream bout = new ByteArrayOutputStream();
-				message.writeTo(bout);
-				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
-			} else {
-				// Send the message
-				Transport.send(message);
-			}
-			pageContext.getRequest().removeAttribute(ERROR_REQUEST_ATTRIBUTE_NAME);
-			return EVAL_PAGE;
-		} catch(MessagingException | IOException err) {
-			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
-		}
-	}
-
-	@Override
-	public void release() {
-		super.release();
-		init();
 	}
 
 	void addToAddress(String to) throws MessagingException {
@@ -220,6 +171,31 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 	}
 
 	@Override
+	public int doEndTag() throws JspException {
+		try {
+			if(var!=null) {
+				// Capture as a byte[] into variable
+				int scopeInt;
+				if(scope==null || "page".equals(scope)) scopeInt = PageContext.PAGE_SCOPE;
+				else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
+				else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
+				else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
+				else throw new LocalizedJspTagException(RESOURCES, "unexpectedScope", scope);
+				ByteArrayOutputStream bout = new ByteArrayOutputStream();
+				message.writeTo(bout);
+				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
+			} else {
+				// Send the message
+				Transport.send(message);
+			}
+			pageContext.getRequest().removeAttribute(ERROR_REQUEST_ATTRIBUTE_NAME);
+			return EVAL_PAGE;
+		} catch(MessagingException | IOException err) {
+			throw new JspTagException(err.getMessage(), err);
+		}
+	}
+
+	@Override
 	public void doCatch(Throwable throwable) throws Throwable {
 		logger.log(Level.SEVERE, null, throwable);
 		String errorMessage = throwable.getMessage();
@@ -229,6 +205,6 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	@Override
 	public void doFinally() {
-		// Do nothing
+		init();
 	}
 }

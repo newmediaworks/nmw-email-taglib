@@ -31,6 +31,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * A single part of a multipart component.
@@ -39,17 +40,17 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class BodyPartTag extends BodyTagSupport implements PartTag {
+public class BodyPartTag extends BodyTagSupport implements PartTag, TryCatchFinally {
 
 	public static final String TAG_NAME = "<email:bodypart>";
-
-	private static final long serialVersionUID = 2918414786024763557L;
-
-	private BodyPart bodypart;
 
 	public BodyPartTag() {
 		init();
 	}
+
+	private static final long serialVersionUID = 2918414786024763557L;
+
+	private BodyPart bodypart;
 
 	private void init() {
 		bodypart = null;
@@ -59,19 +60,6 @@ public class BodyPartTag extends BodyTagSupport implements PartTag {
 	public int doStartTag() throws JspException {
 		bodypart = new MimeBodyPart();
 		return EVAL_BODY_INCLUDE;
-	}
-
-	@Override
-	public int doEndTag() throws JspException {
-		try {
-			JspTagUtils.requireAncestor(TAG_NAME, this, MultipartTag.TAG_NAME, MultipartTag.class)
-				.addBodyPart(bodypart);
-			return EVAL_PAGE;
-		} catch(MessagingException err) {
-			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
-		}
 	}
 
 	@Override
@@ -102,5 +90,26 @@ public class BodyPartTag extends BodyTagSupport implements PartTag {
 	@Override
 	public void setFileName(String filename) throws MessagingException {
 		bodypart.setFileName(filename);
+	}
+
+	@Override
+	public int doEndTag() throws JspException {
+		try {
+			JspTagUtils.requireAncestor(TAG_NAME, this, MultipartTag.TAG_NAME, MultipartTag.class)
+				.addBodyPart(bodypart);
+			return EVAL_PAGE;
+		} catch(MessagingException err) {
+			throw new JspTagException(err.getMessage(), err);
+		}
+	}
+
+	@Override
+	public void doCatch(Throwable t) throws Throwable {
+		throw t;
+	}
+
+	@Override
+	public void doFinally() {
+		init();
 	}
 }

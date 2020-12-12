@@ -35,6 +35,7 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
+import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * Provides the raw data of this email or part content.
@@ -45,38 +46,37 @@ import javax.servlet.jsp.tagext.TagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class DataTag extends TagSupport {
+public class DataTag extends TagSupport implements TryCatchFinally {
 
 	private static final Resources RESOURCES = Resources.getResources(DataTag.class);
 
 	public static final String TAG_NAME = "<email:data>";
 
+	public DataTag() {
+		init();
+	}
+
 	private static final long serialVersionUID = -4452366609111031502L;
 
 	private String type;
-	private String filename;
-	private Object data;
+	public void setType(String type) {
+		this.type = type;
+	}
 
-	public DataTag() {
-		init();
+	private String filename;
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	private Object data;
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 	private void init() {
 		type = null;
 		filename = null;
 		data = null;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public void setData(Object data) {
-		this.data = data;
 	}
 
 	@Override
@@ -94,8 +94,16 @@ public class DataTag extends TagSupport {
 			return SKIP_BODY;
 		} catch(IOException | MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
 		}
+	}
+
+	@Override
+	public void doCatch(Throwable t) throws Throwable {
+		throw t;
+	}
+
+	@Override
+	public void doFinally() {
+		init();
 	}
 }
