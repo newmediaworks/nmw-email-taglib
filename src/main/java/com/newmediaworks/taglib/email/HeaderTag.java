@@ -23,6 +23,7 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.MediaValidator;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
@@ -32,6 +33,7 @@ import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * Adds or sets a header value to the email or any of its parts.
@@ -86,12 +88,16 @@ public class HeaderTag extends EncodingBufferedTag {
 		replace = true;
 	}
 
-/* BodyTag only:
 	@Override
+/* BodyTag only:
 	protected int doStartTag(Writer out) throws JspException, IOException {
 		return (value != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
-	}
 /**/
+/* SimpleTag only: */
+	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+		if(value == null) super.invoke(body, captureValidator);
+/**/
+	}
 
 	@Override
 /* BodyTag only:

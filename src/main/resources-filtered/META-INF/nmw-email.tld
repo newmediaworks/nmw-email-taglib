@@ -222,7 +222,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-11T21:39:57-06:00" -->
+		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
@@ -237,8 +237,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					Provides the <code>To:</code> address.  When not provided, the body content trimmed
-					will be used as the address.
+					Provides the <code>To:</code> address.
+					When provided, the body is not invoked.
+					When not provided, the body content trimmed will be used as the address
 				</p>
 			]]></description>
 			<name>address</name>
@@ -249,7 +250,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-11T21:39:57-06:00" -->
+		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The <code>From:</code> address of the sender of the email.
@@ -264,8 +265,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					Provides the <code>From:</code> address.  When not provided, the body content trimmed
-					will be used as the address.
+					Provides the <code>From:</code> address.
+					When provided, the body is not invoked.
+					When not provided, the body content will be used as the address.
 				</p>
 			]]></description>
 			<name>address</name>
@@ -302,7 +304,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-11T21:39:57-06:00" -->
+		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Adds or sets a header value to the email or any of its parts.
@@ -329,8 +331,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					Provides the header value.  When not provided, the body content trimmed
-					will be used as the value.
+					Provides the header value.
+					When provided, the body is not invoked.
+					When not provided, the body content trimmed will be used as the value.
 				</p>
 			]]></description>
 			<name>value</name>

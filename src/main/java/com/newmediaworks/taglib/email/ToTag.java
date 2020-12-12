@@ -23,6 +23,7 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.MediaValidator;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
@@ -32,6 +33,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
@@ -73,12 +75,16 @@ public class ToTag extends EncodingBufferedTag {
 		address = null;
 	}
 
-/* BodyTag only:
 	@Override
+/* BodyTag only:
 	protected int doStartTag(Writer out) throws JspException, IOException {
 		return (address != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
-	}
 /**/
+/* SimpleTag only: */
+	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+		if(address == null) super.invoke(body, captureValidator);
+/**/
+	}
 
 	@Override
 /* BodyTag only:
