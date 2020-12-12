@@ -90,6 +90,8 @@ public class FileTag extends EncodingBufferedTag {
 		path = null;
 	}
 
+	// TODO: realPath (which gets from filesystem) attribute, too?
+
 	@Override
 /* BodyTag only:
 	protected int doStartTag(Writer out) throws JspException, IOException {
