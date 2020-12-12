@@ -430,7 +430,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
+		<!-- dateModified="2020-12-12T01:32:46-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Reads the contents of this email or part from a file.
@@ -446,7 +446,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					Provides the context-relative path to the file.
+					Provides the context path (starting with <code>"/"</code>) or page-relative path to the file.
 					When provided, the body is not invoked.
 					When not provided, the body content will be used as the path.
 					The path is not trimmed so be careful of any extra whitespace.

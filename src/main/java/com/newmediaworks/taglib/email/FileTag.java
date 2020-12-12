@@ -28,6 +28,7 @@ import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.i18n.Resources;
 import com.aoindustries.io.FileUtils;
 import com.aoindustries.io.buffer.BufferResult;
+import com.aoindustries.servlet.http.HttpServletUtil;
 import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import com.aoindustries.tempfiles.servlet.TempFileContextEE;
@@ -40,6 +41,7 @@ import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
@@ -110,7 +112,11 @@ public class FileTag extends EncodingBufferedTag {
 		try {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			ServletContext servletContext = pageContext.getServletContext();
-			String _path = (path != null) ? path : capturedBody.toString();
+			HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+			String _path = HttpServletUtil.getAbsolutePath(
+				request,
+				(path != null) ? path : capturedBody.toString()
+			);
 			String fileName = _path.substring(_path.lastIndexOf('/') + 1);
 			File file;
 			{
@@ -125,7 +131,7 @@ public class FileTag extends EncodingBufferedTag {
 					// resources in /META-INF/resources/ within /WEB-INF/lib/*.jar
 					try (InputStream in = servletContext.getResourceAsStream(_path)) {
 						if(in == null) throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", _path);
-						file = TempFileContextEE.get(pageContext.getRequest()).createTempFile(fileName).getFile();
+						file = TempFileContextEE.get(request).createTempFile(fileName).getFile();
 						FileUtils.copyToFile(in, file);
 					}
 				}
