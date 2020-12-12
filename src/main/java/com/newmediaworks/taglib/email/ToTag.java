@@ -22,12 +22,16 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.taglib.EncodingBufferedTag;
+import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import java.io.IOException;
+import java.io.Writer;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
@@ -36,47 +40,72 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class ToTag extends BodyTagSupport {
+public class ToTag extends EncodingBufferedTag {
 
+/* SimpleTag only: */
 	public static final String TAG_NAME = "<email:to>";
-
-	private static final long serialVersionUID = 2L;
-
-	private String address;
+/**/
 
 	public ToTag() {
 		init();
+	}
+
+	@Override
+	public MediaType getContentType() {
+		return MediaType.TEXT;
+	}
+
+	@Override
+	public MediaType getOutputType() {
+		return null;
+	}
+
+/* BodyTag only:
+	private static final long serialVersionUID = 2L;
+/**/
+
+	private String address;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	private void init() {
 		address = null;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+/* BodyTag only:
+	@Override
+	protected int doStartTag(Writer out) throws JspException, IOException {
+		return (address != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
 	}
+/**/
 
 	@Override
-	public int doStartTag() throws JspException {
-		return address!=null ? SKIP_BODY : EVAL_BODY_BUFFERED;
-	}
-
-	@Override
-	public int doEndTag() throws JspException {
+/* BodyTag only:
+	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
+/* SimpleTag only: */
+	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
 		try {
 			JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
-				.addToAddress(address!=null ? address : getBodyContent().getString().trim());
+				.addToAddress((address != null) ? address : capturedBody.trim().toString());
+/* BodyTag only:
 			return EVAL_PAGE;
+/**/
 		} catch(MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
 		}
 	}
 
+/* BodyTag only:
 	@Override
-	public void release() {
-		super.release();
-		init();
+	public void doFinally() {
+		try {
+			init();
+		} finally {
+			super.doFinally();
+		}
 	}
+/**/
 }

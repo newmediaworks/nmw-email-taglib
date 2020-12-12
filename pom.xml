@@ -36,6 +36,13 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		<shortTitle>Email Taglib</shortTitle>
 		<description.html><![CDATA[JSP taglib encapsulating the <a target="${javadoc.target}" href="https://javaee.github.io/javamail/">JavaMail API</a>.]]></description.html>
 		<javadoc.taglibReference><![CDATA[<li><a target="${javadoc.target}" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>]]></javadoc.taglibReference>
+		<javadoc.relatedProjects><![CDATA[<div style="float:left; margin: 0 1em">
+			<h2 style="margin-top: 0em">Related Projects</h2>
+			<ul>
+				<li><a target="${javadoc.target}" href="https://javaee.github.io/javamail/">JavaMail API</a></li>
+				<li><a target="${javadoc.target}" href="https://aoindustries.com/ao-encoding/taglib/">AO Encoding Taglib</a></li>
+			</ul>
+		</div>]]></javadoc.relatedProjects>
 	</properties>
 
 	<name>NMW Email Taglib</name>
@@ -93,6 +100,11 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 										<!-- Direct -->
 										<!-- ao-javadoc-offline: <groupId>javax.activation</groupId><artifactId>activation</artifactId> -->
 										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-encoding-taglib</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding-taglib</outputDirectory>
+										</artifactItem>
+										<artifactItem>
 											<groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId>
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-lang</outputDirectory>
@@ -121,6 +133,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 							<offlineLinks>
 								<!-- Direct -->
 								<!-- Java EE: <groupId>javax.activation</groupId><artifactId>activation</artifactId> -->
+								<offlineLink>
+									<url>https://aoindustries.com/ao-encoding/taglib/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding-taglib</location>
+								</offlineLink>
 								<offlineLink>
 									<url>https://aoindustries.com/ao-lang/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-lang</location>
@@ -164,6 +180,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>javax.activation</groupId><artifactId>activation</artifactId><version>1.1.1</version>
 			</dependency>
 			<dependency>
+				<groupId>com.aoindustries</groupId><artifactId>ao-encoding-taglib</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+			</dependency>
+			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId><version>4.9.1${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
@@ -188,10 +207,16 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>com.aoindustries</groupId><artifactId>ao-encoding-servlet</artifactId><version>3.0.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
+				<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId><version>3.3.0${POST-SNAPSHOT}</version>
+			</dependency>
+			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-net-types</artifactId><version>1.2.1${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-tempfiles</artifactId><version>2.0.0${POST-SNAPSHOT}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aoindustries</groupId><artifactId>ao-tempfiles-servlet</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>ao-tlds</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
@@ -215,6 +240,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		<!-- Direct -->
 		<dependency>
 			<groupId>javax.activation</groupId><artifactId>activation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.aoindustries</groupId><artifactId>ao-encoding-taglib</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId>

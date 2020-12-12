@@ -22,13 +22,19 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.io.ContentType;
+import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The body of this tag provides the content to the email or any of its parts.
@@ -37,16 +43,38 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class ContentTag extends BodyTagSupport {
+public class ContentTag extends EncodingBufferedTag {
 
+/* SimpleTag only: */
 	public static final String TAG_NAME = "<email:content>";
-
-	private static final long serialVersionUID = -7055705772215055501L;
-
-	private String type;
+/**/
 
 	public ContentTag() {
 		init();
+	}
+
+	@Override
+	public MediaType getContentType() { // TODO: throws UnsupportedEncodingException
+		try {
+			return MediaType.getMediaTypeForContentType(type);
+		} catch(UnsupportedEncodingException e) {
+			// TODO: Should we fallback to MediaType.TEXT and log warning instead?
+			throw new UncheckedIOException(e);
+		}
+	}
+
+	@Override
+	public MediaType getOutputType() {
+		return null;
+	}
+
+/* BodyTag only:
+	private static final long serialVersionUID = -7055705772215055501L;
+/**/
+
+	private String type;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	private void init() {
@@ -54,34 +82,31 @@ public class ContentTag extends BodyTagSupport {
 	}
 
 	@Override
-	public int doStartTag() throws JspException {
-		return EVAL_BODY_BUFFERED;
-	}
-
-	@Override
-	public int doEndTag() throws JspException {
+/* BodyTag only:
+	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
+/* SimpleTag only: */
+	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
 		try {
 			JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
-				.setContent(getBodyContent().getString().trim(), type);
+				.setContent(capturedBody.trim().toString(), type); // TODO: Optimization opportunity here between BufferResult and byte[], String, InputStream, or DataSource?
+/* BodyTag only:
 			return EVAL_PAGE;
+/**/
 		} catch(MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
 		}
 	}
 
+/* BodyTag only:
 	@Override
-	public void release() {
-		super.release();
-		init();
+	public void doFinally() {
+		try {
+			init();
+		} finally {
+			super.doFinally();
+		}
 	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
+/**/
 }

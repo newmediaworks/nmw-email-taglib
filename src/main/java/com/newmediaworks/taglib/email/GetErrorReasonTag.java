@@ -22,11 +22,13 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.taglib.EncodingNullTag;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
+import java.io.Writer;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.TagSupport;
+import javax.servlet.jsp.PageContext;
 
 /**
  * Gets the error reason for an email attempt.
@@ -36,24 +38,34 @@ import javax.servlet.jsp.tagext.TagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class GetErrorReasonTag extends TagSupport {
+public class GetErrorReasonTag extends EncodingNullTag {
 
+/* SimpleTag only: */
 	public static final String TAG_NAME = "<email:getErrorReason>";
-
-	private static final long serialVersionUID = -5884622703073716930L;
-
-	public GetErrorReasonTag() {
-	}
+/**/
 
 	@Override
-	public int doStartTag() throws JspException {
-		try {
-			JspTagUtils.requireAncestor(TAG_NAME, this, ErrorTag.TAG_NAME, ErrorTag.class);
-			String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
-			if(error != null) pageContext.getOut().write(error);
-			return SKIP_BODY;
-		} catch(IOException err) {
-			throw new JspTagException(err);
-		}
+	public MediaType getOutputType() {
+		return MediaType.TEXT;
+	}
+
+/* BodyTag only:
+	private static final long serialVersionUID = -5884622703073716930L;
+/**/
+
+	@Override
+/* BodyTag only:
+	protected int doStartTag(Writer out) throws JspException, IOException {
+/**/
+/* SimpleTag only: */
+	protected void doTag(Writer out) throws JspException, IOException {
+		PageContext pageContext = (PageContext)getJspContext();
+/**/
+		JspTagUtils.requireAncestor(TAG_NAME, this, ErrorTag.TAG_NAME, ErrorTag.class);
+		String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
+		if(error != null) out.write(error);
+/* BodyTag only:
+		return SKIP_BODY;
+/**/
 	}
 }

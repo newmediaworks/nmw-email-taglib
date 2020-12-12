@@ -36,6 +36,7 @@ JSP taglib encapsulating the [JavaMail API](https://javaee.github.io/javamail/).
 
 ## Related Projects
 * [JavaMail API](https://javaee.github.io/javamail/)
+* [AO Encoding Taglib](https://github.com/aoindustries/ao-encoding-taglib)
 
 ## Contact Us
 For questions or support, please [contact us](https://www.newmediaworks.com/html/contact.html):

@@ -22,12 +22,16 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.taglib.EncodingBufferedTag;
+import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import java.io.IOException;
+import java.io.Writer;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * Adds or sets a header value to the email or any of its parts.
@@ -37,18 +41,43 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class HeaderTag extends BodyTagSupport {
+public class HeaderTag extends EncodingBufferedTag {
 
+/* SimpleTag only: */
 	public static final String TAG_NAME = "<email:header>";
-
-	private static final long serialVersionUID = 2318039931799092070L;
-
-	private String name;
-	private String value;
-	private boolean replace;
+/**/
 
 	public HeaderTag() {
 		init();
+	}
+
+	@Override
+	public MediaType getContentType() {
+		return MediaType.TEXT;
+	}
+
+	@Override
+	public MediaType getOutputType() {
+		return null;
+	}
+
+/* BodyTag only:
+	private static final long serialVersionUID = 2318039931799092070L;
+/**/
+
+	private String name;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private String value;
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	private boolean replace;
+	public void setReplace(boolean replace) {
+		this.replace = replace;
 	}
 
 	private void init() {
@@ -57,53 +86,41 @@ public class HeaderTag extends BodyTagSupport {
 		replace = true;
 	}
 
-	/* Removed 2013-09-29
-	public String getName() {
-		return name;
+/* BodyTag only:
+	@Override
+	protected int doStartTag(Writer out) throws JspException, IOException {
+		return (value != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
 	}
-	*/
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	/* Removed 2013-09-29
-	public boolean isReplace() {
-		return replace;
-	}
-	*/
-
-	public void setReplace(boolean replace) {
-		this.replace = replace;
-	}
+/**/
 
 	@Override
-	public int doStartTag() throws JspException {
-		return value!=null ? SKIP_BODY : EVAL_BODY_BUFFERED;
-	}
-
-	@Override
-	public int doEndTag() throws JspException {
+/* BodyTag only:
+	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
+/* SimpleTag only: */
+	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
 		try {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
-			String headerValue = value!=null ? value : getBodyContent().getString().trim();
+			String headerValue = (value != null) ? value : capturedBody.trim().toString();
 			if(replace) partTag.setHeader(name, headerValue);
 			else partTag.addHeader(name, headerValue);
+/* BodyTag only:
 			return EVAL_PAGE;
+/**/
 		} catch(MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
 		}
 	}
 
+/* BodyTag only:
 	@Override
-	public void release() {
-		super.release();
-		init();
+	public void doFinally() {
+		try {
+			init();
+		} finally {
+			super.doFinally();
+		}
 	}
+/**/
 }

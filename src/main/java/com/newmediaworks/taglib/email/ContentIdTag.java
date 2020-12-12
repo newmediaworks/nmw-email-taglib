@@ -22,12 +22,16 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.taglib.EncodingBufferedTag;
+import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import java.io.IOException;
+import java.io.Writer;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * Sets the <code>Content-ID:</code> header while trimming the body and surrounding with <code>&lt;…&gt;</code>.
@@ -36,29 +40,42 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class ContentIdTag extends BodyTagSupport {
+public class ContentIdTag extends EncodingBufferedTag {
 
+/* SimpleTag only: */
 	public static final String TAG_NAME = "<email:contentId>";
-
-	private static final long serialVersionUID = -6345110519765927149L;
+/**/
 
 	private static final String CONTENT_ID_HEADER = "Content-ID";
 
-	public ContentIdTag() {
+	@Override
+	public MediaType getContentType() {
+		return MediaType.TEXT;
 	}
 
 	@Override
-	public int doStartTag() throws JspException {
-		return EVAL_BODY_BUFFERED;
+	public MediaType getOutputType() {
+		return null;
 	}
 
+/* BodyTag only:
+	private static final long serialVersionUID = -6345110519765927149L;
+/**/
+
 	@Override
-	public int doEndTag() throws JspException {
+/* BodyTag only:
+	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
+/* SimpleTag only: */
+	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
 		try {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
-			String value = getBodyContent().getString().trim();
-			partTag.setHeader(CONTENT_ID_HEADER, '<'+value+'>');
+			String value = capturedBody.trim().toString();
+			partTag.setHeader(CONTENT_ID_HEADER, '<' + value + '>'); // TODO: Some additional encoding required?  TODO: Don't add <...> when already has brackets
+/* BodyTag only:
 			return EVAL_PAGE;
+/**/
 		} catch(MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
 		}

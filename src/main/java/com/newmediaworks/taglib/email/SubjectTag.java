@@ -22,12 +22,16 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.taglib.EncodingBufferedTag;
+import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import java.io.IOException;
+import java.io.Writer;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The <code>Subject:</code> of the email.
@@ -36,51 +40,65 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class SubjectTag extends BodyTagSupport {
+public class SubjectTag extends EncodingBufferedTag {
 
+/* SimpleTag only: */
 	public static final String TAG_NAME = "<email:subject>";
-
-	private static final long serialVersionUID = 8340048766447465216L;
-
-	private String charset;
+/**/
 
 	public SubjectTag() {
 		init();
+	}
+
+	@Override
+	public MediaType getContentType() {
+		return MediaType.TEXT;
+	}
+
+	@Override
+	public MediaType getOutputType() {
+		return null;
+	}
+
+/* BodyTag only:
+	private static final long serialVersionUID = 8340048766447465216L;
+/**/
+
+	private String charset;
+	public void setCharset(String charset) {
+		this.charset = charset;
 	}
 
 	private void init() {
 		charset = null;
 	}
 
-	public String getCharset() {
-		return charset;
-	}
-
-	public void setCharset(String charset) {
-		this.charset = charset;
-	}
-
 	@Override
-	public int doStartTag() throws JspException {
-		return EVAL_BODY_BUFFERED;
-	}
-
-	@Override
-	public int doEndTag() throws JspException {
+/* BodyTag only:
+	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
+/* SimpleTag only: */
+	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
 		try {
 			JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
-				.setSubject(getBodyContent().getString().trim(), charset);
+				.setSubject(capturedBody.trim().toString(), charset);
+/* BodyTag only:
 			return EVAL_PAGE;
+/**/
 		} catch(MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
-		} finally {
-			init();
 		}
 	}
 
+/* BodyTag only:
 	@Override
-	public void release() {
-		super.release();
-		init();
+	public void doFinally() {
+		try {
+			init();
+		} finally {
+			super.doFinally();
+		}
 	}
+/**/
 }

@@ -22,17 +22,22 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
+import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.i18n.Resources;
+import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.PageContext;
 
 /**
  * Reads the contents of this email or part from a file.
@@ -42,27 +47,39 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class FileTag extends BodyTagSupport {
+public class FileTag extends EncodingBufferedTag {
+
+/* SimpleTag only: */
+	public static final String TAG_NAME = "<email:file>";
+/**/
 
 	private static final Resources RESOURCES = Resources.getResources(FileTag.class);
 
-	public static final String TAG_NAME = "<email:file>";
+	@Override
+	public MediaType getContentType() {
+		return MediaType.TEXT;
+	}
 
+	@Override
+	public MediaType getOutputType() {
+		return null;
+	}
+
+/* BodyTag only:
 	private static final long serialVersionUID = 5606558335805071879L;
-
-	public FileTag() {
-	}
+/**/
 
 	@Override
-	public int doStartTag() throws JspException {
-		return EVAL_BODY_BUFFERED;
-	}
-
-	@Override
-	public int doEndTag() throws JspException {
+/* BodyTag only:
+	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+/**/
+/* SimpleTag only: */
+	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+		PageContext pageContext = (PageContext)getJspContext();
+/**/
 		try {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
-			String path = getBodyContent().getString();
+			String path = capturedBody.toString();
 			String realPath = pageContext.getServletContext().getRealPath(path);
 			if(realPath==null) throw new LocalizedJspTagException(RESOURCES, "doEndTag.unableToFindRealPath", path);
 			File file = new File(realPath);
@@ -71,7 +88,9 @@ public class FileTag extends BodyTagSupport {
 			FileDataSource fds = new FileDataSource(file);
 			partTag.setDataHandler(new DataHandler(fds));
 			partTag.setFileName(fds.getName());
+/* BodyTag only:
 			return EVAL_PAGE;
+/**/
 		} catch(MessagingException err) {
 			throw new JspTagException(err.getMessage(), err);
 		}
