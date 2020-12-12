@@ -127,7 +127,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 	public int doStartTag() throws JspException {
 		pageContext.getRequest().setAttribute(
 			ERROR_REQUEST_ATTRIBUTE_NAME,
-			RESOURCES.getMessage("doStartTag.emailNotSent")
+			RESOURCES.getMessage("emailNotSent")
 		);
 		Properties properties = new Properties();
 		if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
@@ -146,7 +146,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 				else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
 				else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
 				else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
-				else throw new LocalizedJspTagException(RESOURCES, "doEndTag.unexpectedScope", scope);
+				else throw new LocalizedJspTagException(RESOURCES, "unexpectedScope", scope);
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				message.writeTo(bout);
 				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);

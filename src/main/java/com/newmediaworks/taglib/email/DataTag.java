@@ -88,7 +88,7 @@ public class DataTag extends TagSupport {
 			else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
 			else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
 			else if(data instanceof DataSource) ds = (DataSource)data;
-			else throw new LocalizedJspTagException(RESOURCES, "doStartTag.invalidDataType");
+			else throw new LocalizedJspTagException(RESOURCES, "invalidDataType");
 			partTag.setDataHandler(new DataHandler(ds));
 			if(filename!=null) partTag.setFileName(filename);
 			return SKIP_BODY;

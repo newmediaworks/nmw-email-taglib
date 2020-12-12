@@ -81,10 +81,10 @@ public class FileTag extends EncodingBufferedTag {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
 			String path = capturedBody.toString();
 			String realPath = pageContext.getServletContext().getRealPath(path);
-			if(realPath==null) throw new LocalizedJspTagException(RESOURCES, "doEndTag.unableToFindRealPath", path);
+			if(realPath==null) throw new LocalizedJspTagException(RESOURCES, "unableToFindRealPath", path);
 			File file = new File(realPath);
-			if(!file.exists()) throw new LocalizedJspTagException(RESOURCES, "doEndTag.fileNotExists", realPath);
-			if(!file.isFile()) throw new LocalizedJspTagException(RESOURCES, "doEndTag.notRegularFile", realPath);
+			if(!file.exists()) throw new LocalizedJspTagException(RESOURCES, "fileNotExists", realPath);
+			if(!file.isFile()) throw new LocalizedJspTagException(RESOURCES, "notRegularFile", realPath);
 			FileDataSource fds = new FileDataSource(file);
 			partTag.setDataHandler(new DataHandler(fds));
 			partTag.setFileName(fds.getName());
