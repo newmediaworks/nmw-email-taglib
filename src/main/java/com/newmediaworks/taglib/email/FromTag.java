@@ -75,6 +75,7 @@ public class FromTag extends EncodingBufferedTag {
 		address = null;
 	}
 
+	// TODO: Can we skip body like this in other tags/taglibs?
 	@Override
 /* BodyTag only:
 	protected int doStartTag(Writer out) throws JspException, IOException {
