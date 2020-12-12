@@ -25,16 +25,20 @@ package com.newmediaworks.taglib.email;
 import com.aoindustries.encoding.MediaType;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.i18n.Resources;
+import com.aoindustries.io.FileUtils;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import com.aoindustries.tempfiles.servlet.TempFileContextEE;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.mail.Part;
+import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
@@ -79,15 +83,30 @@ public class FileTag extends EncodingBufferedTag {
 /**/
 		try {
 			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
+			ServletContext servletContext = pageContext.getServletContext();
 			String path = capturedBody.toString();
-			String realPath = pageContext.getServletContext().getRealPath(path);
-			if(realPath==null) throw new LocalizedJspTagException(RESOURCES, "unableToFindRealPath", path);
-			File file = new File(realPath);
-			if(!file.exists()) throw new LocalizedJspTagException(RESOURCES, "fileNotExists", realPath);
-			if(!file.isFile()) throw new LocalizedJspTagException(RESOURCES, "notRegularFile", realPath);
+			String fileName = path.substring(path.lastIndexOf('/') + 1);
+			File file;
+			{
+				String realPath = servletContext.getRealPath(path);
+				if(realPath != null) {
+					// The file is directly accessible
+					file = new File(realPath);
+					if(!file.exists()) throw new LocalizedJspTagException(RESOURCES, "fileNotExists", realPath);
+					if(!file.isFile()) throw new LocalizedJspTagException(RESOURCES, "notRegularFile", realPath);
+				} else {
+					// Copy from web resource into a temporary file, to run from *.war file directly or to access
+					// resources in /META-INF/resources/ within /WEB-INF/lib/*.jar
+					try (InputStream in = servletContext.getResourceAsStream(path)) {
+						if(in == null) throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", path);
+						file = TempFileContextEE.get(pageContext.getRequest()).createTempFile(fileName).getFile();
+						FileUtils.copyToFile(in, file);
+					}
+				}
+			}
 			FileDataSource fds = new FileDataSource(file);
 			partTag.setDataHandler(new DataHandler(fds));
-			partTag.setFileName(fds.getName());
+			partTag.setFileName(fileName);
 /* BodyTag only:
 			return EVAL_PAGE;
 /**/
