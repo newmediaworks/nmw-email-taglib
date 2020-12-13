@@ -175,13 +175,6 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 			<!-- TODO: nmw-payment-taglib -->
 			<!-- TODO: nmw-persistence-taglib once open-source, and many others -->
 		</ul>
-		<!--
-		<p>
-			TODO: Better JSTL interaction: Add a ${email:hasError} function,
-			allow <a href="@{project.url}]]>&tld;<![CDATA[/tag-getErrorReason">&lt;email:getErrorReason&gt;</a>
-			to be used outside of <a href="@{project.url}]]>&tld;<![CDATA[/tag-error">&lt;email:error&gt;</a> tag.
-		</p>
-		-->
 	]]></description>
 	<display-name>&tld_displayName;</display-name>
 	<tlib-version>
@@ -678,13 +671,10 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2019-05-25T21:03:55-0500" -->
+		<!-- dateModified="2020-12-13T13:48:45-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets the error reason for an email attempt.
-			</p>
-			<p>
-				Must be nested in an <a href="@{project.url}]]>&tld;<![CDATA[/tag-error">&lt;email:error&gt;</a> tag.
 			</p>
 		]]></description>
 		<name>getErrorReason</name>
@@ -708,19 +698,40 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	</tag>
 	<function>
 		<!-- datePublished="2013-10-02T07:06:03-0600" -->
-		<!-- dateModified="2019-05-25T21:03:55-0500" -->
+		<!-- dateModified="2020-12-13T13:48:45-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets the error reason for an email attempt.
-			</p>
-			<p>
-				Must be nested in an <a href="@{project.url}]]>&tld;<![CDATA[/tag-error">&lt;email:error&gt;</a> tag.
 			</p>
 		]]></description>
 		<name>getErrorReason</name>
 		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
 		<function-signature>java.lang.String getErrorReason()</function-signature>
 		<example><![CDATA[<code>${email:getErrorReason()}</code>]]></example>
+	</function>
+	<function>
+		<!-- datePublished="2020-12-13T13:48:45-06:00" -->
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Determines if the last email resulted in an error.
+			</p>
+		]]></description>
+		<name>isError</name>
+		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
+		<function-signature>boolean isError()</function-signature>
+		<example><![CDATA[<code>${email:isError()}</code>]]></example>
+	</function>
+	<function>
+		<!-- datePublished="2020-12-13T13:48:45-06:00" -->
+		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Determines if the last email was successful.
+			</p>
+		]]></description>
+		<name>isSuccess</name>
+		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
+		<function-signature>boolean isSuccess()</function-signature>
+		<example><![CDATA[<code>${email:isSuccess()}</code>]]></example>
 	</function>
 </taglib>
 <!-- </common> -->

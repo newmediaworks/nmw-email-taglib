@@ -24,7 +24,6 @@ package com.newmediaworks.taglib.email;
 
 import com.aoindustries.encoding.MediaType;
 import com.aoindustries.encoding.taglib.EncodingNullTag;
-import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
 import java.io.Writer;
 import javax.servlet.jsp.JspException;
@@ -61,7 +60,6 @@ public class GetErrorReasonTag extends EncodingNullTag {
 	protected void doTag(Writer out) throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 /**/
-		JspTagUtils.requireAncestor(TAG_NAME, this, ErrorTag.TAG_NAME, ErrorTag.class);
 		String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
 		if(error != null) out.write(error);
 /* BodyTag only:

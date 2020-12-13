@@ -41,4 +41,23 @@ final public class Functions {
 	public static String getErrorReason() {
 		return (String)getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
 	}
+
+	/**
+	 * Determines if the last email resulted in an error.
+	 *
+	 * @see  ErrorTag
+	 * @see  GetErrorReasonTag
+	 */
+	public static boolean isError() {
+		return getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME) != null;
+	}
+
+	/**
+	 * Determines if the last email was successful.
+	 *
+	 * @see  SuccessTag
+	 */
+	public static boolean isSuccess() {
+		return !isError();
+	}
 }

@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-13T08:01:13-06:00"
+		dateModified="2020-12-13T13:48:45-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -107,6 +107,19 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 					<li>
 						Added <core:link page="nmw-email-legacy.tld/">alternate implementation</core:link> compatible
 						with legacy JSP that use scriptlets.
+					</li>
+					<li>
+						<core:link page="nmw-email.tld/tag-getErrorReason" /> no longer has to be nested inside
+						<core:link page="nmw-email.tld/tag-error" />.  It will still get any error reason from the last
+						invocation of <core:link page="nmw-email.tld/tag-email" />.
+					</li>
+					<li>
+						New function <core:link page="nmw-email.tld/function-isError" /> as a functional counterpart to
+						<core:link page="nmw-email.tld/tag-error" />.
+					</li>
+					<li>
+						New function <core:link page="nmw-email.tld/function-isSuccess" /> as a functional counterpart to
+						<core:link page="nmw-email.tld/tag-success" />.
 					</li>
 				</ul>
 			</changelog:release>

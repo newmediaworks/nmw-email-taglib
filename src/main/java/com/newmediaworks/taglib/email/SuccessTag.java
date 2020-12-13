@@ -28,6 +28,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 /**
  * The body of this tag will be processed when the email was successfully formatted and sent (or stored in a variable).
  *
+ * @see  Functions#isSuccess()
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class SuccessTag extends BodyTagSupport {
