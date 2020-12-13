@@ -90,7 +90,7 @@ public class FileTag extends EncodingBufferedTag {
 		path = null;
 	}
 
-	// TODO: realPath (which gets from filesystem) attribute, too?
+	// TODO: realPath (which gets from filesystem) attribute, too?  Might be dangerous if misused - wait until an application requires it.
 
 	@Override
 /* BodyTag only:
