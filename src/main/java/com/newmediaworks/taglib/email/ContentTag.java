@@ -31,6 +31,7 @@ import com.aoindustries.encoding.servlet.SerializationEE;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import com.aoindustries.util.i18n.EditableResourceBundle;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.io.UnsupportedEncodingException;
@@ -113,6 +114,8 @@ public class ContentTag extends EncodingBufferedTag {
 	private transient boolean setSerialization;
 	private transient Doctype oldDoctype;
 	private transient boolean setDoctype;
+	private transient EditableResourceBundle.ThreadSettings oldThreadSettings;
+	private transient boolean setThreadSettings;
 /**/
 
 	private void init() {
@@ -137,6 +140,14 @@ public class ContentTag extends EncodingBufferedTag {
 		setSerialization = true;
 		oldDoctype = DoctypeEE.replace(request, doctype);
 		setDoctype = true;
+		oldThreadSettings = EditableResourceBundle.getThreadSettings();
+		if(oldThreadSettings != null) {
+			EditableResourceBundle.ThreadSettings newThreadSettings = oldThreadSettings.setAllowScripts(false);
+			if(newThreadSettings != oldThreadSettings) {
+				EditableResourceBundle.setThreadSettings(newThreadSettings);
+				setThreadSettings = true;
+			}
+		}
 	}
 /**/
 /* SimpleTag only: */
@@ -150,7 +161,23 @@ public class ContentTag extends EncodingBufferedTag {
 		try {
 			Doctype oldDoctype = DoctypeEE.replace(request, doctype);
 			try {
-				super.invoke(body, captureValidator);
+				EditableResourceBundle.ThreadSettings oldThreadSettings = EditableResourceBundle.getThreadSettings();
+				EditableResourceBundle.ThreadSettings newThreadSettings;
+				if(oldThreadSettings != null) {
+					newThreadSettings = oldThreadSettings.setAllowScripts(false);
+					if(newThreadSettings != oldThreadSettings) {
+						EditableResourceBundle.setThreadSettings(newThreadSettings);
+					}
+				} else {
+					newThreadSettings = null;
+				}
+				try {
+					super.invoke(body, captureValidator);
+				} finally {
+					if(oldThreadSettings != newThreadSettings) {
+						EditableResourceBundle.setThreadSettings(oldThreadSettings);
+					}
+				}
 			} finally {
 				DoctypeEE.set(request, oldDoctype);
 			}
@@ -187,6 +214,7 @@ public class ContentTag extends EncodingBufferedTag {
 	public void doFinally() {
 		try {
 			try {
+				if(setThreadSettings) EditableResourceBundle.setThreadSettings(oldThreadSettings);
 				if(setDoctype) DoctypeEE.set(request, oldDoctype);
 				if(setSerialization) {
 					SerializationEE.set(request, oldSerialization);
