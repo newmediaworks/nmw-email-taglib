@@ -153,14 +153,12 @@ public class ContentTag extends EncodingBufferedTag {
 		oldDoctype = DoctypeEE.replace(request, doctype);
 		setDoctype = true;
 		oldThreadSettings = EditableResourceBundle.getThreadSettings();
-		if(oldThreadSettings != null) {
-			if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
-				EditableResourceBundle.ThreadSettings newThreadSettings =
-					oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT);
-				assert newThreadSettings != oldThreadSettings;
-				EditableResourceBundle.setThreadSettings(newThreadSettings);
-				setThreadSettings = true;
-			}
+		if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
+			EditableResourceBundle.ThreadSettings newThreadSettings =
+				oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT);
+			assert newThreadSettings != oldThreadSettings;
+			EditableResourceBundle.setThreadSettings(newThreadSettings);
+			setThreadSettings = true;
 		}
 		return EVAL_BODY_BUFFERED;
 	}
@@ -178,16 +176,12 @@ public class ContentTag extends EncodingBufferedTag {
 			try {
 				EditableResourceBundle.ThreadSettings oldThreadSettings = EditableResourceBundle.getThreadSettings();
 				EditableResourceBundle.ThreadSettings newThreadSettings;
-				if(oldThreadSettings != null) {
-					if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
-						newThreadSettings = oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT);
-						assert newThreadSettings != oldThreadSettings;
-						EditableResourceBundle.setThreadSettings(newThreadSettings);
-					} else {
-						newThreadSettings = oldThreadSettings;
-					}
+				if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
+					newThreadSettings = oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT);
+					assert newThreadSettings != oldThreadSettings;
+					EditableResourceBundle.setThreadSettings(newThreadSettings);
 				} else {
-					newThreadSettings = null;
+					newThreadSettings = oldThreadSettings;
 				}
 				try {
 					super.invoke(body, captureValidator);
