@@ -30,10 +30,10 @@ import com.aoindustries.encoding.servlet.DoctypeEE;
 import com.aoindustries.encoding.servlet.SerializationEE;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.io.buffer.BufferResult;
+import com.aoindustries.lang.Strings;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import com.aoindustries.util.i18n.EditableResourceBundle;
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Locale;
@@ -73,13 +73,8 @@ public class ContentTag extends EncodingBufferedTag {
 	}
 
 	@Override
-	public MediaType getContentType() { // TODO: throws UnsupportedEncodingException
-		try {
-			return MediaType.getMediaTypeForContentType(type);
-		} catch(UnsupportedEncodingException e) {
-			// TODO: Should we fallback to MediaType.TEXT and log warning instead?
-			throw new UncheckedIOException(e);
-		}
+	public MediaType getContentType() {
+		return (mediaType != null) ? mediaType : MediaType.XHTML;
 	}
 
 	@Override
@@ -92,8 +87,21 @@ public class ContentTag extends EncodingBufferedTag {
 /**/
 
 	private String type;
+	private MediaType mediaType;
 	public void setType(String type) {
-		this.type = type;
+		String typeStr = Strings.trim(type);
+		MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
+		if(newMediaType == null) {
+			try {
+				newMediaType = MediaType.getMediaTypeForContentType(typeStr);
+			} catch(UnsupportedEncodingException e) {
+				throw new IllegalArgumentException(e);
+			}
+			this.type = typeStr;
+		} else {
+			this.type = newMediaType.getContentType();
+		}
+		this.mediaType = newMediaType;
 	}
 
 	private Serialization serialization;

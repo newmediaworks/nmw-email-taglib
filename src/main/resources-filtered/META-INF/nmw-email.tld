@@ -400,7 +400,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-12T02:04:51-06:00" -->
+		<!-- dateModified="2020-12-12T21:37:28-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag provides the content to the email or any of its parts.
@@ -412,6 +412,23 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				Allowed within <a href="@{project.url}nmw-email.tld/tag-email">&lt;email:email&gt;</a>
 				or <a href="@{project.url}nmw-email.tld/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
 			</p>
+			<p>
+				The content type depends on the value provided to the type attribute, and defaults to either
+				<code>text/html</code> or <code>application/xhtml+xml</code>, depending on the current
+				<code>serialization</code>.  The content is checked for well-formedness based on its type:
+			</p>
+			<ul>
+				<li><code>javascript</code>, <code>application/javascript</code>, or <code>text/javascript</code> - no validation</li>
+				<li><code>json</code> or <code>application/json</code> - no validation</li>
+				<li><code>ld_json</code> or <code>application/ld+json</code> - no validation</li>
+				<li><code>text</code> or <code>text/plain</code> - no validation</li>
+				<li><code>url</code> or <code>text/url</code> - must be a valid URL</li>
+				<li><code>xhtml</code> or <code>application/xhtml+xml</code> - must be well-formed XHTML content. (Note: Currently only checks character values.)</li>
+				<li><code>xhtml_attribute</code> or <code>application/xhtml+xml+attribute</code> - must be a valid XHTML attribute.</li>
+				<li><code>mysql</code> or <code>text/x+mysql</code> - must be valid for the MySQL command line "mysql"</li>
+				<li><code>psql</code> or <code>text/x+psql</code> - must be valid for the PostgreSQL command line "psql"</li>
+				<li><code>sh</code> or <code>text/x+sh</code> - must be valid shell script</li>
+			</ul>
 		]]></description>
 		<name>content</name>
 		<tag-class>com.newmediaworks.taglib.email.ContentTag</tag-class>
@@ -419,7 +436,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p>
-					The MIME content type of the content.
+					Specifies the type of content.
 					Defaults to the content type of the current <code>serialization</code>.
 				</p>
 			]]></description>
