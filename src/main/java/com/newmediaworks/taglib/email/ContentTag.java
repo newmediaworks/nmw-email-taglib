@@ -150,9 +150,10 @@ public class ContentTag extends EncodingBufferedTag {
 		setDoctype = true;
 		oldThreadSettings = EditableResourceBundle.getThreadSettings();
 		if(oldThreadSettings != null) {
-			EditableResourceBundle.ThreadSettings newThreadSettings = oldThreadSettings.setAllowScripts(false);
-			if(newThreadSettings != oldThreadSettings) {
-				EditableResourceBundle.setThreadSettings(newThreadSettings);
+			if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
+				EditableResourceBundle.setThreadSettings(
+					oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT)
+				);
 				setThreadSettings = true;
 			}
 		}
@@ -172,9 +173,11 @@ public class ContentTag extends EncodingBufferedTag {
 				EditableResourceBundle.ThreadSettings oldThreadSettings = EditableResourceBundle.getThreadSettings();
 				EditableResourceBundle.ThreadSettings newThreadSettings;
 				if(oldThreadSettings != null) {
-					newThreadSettings = oldThreadSettings.setAllowScripts(false);
-					if(newThreadSettings != oldThreadSettings) {
+					if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
+						newThreadSettings = oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT);
 						EditableResourceBundle.setThreadSettings(newThreadSettings);
+					} else {
+						newThreadSettings = oldThreadSettings;
 					}
 				} else {
 					newThreadSettings = null;
