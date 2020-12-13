@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-13T13:48:45-06:00"
+		dateModified="2020-12-13T14:19:41-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -46,84 +46,93 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{project.scm.url}"
-			>
-				<ul>
-					<li>
-						<strong>Taglib URI changed</strong> from <code>http://taglibs.newmediaworks.com/email</code> to
-						<code>@{project.url}</code>.
-					</li>
-					<li>Updated dependencies.</li>
-					<li>
-						Cleaned-up use of <code>JspTagException</code> versus <code>JspException</code>.  Generally,
-						methods declare <code>throws JspException</code> while actually throwing instances of
-						<code>JspTagException</code>.  The exception to this is private implementation methods that
-						both declare and throw <code>JspTagException</code>.
-					</li>
-					<li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
-					<li>
-						Split development-only classes into a new sub-project in <code>devel/</code>.  This
-						sub-project is used development only and is never deployed to artifact repositories.
-					</li>
-					<li>
-						Renamed <code>EmailTag.ERROR_REQUEST_PARAMETER_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE_NAME</code>,
-						since the error is in request attributes, not parameters.
-					</li>
-					<li>
-						<p>
-							Integrated with <ao:a href="https://aoindustries.com/ao-encoding/taglib/">AO Encoding Taglib</ao:a>
-							for automatic encoding based on tag context.  This means more seamless interaction with other
-							AO Encoding-aware tools, such as <ao:a href="https://aoindustries.com/ao-taglib/">AO Taglib</ao:a>.
-						</p>
-						<p>
-							As an example, use of <ao:a href="https://aoindustries.com/ao-taglib/ao.tld/tag-message"><![CDATA[&lt;ao:message&gt;]]></ao:a>
-							within <core:link page="nmw-email.tld/tag-subject" /> will automatically encoding its output
-							as <ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html#TEXT">TEXT</ao:a>.
-						</p>
-					</li>
-					<li>
-						<core:link page="nmw-email.tld/tag-file" /> now copies into a
-						<ao:a href="https://aoindustries.com/ao-tempfiles/servlet/apidocs/com/aoindustries/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
-						when unable to directly access the resource as a file.  This enables:
-						<ol>
-							<li>Access to web resources contained in <code>/META-INF/resources/</code> within <code>/WEB-INF/lib/*.jar</code></li>
-							<li>Access to web resources while running as an unexploded <code>*.war</code> file</li>
-						</ol>
-					</li>
-					<li>
-						Added more attributes for <ao:a rel="nofollow" href="https://docs.oracle.com/cd/E19226-01/820-7627/gjddd/">JSP Expression Language</ao:a>
-						integration.  Implementations still fall-back to body content when the attribute is not specified.
-					</li>
-					<li><core:link page="nmw-email.tld/tag-file" /> now supports page-relative paths.</li>
-					<li>
-						<core:link page="nmw-email.tld/tag-content" /> has new <code>serialization</code> and <code>doctype</code>
-						attributes, that default to <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Serialization.html#SGML">SGML</ao:a></code>
-						and <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
-						is currently <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
-					</li>
-					<li>
-						<core:link page="nmw-email.tld/tag-content" /> now disables in-context translation editor scripting.
-						Text or comment markup may still be performed on the content.
-					</li>
-					<li>
-						Added <core:link page="nmw-email-legacy.tld/">alternate implementation</core:link> compatible
-						with legacy JSP that use scriptlets.
-					</li>
-					<li>
-						<core:link page="nmw-email.tld/tag-getErrorReason" /> no longer has to be nested inside
-						<core:link page="nmw-email.tld/tag-error" />.  It will still get any error reason from the last
-						invocation of <core:link page="nmw-email.tld/tag-email" />.
-					</li>
-					<li>
-						New function <core:link page="nmw-email.tld/function-isError" /> as a functional counterpart to
-						<core:link page="nmw-email.tld/tag-error" />.
-					</li>
-					<li>
-						New function <core:link page="nmw-email.tld/function-isSuccess" /> as a functional counterpart to
-						<core:link page="nmw-email.tld/tag-success" />.
-					</li>
-				</ul>
-			</changelog:release>
+			/>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="2.0.0"
+			datePublished="2020-12-13T14:19:41-06:00"
+			groupId="@{project.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{project.scm.url}"
+		>
+			<ul>
+				<li>
+					<strong>Taglib URI changed</strong> from <code>http://taglibs.newmediaworks.com/email</code> to
+					<code>@{project.url}</code>.
+				</li>
+				<li>Updated dependencies.</li>
+				<li>
+					Cleaned-up use of <code>JspTagException</code> versus <code>JspException</code>.  Generally,
+					methods declare <code>throws JspException</code> while actually throwing instances of
+					<code>JspTagException</code>.  The exception to this is private implementation methods that
+					both declare and throw <code>JspTagException</code>.
+				</li>
+				<li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
+				<li>
+					Split development-only classes into a new sub-project in <code>devel/</code>.  This
+					sub-project is used development only and is never deployed to artifact repositories.
+				</li>
+				<li>
+					Renamed <code>EmailTag.ERROR_REQUEST_PARAMETER_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE_NAME</code>,
+					since the error is in request attributes, not parameters.
+				</li>
+				<li>
+					<p>
+						Integrated with <ao:a href="https://aoindustries.com/ao-encoding/taglib/">AO Encoding Taglib</ao:a>
+						for automatic encoding based on tag context.  This means more seamless interaction with other
+						AO Encoding-aware tools, such as <ao:a href="https://aoindustries.com/ao-taglib/">AO Taglib</ao:a>.
+					</p>
+					<p>
+						As an example, use of <ao:a href="https://aoindustries.com/ao-taglib/ao.tld/tag-message"><![CDATA[&lt;ao:message&gt;]]></ao:a>
+						within <core:link page="nmw-email.tld/tag-subject" /> will automatically encoding its output
+						as <ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html#TEXT">TEXT</ao:a>.
+					</p>
+				</li>
+				<li>
+					<core:link page="nmw-email.tld/tag-file" /> now copies into a
+					<ao:a href="https://aoindustries.com/ao-tempfiles/servlet/apidocs/com/aoindustries/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
+					when unable to directly access the resource as a file.  This enables:
+					<ol>
+						<li>Access to web resources contained in <code>/META-INF/resources/</code> within <code>/WEB-INF/lib/*.jar</code></li>
+						<li>Access to web resources while running as an unexploded <code>*.war</code> file</li>
+					</ol>
+				</li>
+				<li>
+					Added more attributes for <ao:a rel="nofollow" href="https://docs.oracle.com/cd/E19226-01/820-7627/gjddd/">JSP Expression Language</ao:a>
+					integration.  Implementations still fall-back to body content when the attribute is not specified.
+				</li>
+				<li><core:link page="nmw-email.tld/tag-file" /> now supports page-relative paths.</li>
+				<li>
+					<core:link page="nmw-email.tld/tag-content" /> has new <code>serialization</code> and <code>doctype</code>
+					attributes, that default to <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Serialization.html#SGML">SGML</ao:a></code>
+					and <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
+					is currently <code><ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
+				</li>
+				<li>
+					<core:link page="nmw-email.tld/tag-content" /> now disables in-context translation editor scripting.
+					Text or comment markup may still be performed on the content.
+				</li>
+				<li>
+					Added <core:link page="nmw-email-legacy.tld/">alternate implementation</core:link> compatible
+					with legacy JSP that use scriptlets.
+				</li>
+				<li>
+					<core:link page="nmw-email.tld/tag-getErrorReason" /> no longer has to be nested inside
+					<core:link page="nmw-email.tld/tag-error" />.  It will still get any error reason from the last
+					invocation of <core:link page="nmw-email.tld/tag-email" />.
+				</li>
+				<li>
+					New function <core:link page="nmw-email.tld/function-isError" /> as a functional counterpart to
+					<core:link page="nmw-email.tld/tag-error" />.
+				</li>
+				<li>
+					New function <core:link page="nmw-email.tld/function-isSuccess" /> as a functional counterpart to
+					<core:link page="nmw-email.tld/tag-success" />.
+				</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
