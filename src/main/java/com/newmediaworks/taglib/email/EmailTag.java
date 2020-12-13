@@ -120,15 +120,15 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		return EVAL_BODY_INCLUDE;
 	}
 
-	void addToAddress(String to) throws MessagingException {
+	public void addToAddress(String to) throws MessagingException {
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 	}
 
-	void setFrom(String from) throws MessagingException {
+	public void setFrom(String from) throws MessagingException {
 		message.setFrom(new InternetAddress(from));
 	}
 
-	void setSubject(String subject, String charset) throws MessagingException {
+	public void setSubject(String subject, String charset) throws MessagingException {
 		if(charset==null) message.setSubject(subject);
 		else {
 			message.setSubject(subject, charset);

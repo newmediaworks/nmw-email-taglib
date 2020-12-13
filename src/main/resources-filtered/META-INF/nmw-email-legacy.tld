@@ -24,15 +24,15 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
 <!DOCTYPE taglib [
 
 <!-- Implementation-specific settings -->
-<!ENTITY tld "nmw-email.tld">
-<!ENTITY tld_displayName "@{project.name}">
-<!ENTITY tld_uri "@{project.url}">
-<!ENTITY tld_description "&lt;em&gt;This is the scriptless implementation based on &lt;a rel=&quot;nofollow&quot; href=&quot;@{javadoc.link.javaee}javax/servlet/jsp/tagext/SimpleTagSupport.html&quot;&gt;javax.servlet.jsp.tagext.SimpleTagSupport&lt;/a&gt;.&lt;/em&gt;
-For compatibility with legacy applications that use JSP scriptlets, please use &lt;a href=&quot;@{project.url}nmw-email-legacy.tld/&quot;&gt;@{project.name} Reference (Legacy)&lt;/a&gt;.">
-<!ENTITY package "com.newmediaworks.taglib.email">
-<!ENTITY JSP "scriptless">
-<!ENTITY aoTld "ao.tld">
-<!ENTITY aoEncodingTld "ao-encoding.tld">
+<!ENTITY tld "nmw-email-legacy.tld">
+<!ENTITY tld_displayName "@{project.name} (Legacy)">
+<!ENTITY tld_uri "@{project.url}legacy">
+<!ENTITY tld_description "&lt;em&gt;This is the legacy implementation for compatibility with applications that use JSP scriptlets.&lt;/em&gt;
+When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}nmw-email.tld/&quot;&gt;@{project.name} Reference&lt;/a&gt;.">
+<!ENTITY package "com.newmediaworks.taglib.email.legacy">
+<!ENTITY JSP "JSP">
+<!ENTITY aoTld "ao-legacy.tld">
+<!ENTITY aoEncodingTld "ao-encoding-legacy.tld">
 
 ]>
 <!-- <common> -->
@@ -43,7 +43,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	<!-- datePublished="2011-05-20T04:37:04-0500" -->
 	<!-- dateModified="2020-12-13T08:01:13-06:00" -->
 <!-- </common> -->
-	<!-- allowRobots="auto" -->
+	<!-- allowRobots="false" -->
 <!-- <common> -->
 	<description><![CDATA[
 		<p>@{description.html}</p>

@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-12T21:23:13-06:00"
+		dateModified="2020-12-13T08:01:13-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -48,6 +48,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				scmUrl="@{project.scm.url}"
 			>
 				<ul>
+					<li>
+						<strong>Taglib URI changed</strong> from <code>http://taglibs.newmediaworks.com/email</code> to
+						<code>@{project.url}</code>.
+					</li>
 					<li>Updated dependencies.</li>
 					<li>
 						Cleaned-up use of <code>JspTagException</code> versus <code>JspException</code>.  Generally,
@@ -100,7 +104,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 						<core:link page="nmw-email.tld/tag-content" /> now disables in-context translation editor scripting.
 						Text or comment markup may still be performed on the content.
 					</li>
-					<!-- TODO: Create legacy version of the taglib with full JSP scriptlet support -->
+					<li>
+						Added <core:link page="nmw-email-legacy.tld/">alternate implementation</core:link> compatible
+						with legacy JSP that use scriptlets.
+					</li>
 				</ul>
 			</changelog:release>
 		</c:if>

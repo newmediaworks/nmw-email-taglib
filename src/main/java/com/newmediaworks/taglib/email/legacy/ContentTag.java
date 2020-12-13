@@ -20,19 +20,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.taglib.email;
+package com.newmediaworks.taglib.email.legacy;
 
 import com.aoindustries.encoding.Doctype;
 import com.aoindustries.encoding.MediaType;
-import com.aoindustries.encoding.MediaValidator;
 import com.aoindustries.encoding.Serialization;
 import com.aoindustries.encoding.servlet.DoctypeEE;
 import com.aoindustries.encoding.servlet.SerializationEE;
-import com.aoindustries.encoding.taglib.EncodingBufferedTag;
+import com.aoindustries.encoding.taglib.legacy.EncodingBufferedBodyTag;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.lang.Strings;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import com.aoindustries.util.i18n.EditableResourceBundle;
+import com.newmediaworks.taglib.email.BodyPartTag;
+import static com.newmediaworks.taglib.email.ContentTag.TAG_NAME;
+import com.newmediaworks.taglib.email.EmailTag;
+import com.newmediaworks.taglib.email.PartTag;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -43,7 +46,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * The body of this tag provides the content to the email or any of its parts.
@@ -52,9 +54,9 @@ import javax.servlet.jsp.tagext.JspFragment;
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public class ContentTag extends EncodingBufferedTag {
+public class ContentTag extends EncodingBufferedBodyTag {
 
-/* SimpleTag only: */
+/* SimpleTag only:
 	public static final String TAG_NAME = "<email:content>";
 
 	/**
@@ -82,7 +84,7 @@ public class ContentTag extends EncodingBufferedTag {
 		return null;
 	}
 
-/* BodyTag only:
+/* BodyTag only: */
 	private static final long serialVersionUID = -7055705772215055501L;
 /**/
 
@@ -115,7 +117,7 @@ public class ContentTag extends EncodingBufferedTag {
 		this.doctype = "default".equalsIgnoreCase(doctype) ? Doctype.DEFAULT : Doctype.valueOf(doctype.toUpperCase(Locale.ROOT));
 	}
 
-/* BodyTag only:
+/* BodyTag only: */
 	// Values that are used in doFinally
 	private transient Serialization oldSerialization;
 	private transient Object oldStrutsXhtml;
@@ -130,7 +132,7 @@ public class ContentTag extends EncodingBufferedTag {
 		type = null;
 		serialization = Serialization.SGML;
 		doctype = Doctype.DEFAULT;
-/* BodyTag only:
+/* BodyTag only: */
 		// Values that are used in doFinally
 		oldSerialization = null;
 		oldStrutsXhtml = null;
@@ -142,7 +144,7 @@ public class ContentTag extends EncodingBufferedTag {
 /**/
 	}
 
-/* BodyTag only:
+/* BodyTag only: */
 	@Override
 	protected int doStartTag(Writer out) throws JspException, IOException {
 		ServletRequest request = pageContext.getRequest();
@@ -165,7 +167,7 @@ public class ContentTag extends EncodingBufferedTag {
 		return EVAL_BODY_BUFFERED;
 	}
 /**/
-/* SimpleTag only: */
+/* SimpleTag only:
 	@Override
 	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
@@ -207,10 +209,10 @@ public class ContentTag extends EncodingBufferedTag {
 /**/
 
 	@Override
-/* BodyTag only:
+/* BodyTag only: */
 	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
-/* SimpleTag only: */
+/* SimpleTag only:
 	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
 		try {
@@ -219,7 +221,7 @@ public class ContentTag extends EncodingBufferedTag {
 					capturedBody.trim().toString(), // TODO: Optimization opportunity here between BufferResult and byte[], String, InputStream, or DataSource?
 					(type != null) ? type : serialization.getContentType()
 				);
-/* BodyTag only:
+/* BodyTag only: */
 			return EVAL_PAGE;
 /**/
 		} catch(MessagingException err) {
@@ -227,7 +229,7 @@ public class ContentTag extends EncodingBufferedTag {
 		}
 	}
 
-/* BodyTag only:
+/* BodyTag only: */
 	@Override
 	public void doFinally() {
 		try {

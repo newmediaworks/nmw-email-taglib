@@ -111,7 +111,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 								<artifactItem>
 									<groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 									<type>jar</type>
-									<includes>META-INF/nmw-email.tld</includes>
+									<includes>
+										META-INF/nmw-email.tld,
+										META-INF/nmw-email-legacy.tld
+									</includes>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
@@ -135,6 +138,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 									<directory>${project.build.directory}/dependency/META-INF</directory>
 									<includes>
 										<include>nmw-email.tld</include>
+										<include>nmw-email-legacy.tld</include>
 									</includes>
 								</resource>
 							</resources>

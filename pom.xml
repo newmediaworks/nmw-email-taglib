@@ -35,7 +35,10 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 	<properties>
 		<shortTitle>Email Taglib</shortTitle>
 		<description.html><![CDATA[JSP taglib encapsulating the <a target="${javadoc.target}" href="https://javaee.github.io/javamail/">JavaMail API</a>.]]></description.html>
-		<javadoc.taglibReference><![CDATA[<li><a target="${javadoc.target}" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>]]></javadoc.taglibReference>
+		<javadoc.taglibReference><![CDATA[
+			<li><a target="${javadoc.target}" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>
+			<li><a target="${javadoc.target}" href="${project.url}nmw-email-legacy.tld/">Taglib Reference (Legacy)</a></li>
+		]]></javadoc.taglibReference>
 		<javadoc.relatedProjects><![CDATA[<div style="float:left; margin: 0 1em">
 			<h2 style="margin-top: 0em">Related Projects</h2>
 			<ul>
