@@ -32,6 +32,8 @@ import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.lang.Strings;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import com.aoindustries.util.i18n.EditableResourceBundle;
+import com.aoindustries.util.i18n.EditableResourceBundle.ThreadSettings;
+import com.aoindustries.util.i18n.EditableResourceBundle.ThreadSettings.Mode;
 import com.newmediaworks.taglib.email.BodyPartTag;
 import static com.newmediaworks.taglib.email.ContentTag.TAG_NAME;
 import com.newmediaworks.taglib.email.EmailTag;
@@ -40,6 +42,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.servlet.ServletRequest;
@@ -55,6 +59,8 @@ import javax.servlet.jsp.PageContext;
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public class ContentTag extends EncodingBufferedBodyTag {
+
+	private static final Logger LOGGER = Logger.getLogger(ContentTag.class.getName());
 
 /* SimpleTag only:
 	public static final String TAG_NAME = "<email:content>";
@@ -76,7 +82,10 @@ public class ContentTag extends EncodingBufferedBodyTag {
 
 	@Override
 	public MediaType getContentType() {
-		return (mediaType != null) ? mediaType : MediaType.XHTML;
+		return
+			(mediaType != null) ? mediaType // Recognized type is set
+			: (type != null) ? MediaType.TEXT // No character validation when unrecognized type is set
+			: MediaType.XHTML; // Default to (X)HTML when no type set
 	}
 
 	@Override
@@ -93,15 +102,22 @@ public class ContentTag extends EncodingBufferedBodyTag {
 	public void setType(String type) {
 		String typeStr = Strings.trim(type);
 		MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
-		if(newMediaType == null) {
+		if(newMediaType != null) {
+			this.type = newMediaType.getContentType();
+		} else {
 			try {
 				newMediaType = MediaType.getMediaTypeForContentType(typeStr);
 			} catch(UnsupportedEncodingException e) {
-				throw new IllegalArgumentException(e);
+				if(LOGGER.isLoggable(Level.WARNING)) {
+					LOGGER.log(
+						Level.WARNING,
+						"Unrecognized content type (" + typeStr + "), both character validation and in-context translation markup will be disabled",
+						e
+					);
+				}
+				assert newMediaType == null : "newMediaType remains null";
 			}
 			this.type = typeStr;
-		} else {
-			this.type = newMediaType.getContentType();
 		}
 		this.mediaType = newMediaType;
 	}
@@ -124,7 +140,7 @@ public class ContentTag extends EncodingBufferedBodyTag {
 	private transient boolean setSerialization;
 	private transient Doctype oldDoctype;
 	private transient boolean setDoctype;
-	private transient EditableResourceBundle.ThreadSettings oldThreadSettings;
+	private transient ThreadSettings oldThreadSettings;
 	private transient boolean setThreadSettings;
 /**/
 
@@ -154,10 +170,12 @@ public class ContentTag extends EncodingBufferedBodyTag {
 		setSerialization = true;
 		oldDoctype = DoctypeEE.replace(request, doctype);
 		setDoctype = true;
+		Mode maxMode =
+			(type != null && mediaType == null) ? Mode.LOOKUP // No markup when unrecognized type is set
+			: Mode.NOSCRIPT; // Recognized type is set or default (X)HTML
 		oldThreadSettings = EditableResourceBundle.getThreadSettings();
-		if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
-			EditableResourceBundle.ThreadSettings newThreadSettings =
-				oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT);
+		if(oldThreadSettings.getMode().compareTo(maxMode) > 0) {
+			ThreadSettings newThreadSettings = oldThreadSettings.setMode(maxMode);
 			assert newThreadSettings != oldThreadSettings;
 			EditableResourceBundle.setThreadSettings(newThreadSettings);
 			setThreadSettings = true;
@@ -176,10 +194,13 @@ public class ContentTag extends EncodingBufferedBodyTag {
 		try {
 			Doctype oldDoctype = DoctypeEE.replace(request, doctype);
 			try {
-				EditableResourceBundle.ThreadSettings oldThreadSettings = EditableResourceBundle.getThreadSettings();
-				EditableResourceBundle.ThreadSettings newThreadSettings;
-				if(oldThreadSettings.getMode() == EditableResourceBundle.ThreadSettings.Mode.MARKUP) {
-					newThreadSettings = oldThreadSettings.setMode(EditableResourceBundle.ThreadSettings.Mode.NOSCRIPT);
+				Mode maxMode =
+					(type != null && mediaType == null) ? Mode.LOOKUP // No markup when unrecognized type is set
+					: Mode.NOSCRIPT; // Recognized type is set or default (X)HTML
+				ThreadSettings oldThreadSettings = EditableResourceBundle.getThreadSettings();
+				ThreadSettings newThreadSettings;
+				if(oldThreadSettings.getMode().compareTo(maxMode) > 0) {
+					newThreadSettings = oldThreadSettings.setMode(maxMode);
 					assert newThreadSettings != oldThreadSettings;
 					EditableResourceBundle.setThreadSettings(newThreadSettings);
 				} else {
