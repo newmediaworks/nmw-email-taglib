@@ -22,7 +22,9 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoindustries.encoding.MediaType;
 import com.aoindustries.i18n.Resources;
+import com.aoindustries.lang.Strings;
 import com.aoindustries.servlet.jsp.LocalizedJspTagException;
 import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
@@ -60,7 +62,13 @@ public class DataTag extends TagSupport implements TryCatchFinally {
 
 	private String type;
 	public void setType(String type) {
-		this.type = type;
+		String typeStr = Strings.trim(type);
+		MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
+		if(newMediaType != null) {
+			this.type = newMediaType.getContentType();
+		} else {
+			this.type = typeStr;
+		}
 	}
 
 	private String filename;

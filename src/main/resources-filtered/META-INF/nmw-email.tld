@@ -437,7 +437,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2020-12-12T21:37:28-06:00" -->
+		<!-- dateModified="2020-12-14T03:42:12-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag provides the content to the email or any of its parts.
@@ -473,8 +473,13 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		<attribute>
 			<description><![CDATA[
 				<p>
-					Specifies the type of content.
-					Defaults to the content type of the current <code>serialization</code>.
+					Specifies the type of content as either short form for a
+					recognized <a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
+					or the full MIME type.
+				</p>
+				<p>
+					Defaults to the content type of the current <code>serialization</code>, which in-turn, defaults to
+					"text/html".
 				</p>
 			]]></description>
 			<name>type</name>
@@ -549,7 +554,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2019-05-26T02:20:45-0500" -->
+		<!-- dateModified="2020-12-14T03:42:12-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Provides the raw data of this email or part content.
@@ -565,7 +570,9 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		<attribute>
 			<description><![CDATA[
 				<p>
-					The MIME content type of the content.
+					Specifies the type of content as either short form for a
+					recognized <a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
+					or the full MIME type.
 				</p>
 			]]></description>
 			<name>type</name>

@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-14T03:35:12-06:00"
+		dateModified="2020-12-14T03:42:12-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -48,6 +48,11 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				scmUrl="@{project.scm.url}"
 			>
 				<ul>
+					<li>
+						<core:link page="nmw-email.tld/tag-data" /> "type" attribute now accepts short forms for
+						recognized <ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html">media types</ao:a>.
+						This matches the changes made to <core:link page="nmw-email.tld/tag-content" />.
+					</li>
 					<li>
 						<core:link page="nmw-email.tld/tag-content" /> once again accepts all values for "type" attribute.
 						Instead of throwing an exception, which was behavior changed in the previous release, it now
