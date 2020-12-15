@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-14T04:16:30-06:00"
+		dateModified="2020-12-15T11:40:17-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -94,7 +94,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				<li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
 				<li>
 					Split development-only classes into a new sub-project in <code>devel/</code>.  This
-					sub-project is used development only and is never deployed to artifact repositories.
+					sub-project is used development for only and is never deployed to artifact repositories.
 				</li>
 				<li>
 					Renamed <code>EmailTag.ERROR_REQUEST_PARAMETER_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE_NAME</code>,
