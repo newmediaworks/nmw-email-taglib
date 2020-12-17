@@ -121,11 +121,11 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 	}
 
 	public void addToAddress(String to) throws MessagingException {
-		message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(to, true));
 	}
 
 	public void setFrom(String from) throws MessagingException {
-		message.setFrom(new InternetAddress(from));
+		message.setFrom(new InternetAddress(from, true));
 	}
 
 	public void setSubject(String subject, String charset) throws MessagingException {
