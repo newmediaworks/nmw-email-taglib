@@ -29,7 +29,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		<relativePath>../../parent/pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib-book</artifactId><version>2.0.3-SNAPSHOT</version>
+	<groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib-book</artifactId><version>2.0.3</version>
 	<packaging>bundle</packaging>
 
 	<properties>
@@ -74,7 +74,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		<connection>scm:git:git://github.com/newmediaworks/nmw-email-taglib.git</connection>
 		<developerConnection>scm:git:git@github.com:newmediaworks/nmw-email-taglib.git</developerConnection>
 		<url>https://github.com/newmediaworks/nmw-email-taglib</url>
-		<tag>HEAD</tag>
+		<tag>nmw-email-taglib-book-2.0.3</tag>
 	</scm>
 
 	<issueManagement>
