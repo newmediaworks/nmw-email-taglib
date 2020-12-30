@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2020-12-17T12:09:05-06:00"
+		dateModified="2020-12-29T20:50:49-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -46,7 +46,16 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{project.scm.url}"
-			/>
+			>
+				<ul>
+					<li>
+						<core:link page="nmw-email.tld/tag-email" /> now propagates
+						<ao:a rel="nofollow" href="@{javadoc.link.javaee}javax/servlet/jsp/SkipPageException.html">SkipPageException</ao:a>
+						so the page processing may correctly terminate.  Previously, the exception would be caught as if
+						it were an error in sending mail, and page processing would continue.
+					</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release

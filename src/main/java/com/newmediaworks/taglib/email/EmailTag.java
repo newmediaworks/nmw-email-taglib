@@ -40,6 +40,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.SkipPageException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 
@@ -197,10 +198,15 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	@Override
 	public void doCatch(Throwable throwable) throws Throwable {
-		logger.log(Level.SEVERE, null, throwable);
-		String errorMessage = throwable.getMessage();
-		if(errorMessage==null || (errorMessage=errorMessage.trim()).length()==0) errorMessage = throwable.toString();
-		pageContext.getRequest().setAttribute(ERROR_REQUEST_ATTRIBUTE_NAME, errorMessage);
+		assert throwable != null;
+		if(throwable instanceof SkipPageException) {
+			throw (SkipPageException)throwable;
+		} else {
+			logger.log(Level.SEVERE, null, throwable);
+			String errorMessage = throwable.getMessage();
+			if(errorMessage==null || (errorMessage=errorMessage.trim()).length()==0) errorMessage = throwable.toString();
+			pageContext.getRequest().setAttribute(ERROR_REQUEST_ATTRIBUTE_NAME, errorMessage);
+		}
 	}
 
 	@Override
