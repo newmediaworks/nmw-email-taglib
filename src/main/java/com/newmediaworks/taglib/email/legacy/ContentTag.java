@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2010, 2011, 2013, 2019, 2020  New Media Works
+ * Copyright (C) 2006, 2010, 2011, 2013, 2019, 2020, 2021  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -60,7 +60,7 @@ import javax.servlet.jsp.PageContext;
  */
 public class ContentTag extends EncodingBufferedBodyTag {
 
-	private static final Logger LOGGER = Logger.getLogger(ContentTag.class.getName());
+	private static final Logger logger = Logger.getLogger(ContentTag.class.getName());
 
 /* SimpleTag only:
 	public static final String TAG_NAME = "<email:content>";
@@ -108,8 +108,8 @@ public class ContentTag extends EncodingBufferedBodyTag {
 			try {
 				newMediaType = MediaType.getMediaTypeForContentType(typeStr);
 			} catch(UnsupportedEncodingException e) {
-				if(LOGGER.isLoggable(Level.WARNING)) {
-					LOGGER.log(
+				if(logger.isLoggable(Level.WARNING)) {
+					logger.log(
 						Level.WARNING,
 						"Unrecognized content type (" + typeStr + "), both character validation and in-context translation markup will be disabled",
 						e
