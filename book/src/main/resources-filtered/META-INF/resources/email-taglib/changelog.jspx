@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-0500"
-		dateModified="2021-01-02T14:19:55-06:00"
+		dateModified="2021-02-10T06:23:25-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -139,7 +139,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 					</p>
 					<p>
 						As an example, use of <ao:a href="https://aoindustries.com/ao-taglib/ao.tld/tag-message"><![CDATA[&lt;ao:message&gt;]]></ao:a>
-						within <core:link page="nmw-email.tld/tag-subject" /> will automatically encoding its output
+						within <core:link page="nmw-email.tld/tag-subject" /> will automatically encode its output
 						as <ao:a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html#TEXT">TEXT</ao:a>.
 					</p>
 				</li>
