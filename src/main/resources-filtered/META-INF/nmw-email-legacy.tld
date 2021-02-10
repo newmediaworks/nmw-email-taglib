@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
-Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020  New Media Works
+Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020, 2021  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -33,6 +33,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 <!ENTITY JSP "JSP">
 <!ENTITY aoTld "ao-legacy.tld">
 <!ENTITY aoEncodingTld "ao-encoding-legacy.tld">
+<!ENTITY nmwPaymentTld "nmw-payment-legacy.tld">
 
 ]>
 <!-- <common> -->
@@ -41,7 +42,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
 	<!-- datePublished="2011-05-20T04:37:04-0500" -->
-	<!-- dateModified="2020-12-13T08:01:13-06:00" -->
+	<!-- dateModified="2021-02-07T23:29:56-06:00" -->
 <!-- </common> -->
 	<!-- allowRobots="false" -->
 <!-- <common> -->
@@ -172,7 +173,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 			<li><a href="https://aoindustries.com/ao-taglib/]]>&aoTld;<![CDATA[/">AO Taglib</a></li>
 			<li><a href="https://aoindustries.com/aoweb-struts/core/aoweb-struts-skin.tld/">AOWeb Struts Core Skin Taglib</a></li>
 			<li><a href="@{project.url}]]>&tld;<![CDATA[/">NMW Email Taglib</a> (this taglib)</li>
-			<!-- TODO: nmw-payment-taglib -->
+			<li><a href="https://oss.newmediaworks.com/payment-taglib/]]>&nmwPaymentTld;<![CDATA[/">NMW Payment Taglib</a></li>
 			<!-- TODO: nmw-persistence-taglib once open-source, and many others -->
 		</ul>
 	]]></description>
