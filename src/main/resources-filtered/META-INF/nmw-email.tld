@@ -41,7 +41,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
-	<!-- datePublished="2011-05-20T04:37:04-0500" -->
+	<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 	<!-- dateModified="2021-02-07T23:29:56-06:00" -->
 <!-- </common> -->
 	<!-- allowRobots="auto" -->
@@ -185,8 +185,8 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	<short-name>email</short-name>
 	<uri>&tld_uri;</uri>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2019-05-26T02:10:51-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
+		<!-- dateModified="2019-05-26T02:10:51-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Formats an email then sends the message or stores in an attribute.  The message is constructed through nested tags.
@@ -259,7 +259,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -287,7 +287,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -315,7 +315,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -354,7 +354,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -408,7 +408,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-28T01:44:29-0500" -->
+		<!-- datePublished="2011-05-28T01:44:29-05:00" -->
 		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -437,7 +437,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-14T03:42:12-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -524,7 +524,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-12T01:32:46-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -554,7 +554,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-14T03:42:12-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -611,8 +611,8 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2019-05-25T21:31:49-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
+		<!-- dateModified="2019-05-25T21:31:49-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A multipart component of the email.
@@ -643,8 +643,8 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		</attribute>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2019-05-25T21:03:55-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
+		<!-- dateModified="2019-05-25T21:03:55-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A single part of a multipart component.
@@ -658,8 +658,8 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2019-05-25T21:03:55-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
+		<!-- dateModified="2019-05-25T21:03:55-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag will be processed when there was any type of error while formatting or sending the email.
@@ -678,7 +678,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		<body-content>JSP</body-content>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
 		<!-- dateModified="2020-12-13T13:48:45-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
@@ -690,8 +690,8 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		<body-content>empty</body-content>
 	</tag>
 	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-0500" -->
-		<!-- dateModified="2019-05-25T21:03:55-0500" -->
+		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
+		<!-- dateModified="2019-05-25T21:03:55-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag will be processed when the email was successfully formatted and sent (or stored in a variable).
@@ -705,7 +705,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 		<body-content>JSP</body-content>
 	</tag>
 	<function>
-		<!-- datePublished="2013-10-02T07:06:03-0600" -->
+		<!-- datePublished="2013-10-02T07:06:03-06:00" -->
 		<!-- dateModified="2020-12-13T13:48:45-06:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
