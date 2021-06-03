@@ -22,7 +22,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 -->
 <jsp:root
-	xmlns:ao="https://aoindustries.com/ao-taglib/"
+	xmlns:ao="https://oss.aoapps.com/taglib/"
 	xmlns:core="https://semanticcms.com/core/taglib/"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:section="https://semanticcms.com/section/taglib/"
@@ -32,10 +32,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 	<jsp:directive.page session="false" />
 	<core:page
 		title="@{documented.name}"
-		shortTitle="@{documented.shortTitle}"
 		description="@{documented.description}"
 		datePublished="2019-05-24T18:19:41-05:00"
-		dateModified="2020-12-13T08:01:13-06:00"
+		dateModified="2021-05-31T08:58:51-05:00"
 	>
 		<core:child page="changelog.jspx" />
 		<core:child page="nmw-email.tld/" />
@@ -70,7 +69,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		<section:aside label="Related Projects">
 			<ul>
 				<li><ao:a href="https://javaee.github.io/javamail/">JavaMail API</ao:a></li>
-				<li><ao:a href="https://aoindustries.com/ao-encoding/taglib/">AO Encoding Taglib</ao:a></li>
+				<li><ao:a href="https://oss.aoapps.com/encoding/taglib/">AO Encoding Taglib</ao:a></li>
 			</ul>
 		</section:aside>
 	</core:page>

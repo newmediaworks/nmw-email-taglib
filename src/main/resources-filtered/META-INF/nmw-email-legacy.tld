@@ -42,7 +42,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
 	<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-	<!-- dateModified="2021-02-07T23:29:56-06:00" -->
+	<!-- dateModified="2021-06-01T03:18:06-05:00" -->
 <!-- </common> -->
 	<!-- allowRobots="false" -->
 <!-- <common> -->
@@ -156,21 +156,21 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 		<hr />
 		<p>
 			This taglib is part of an extensible suite of interoperable, context-aware,
-			<a href="https://aoindustries.com/ao-encoding/">auto-encoding</a> taglibs.
+			<a href="https://oss.aoapps.com/encoding/">auto-encoding</a> taglibs.
 			All auto-encoding tags generate correct output for their context, provide context information for nested
 			tags, and validate the output of nested tags.  For example,
-			<a href="https://aoindustries.com/ao-taglib/]]>&aoTld;<![CDATA[/tag-message">&lt;ao:message&gt;</a> within
+			<a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/tag-message">&lt;ao:message&gt;</a> within
 			<a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a> will write its output
-			encoded as <a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html#TEXT">TEXT</a>,
+			encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html#TEXT">TEXT</a>,
 			while within <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a> (of type "text/html") will write its
-			output encoded as <a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html#XHTML">XHTML</a>.
+			output encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html#XHTML">XHTML</a>.
 		</p>
 		<p>
 			This suite includes, but is not limited to:
 		</p>
 		<ul>
-			<li><a href="https://aoindustries.com/ao-encoding/taglib/]]>&aoEncodingTld;<![CDATA[/">AO Encoding Taglib</a></li>
-			<li><a href="https://aoindustries.com/ao-taglib/]]>&aoTld;<![CDATA[/">AO Taglib</a></li>
+			<li><a href="https://oss.aoapps.com/encoding/taglib/]]>&aoEncodingTld;<![CDATA[/">AO Encoding Taglib</a></li>
+			<li><a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/">AO Taglib</a></li>
 			<li><a href="https://aoindustries.com/aoweb-struts/core/aoweb-struts-skin.tld/">AOWeb Struts Core Skin Taglib</a></li>
 			<li><a href="@{project.url}]]>&tld;<![CDATA[/">NMW Email Taglib</a> (this taglib)</li>
 			<li><a href="https://oss.newmediaworks.com/payment-taglib/]]>&nmwPaymentTld;<![CDATA[/">NMW Payment Taglib</a></li>
@@ -438,7 +438,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-14T03:42:12-06:00" -->
+		<!-- dateModified="2021-06-01T03:18:06-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag provides the content to the email or any of its parts.
@@ -475,7 +475,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 			<description><![CDATA[
 				<p>
 					Specifies the type of content as either short form for a
-					recognized <a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
+					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
 					or the full MIME type.
 				</p>
 				<p>
@@ -508,13 +508,13 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 					<code>FRAMESET</code>, or <code>NONE</code>.
 				</p>
 				<p>
-					Defaults to <code><a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</a></code>,
-					which is currently <code><a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</a></code>.
+					Defaults to <code><a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</a></code>,
+					which is currently <code><a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</a></code>.
 				</p>
 				<p>
 					<em>Note:</em> The doctype is not written by this tag, however this setting affects
 					the output of nested context-aware tags.  To write the doctype, see
-					<a href="https://aoindustries.com/ao-taglib/]]>&aoTld;<![CDATA[/tag-html">&lt;ao:html&gt;</a>
+					<a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/tag-html">&lt;ao:html&gt;</a>
 				</p>
 			]]></description>
 			<name>doctype</name>
@@ -555,7 +555,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-14T03:42:12-06:00" -->
+		<!-- dateModified="2021-06-01T03:18:06-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Provides the raw data of this email or part content.
@@ -572,7 +572,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 			<description><![CDATA[
 				<p>
 					Specifies the type of content as either short form for a
-					recognized <a href="https://aoindustries.com/ao-encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
+					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
 					or the full MIME type.
 				</p>
 			]]></description>
