@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -22,11 +22,11 @@
  */
 package com.newmediaworks.taglib.email;
 
-import com.aoindustries.encoding.MediaType;
-import com.aoindustries.i18n.Resources;
-import com.aoindustries.lang.Strings;
-import com.aoindustries.servlet.jsp.LocalizedJspTagException;
-import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
+import com.aoapps.encoding.MediaType;
+import com.aoapps.lang.Strings;
+import com.aoapps.lang.i18n.Resources;
+import com.aoapps.servlet.jsp.LocalizedJspTagException;
+import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.activation.DataHandler;

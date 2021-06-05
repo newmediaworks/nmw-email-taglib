@@ -42,7 +42,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
 	<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-	<!-- dateModified="2021-06-01T03:18:06-05:00" -->
+	<!-- dateModified="2021-06-03T22:53:21-05:00" -->
 <!-- </common> -->
 	<!-- allowRobots="auto" -->
 <!-- <common> -->
@@ -161,9 +161,9 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 			tags, and validate the output of nested tags.  For example,
 			<a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/tag-message">&lt;ao:message&gt;</a> within
 			<a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a> will write its output
-			encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html#TEXT">TEXT</a>,
+			encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html#TEXT">TEXT</a>,
 			while within <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a> (of type "text/html") will write its
-			output encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html#XHTML">XHTML</a>.
+			output encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html#XHTML">XHTML</a>.
 		</p>
 		<p>
 			This suite includes, but is not limited to:
@@ -438,7 +438,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2021-06-01T03:18:06-05:00" -->
+		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				The body of this tag provides the content to the email or any of its parts.
@@ -475,7 +475,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 			<description><![CDATA[
 				<p>
 					Specifies the type of content as either short form for a
-					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
+					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html">media type</a>
 					or the full MIME type.
 				</p>
 				<p>
@@ -508,8 +508,8 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 					<code>FRAMESET</code>, or <code>NONE</code>.
 				</p>
 				<p>
-					Defaults to <code><a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</a></code>,
-					which is currently <code><a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</a></code>.
+					Defaults to <code><a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Doctype.html#DEFAULT">default</a></code>,
+					which is currently <code><a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Doctype.html#HTML5">HTML5</a></code>.
 				</p>
 				<p>
 					<em>Note:</em> The doctype is not written by this tag, however this setting affects
@@ -555,7 +555,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 	</tag>
 	<tag>
 		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2021-06-01T03:18:06-05:00" -->
+		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Provides the raw data of this email or part content.
@@ -572,7 +572,7 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 			<description><![CDATA[
 				<p>
 					Specifies the type of content as either short form for a
-					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html">media type</a>
+					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html">media type</a>
 					or the full MIME type.
 				</p>
 			]]></description>

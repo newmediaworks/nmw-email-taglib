@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-05:00"
-		dateModified="2021-05-31T08:58:51-05:00"
+		dateModified="2021-06-03T22:53:21-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -97,7 +97,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 			<ul>
 				<li>
 					<core:link page="nmw-email.tld/tag-data" /> "type" attribute now accepts short forms for
-					recognized <ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html">media types</ao:a>.
+					recognized <ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html">media types</ao:a>.
 					This matches the changes made to <core:link page="nmw-email.tld/tag-content" />.
 				</li>
 				<li>
@@ -146,12 +146,12 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 					<p>
 						As an example, use of <ao:a href="https://oss.aoapps.com/taglib/ao.tld/tag-message"><![CDATA[&lt;ao:message&gt;]]></ao:a>
 						within <core:link page="nmw-email.tld/tag-subject" /> will automatically encode its output
-						as <ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/MediaType.html#TEXT">TEXT</ao:a>.
+						as <ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html#TEXT">TEXT</ao:a>.
 					</p>
 				</li>
 				<li>
 					<core:link page="nmw-email.tld/tag-file" /> now copies into a
-					<ao:a href="https://oss.aoapps.com/tempfiles/servlet/apidocs/com/aoindustries/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
+					<ao:a href="https://oss.aoapps.com/tempfiles/servlet/apidocs/com/aoapps/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
 					when unable to directly access the resource as a file.  This enables:
 					<ol>
 						<li>Access to web resources contained in <code>/META-INF/resources/</code> within <code>/WEB-INF/lib/*.jar</code></li>
@@ -165,9 +165,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				<li><core:link page="nmw-email.tld/tag-file" /> now supports page-relative paths.</li>
 				<li>
 					<core:link page="nmw-email.tld/tag-content" /> has new <code>serialization</code> and <code>doctype</code>
-					attributes, that default to <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/Serialization.html#SGML">SGML</ao:a></code>
-					and <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
-					is currently <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoindustries/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
+					attributes, that default to <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Serialization.html#SGML">SGML</ao:a></code>
+					and <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
+					is currently <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
 				</li>
 				<li>
 					<core:link page="nmw-email.tld/tag-content" /> now disables in-context translation editor scripting.

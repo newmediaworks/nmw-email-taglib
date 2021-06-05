@@ -22,18 +22,18 @@
  */
 package com.newmediaworks.taglib.email.legacy;
 
-import com.aoindustries.encoding.Doctype;
-import com.aoindustries.encoding.MediaType;
-import com.aoindustries.encoding.Serialization;
-import com.aoindustries.encoding.servlet.DoctypeEE;
-import com.aoindustries.encoding.servlet.SerializationEE;
-import com.aoindustries.encoding.taglib.legacy.EncodingBufferedBodyTag;
-import com.aoindustries.io.buffer.BufferResult;
-import com.aoindustries.lang.Strings;
-import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
-import com.aoindustries.util.i18n.EditableResourceBundle;
-import com.aoindustries.util.i18n.EditableResourceBundle.ThreadSettings;
-import com.aoindustries.util.i18n.EditableResourceBundle.ThreadSettings.Mode;
+import com.aoapps.encoding.Doctype;
+import com.aoapps.encoding.MediaType;
+import com.aoapps.encoding.Serialization;
+import com.aoapps.encoding.servlet.DoctypeEE;
+import com.aoapps.encoding.servlet.SerializationEE;
+import com.aoapps.encoding.taglib.legacy.EncodingBufferedBodyTag;
+import com.aoapps.hodgepodge.i18n.EditableResourceBundle;
+import com.aoapps.hodgepodge.i18n.EditableResourceBundle.ThreadSettings;
+import com.aoapps.hodgepodge.i18n.EditableResourceBundle.ThreadSettings.Mode;
+import com.aoapps.io.buffer.BufferResult;
+import com.aoapps.lang.Strings;
+import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.newmediaworks.taglib.email.BodyPartTag;
 import static com.newmediaworks.taglib.email.ContentTag.TAG_NAME;
 import com.newmediaworks.taglib.email.EmailTag;

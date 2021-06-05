@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -22,16 +22,16 @@
  */
 package com.newmediaworks.taglib.email;
 
-import com.aoindustries.encoding.MediaType;
-import com.aoindustries.encoding.MediaValidator;
-import com.aoindustries.encoding.taglib.EncodingBufferedTag;
-import com.aoindustries.i18n.Resources;
-import com.aoindustries.io.FileUtils;
-import com.aoindustries.io.buffer.BufferResult;
-import com.aoindustries.servlet.http.HttpServletUtil;
-import com.aoindustries.servlet.jsp.LocalizedJspTagException;
-import com.aoindustries.servlet.jsp.tagext.JspTagUtils;
-import com.aoindustries.tempfiles.servlet.TempFileContextEE;
+import com.aoapps.encoding.MediaType;
+import com.aoapps.encoding.MediaValidator;
+import com.aoapps.encoding.taglib.EncodingBufferedTag;
+import com.aoapps.io.buffer.BufferResult;
+import com.aoapps.lang.i18n.Resources;
+import com.aoapps.lang.io.FileUtils;
+import com.aoapps.servlet.http.HttpServletUtil;
+import com.aoapps.servlet.jsp.LocalizedJspTagException;
+import com.aoapps.servlet.jsp.tagext.JspTagUtils;
+import com.aoapps.tempfiles.servlet.TempFileContextEE;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
