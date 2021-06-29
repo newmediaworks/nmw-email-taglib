@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2013, 2019, 2020, 2021  New Media Works
+ * Copyright (C) 2021  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -20,21 +20,9 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.taglib.email;
-
-import com.aoapps.hodgepodge.i18n.EditableResourceBundle;
-import com.aoapps.lang.i18n.Locales;
-
-/**
- * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
- */
-public final class ApplicationResources_es extends EditableResourceBundle {
-
-	public ApplicationResources_es() {
-		super(
-			Locales.SPANISH,
-			ApplicationResources.bundleSet,
-			ApplicationResources.getSourceFile("ApplicationResources_es.properties")
-		);
-	}
+module com.newmediaworks.taglib.email.devel {
+	exports com.newmediaworks.taglib.email.i18n;
+	// Direct
+	requires com.aoapps.hodgepodge; // <groupId>com.aoapps</groupId><artifactId>ao-hodgepodge</artifactId>
+	requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
 }

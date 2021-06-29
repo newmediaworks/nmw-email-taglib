@@ -29,6 +29,7 @@ import com.aoapps.servlet.jsp.LocalizedJspTagException;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ResourceBundle;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.MessagingException;
@@ -50,7 +51,7 @@ import javax.servlet.jsp.tagext.TryCatchFinally;
  */
 public class DataTag extends TagSupport implements TryCatchFinally {
 
-	private static final Resources RESOURCES = Resources.getResources(DataTag.class);
+	private static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, DataTag.class);
 
 	public static final String TAG_NAME = "<email:data>";
 

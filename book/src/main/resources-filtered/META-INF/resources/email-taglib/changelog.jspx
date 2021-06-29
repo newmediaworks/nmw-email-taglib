@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-05:00"
-		dateModified="2021-06-03T22:53:21-05:00"
+		dateModified="2021-06-27T16:13:41-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -51,6 +51,12 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				<ul>
 					<li>Updated to <ao:a rel="nofollow" href="https://www.oracle.com/java/technologies/javaee/javaeetechnologies.html#javaee7">Java™ EE 7 Web Profile</ao:a> (Servlet 3.1, JSP 2.3, EL 3.0, and JSTL 1.2).</li>
 					<li>Minimum Java version changed from 1.8 to 11.</li>
+					<li>
+						Now supports Java 9+ modules.  Due to still having filename-based automatic module dependencies,
+						*-SNAPSHOT versions include <code>module-info.class</code> while releases include the
+						<code>Automatic-Module-Name</code> manifest entry.  To minimize the difference between these
+						modes, <code>module-info.java</code> does not perform any transitive requires.
+					</li>
 				</ul>
 			</changelog:release>
 		</c:if>
@@ -97,7 +103,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 			<ul>
 				<li>
 					<core:link page="nmw-email.tld/tag-data" /> "type" attribute now accepts short forms for
-					recognized <ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html">media types</ao:a>.
+					recognized <ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html">media types</ao:a>.
 					This matches the changes made to <core:link page="nmw-email.tld/tag-content" />.
 				</li>
 				<li>
@@ -146,12 +152,12 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 					<p>
 						As an example, use of <ao:a href="https://oss.aoapps.com/taglib/ao.tld/tag-message"><![CDATA[&lt;ao:message&gt;]]></ao:a>
 						within <core:link page="nmw-email.tld/tag-subject" /> will automatically encode its output
-						as <ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/MediaType.html#TEXT">TEXT</ao:a>.
+						as <ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html#TEXT">TEXT</ao:a>.
 					</p>
 				</li>
 				<li>
 					<core:link page="nmw-email.tld/tag-file" /> now copies into a
-					<ao:a href="https://oss.aoapps.com/tempfiles/servlet/apidocs/com/aoapps/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
+					<ao:a href="https://oss.aoapps.com/tempfiles/servlet/apidocs/com.aoapps.tempfiles/com/aoapps/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
 					when unable to directly access the resource as a file.  This enables:
 					<ol>
 						<li>Access to web resources contained in <code>/META-INF/resources/</code> within <code>/WEB-INF/lib/*.jar</code></li>
@@ -165,9 +171,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				<li><core:link page="nmw-email.tld/tag-file" /> now supports page-relative paths.</li>
 				<li>
 					<core:link page="nmw-email.tld/tag-content" /> has new <code>serialization</code> and <code>doctype</code>
-					attributes, that default to <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Serialization.html#SGML">SGML</ao:a></code>
-					and <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
-					is currently <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com/aoapps/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
+					attributes, that default to <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Serialization.html#SGML">SGML</ao:a></code>
+					and <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
+					is currently <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
 				</li>
 				<li>
 					<core:link page="nmw-email.tld/tag-content" /> now disables in-context translation editor scripting.

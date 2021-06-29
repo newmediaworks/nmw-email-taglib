@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2020, 2021  New Media Works
+ * Copyright (C) 2013, 2019, 2020, 2021  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -20,24 +20,21 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.taglib.email.book;
+package com.newmediaworks.taglib.email.i18n;
 
-import com.semanticcms.tagreference.TagReferenceInitializer;
+import com.aoapps.hodgepodge.i18n.EditableResourceBundle;
+import java.util.Locale;
 
-public class NmwEmailLegacyTldInitializer extends TagReferenceInitializer {
+/**
+ * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
+ */
+public final class ApplicationResources_en extends EditableResourceBundle {
 
-	public NmwEmailLegacyTldInitializer() {
+	public ApplicationResources_en() {
 		super(
-			Maven.properties.getProperty("documented.name") + " Reference (Legacy)",
-			"Taglib Reference (Legacy)",
-			"/email-taglib",
-			"/nmw-email-legacy.tld",
-			true,
-			Maven.properties.getProperty("documented.javadoc.link.javase"),
-			Maven.properties.getProperty("documented.javadoc.link.javaee"),
-			// Self
-			"com.newmediaworks.taglib.email", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/",
-			"com.newmediaworks.taglib.email.legacy", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/"
+			Locale.ENGLISH,
+			ApplicationResources.bundleSet,
+			ApplicationResources.getSourceFile("ApplicationResources_en.properties")
 		);
 	}
 }

@@ -36,6 +36,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
+import java.util.ResourceBundle;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
@@ -61,7 +62,9 @@ public class FileTag extends EncodingBufferedTag {
 	public static final String TAG_NAME = "<email:file>";
 /**/
 
-	private static final Resources RESOURCES = Resources.getResources(FileTag.class);
+/* SimpleTag only: */
+	public static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, FileTag.class);
+/**/
 
 	public FileTag() {
 		init();

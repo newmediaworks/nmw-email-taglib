@@ -27,6 +27,7 @@ import com.aoapps.servlet.jsp.LocalizedJspTagException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.activation.DataHandler;
@@ -55,7 +56,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	private static final Logger logger = Logger.getLogger(EmailTag.class.getName());
 
-	private static final Resources RESOURCES = Resources.getResources(EmailTag.class);
+	private static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, EmailTag.class);
 
 	public static final String TAG_NAME = "<email:email>";
 

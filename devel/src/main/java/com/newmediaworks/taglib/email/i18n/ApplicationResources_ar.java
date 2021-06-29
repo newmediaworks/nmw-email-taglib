@@ -20,21 +20,21 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.newmediaworks.taglib.email;
+package com.newmediaworks.taglib.email.i18n;
 
 import com.aoapps.hodgepodge.i18n.EditableResourceBundle;
-import java.util.Locale;
+import com.aoapps.lang.i18n.Locales;
 
 /**
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public final class ApplicationResources_it extends EditableResourceBundle {
+public final class ApplicationResources_ar extends EditableResourceBundle {
 
-	public ApplicationResources_it() {
+	public ApplicationResources_ar() {
 		super(
-			Locale.ITALIAN,
+			Locales.ARABIC,
 			ApplicationResources.bundleSet,
-			ApplicationResources.getSourceFile("ApplicationResources_it.properties")
+			ApplicationResources.getSourceFile("ApplicationResources_ar.properties")
 		);
 	}
 }

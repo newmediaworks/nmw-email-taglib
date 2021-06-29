@@ -25,7 +25,6 @@ package com.newmediaworks.taglib.email.legacy;
 import com.aoapps.encoding.MediaType;
 import com.aoapps.encoding.taglib.legacy.EncodingBufferedBodyTag;
 import com.aoapps.io.buffer.BufferResult;
-import com.aoapps.lang.i18n.Resources;
 import com.aoapps.lang.io.FileUtils;
 import com.aoapps.servlet.http.HttpServletUtil;
 import com.aoapps.servlet.jsp.LocalizedJspTagException;
@@ -33,6 +32,7 @@ import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.aoapps.tempfiles.servlet.TempFileContextEE;
 import com.newmediaworks.taglib.email.BodyPartTag;
 import com.newmediaworks.taglib.email.EmailTag;
+import static com.newmediaworks.taglib.email.FileTag.RESOURCES;
 import static com.newmediaworks.taglib.email.FileTag.TAG_NAME;
 import com.newmediaworks.taglib.email.PartTag;
 import java.io.File;
@@ -62,7 +62,9 @@ public class FileTag extends EncodingBufferedBodyTag {
 	public static final String TAG_NAME = "<email:file>";
 /**/
 
-	private static final Resources RESOURCES = Resources.getResources(FileTag.class);
+/* SimpleTag only:
+	public static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, FileTag.class);
+/**/
 
 	public FileTag() {
 		init();
