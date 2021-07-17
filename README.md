@@ -10,6 +10,12 @@
 
 [![Build](https://github.com/newmediaworks/nmw-email-taglib/workflows/Build/badge.svg?branch=master)](https://github.com/newmediaworks/nmw-email-taglib/actions?query=workflow%3ABuild)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.newmediaworks/nmw-email-taglib/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.newmediaworks/nmw-email-taglib)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-email-taglib&metric=alert_status)](https://sonarcloud.io/dashboard?branch=master&id=com.newmediaworks%3Anmw-email-taglib)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-email-taglib&metric=ncloc)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-email-taglib&metric=ncloc)  
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-email-taglib&metric=reliability_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-email-taglib&metric=Reliability)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-email-taglib&metric=security_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-email-taglib&metric=Security)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-email-taglib&metric=sqale_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-email-taglib&metric=Maintainability)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-email-taglib&metric=coverage)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-email-taglib&metric=Coverage)
 
 JSP taglib encapsulating the [JavaMail API](https://javaee.github.io/javamail/).
 
