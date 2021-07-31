@@ -189,9 +189,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
-							<offlineLinks>
+							<offlineLinks combine.children="append">
 								<!-- Direct -->
-								<!-- Java EE: <groupId>javax.activation</groupId><artifactId>activation</artifactId> --><!-- TODO: https://jakarta.ee/specifications/activation/1.2/apidocs/ -->
+								<!-- ao-javadoc-offline: <groupId>javax.activation</groupId><artifactId>activation</artifactId> --><!-- TODO: https://jakarta.ee/specifications/activation/1.2/apidocs/ -->
 								<offlineLink>
 									<url>https://oss.aoapps.com/encoding/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.aoapps/ao-encoding</location>
@@ -232,22 +232,9 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 									<url>https://oss.aoapps.com/tempfiles/servlet/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.aoapps/ao-tempfiles-servlet</location>
 								</offlineLink>
-								<offlineLink>
-									<url>${javadoc.link.javamail}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/com.sun.mail/javax.mail</location>
-								</offlineLink>
-								<!-- Java EE: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
-								<!-- Java EE: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId> -->
-								<!-- Java SE -->
-								<offlineLink>
-									<url>${javadoc.link.javase}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javase/${javase.release}</location>
-								</offlineLink>
-								<!-- Java EE -->
-								<offlineLink>
-									<url>${javadoc.link.javaee}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javaee/${javaee.version}</location>
-								</offlineLink>
+								<!-- ao-javadoc-offline: <groupId>com.sun.mail</groupId><artifactId>javax.mail</artifactId> -->
+								<!-- ao-javadoc-offline: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
+								<!-- ao-javadoc-offline: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId> -->
 							</offlineLinks>
 						</configuration>
 					</plugin>
