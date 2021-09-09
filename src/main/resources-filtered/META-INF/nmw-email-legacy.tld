@@ -42,7 +42,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
 	<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-	<!-- dateModified="2021-06-16T13:09:39-05:00" -->
+	<!-- dateModified="2021-09-09T01:33:34-05:00" -->
 <!-- </common> -->
 	<!-- allowRobots="false" -->
 <!-- <common> -->
@@ -171,7 +171,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 		<ul>
 			<li><a href="https://oss.aoapps.com/encoding/taglib/]]>&aoEncodingTld;<![CDATA[/">AO Encoding Taglib</a></li>
 			<li><a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/">AO Taglib</a></li>
-			<li><a href="https://aoindustries.com/aoweb-struts/core/aoweb-struts-skin.tld/">AOWeb Struts Core Skin Taglib</a></li>
+			<li><a href="https://aoindustries.com/aoweb-struts/aoweb-struts-skin.tld/">AOWeb Struts Skin Taglib</a></li>
 			<li><a href="@{project.url}]]>&tld;<![CDATA[/">NMW Email Taglib</a> (this taglib)</li>
 			<li><a href="https://oss.newmediaworks.com/payment-taglib/]]>&nmwPaymentTld;<![CDATA[/">NMW Payment Taglib</a></li>
 			<!-- TODO: nmw-persistence-taglib once open-source, and many others -->
