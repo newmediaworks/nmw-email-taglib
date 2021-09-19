@@ -56,7 +56,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	private static final Logger logger = Logger.getLogger(EmailTag.class.getName());
 
-	private static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, EmailTag.class);
+	private static final Resources RESOURCES = Resources.getResources(EmailTag.class, ResourceBundle::getBundle);
 
 	public static final String TAG_NAME = "<email:email>";
 
