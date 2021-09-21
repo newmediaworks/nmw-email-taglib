@@ -51,7 +51,7 @@ import javax.servlet.jsp.tagext.TryCatchFinally;
  */
 public class DataTag extends TagSupport implements TryCatchFinally {
 
-	private static final Resources RESOURCES = Resources.getResources(DataTag.class, ResourceBundle::getBundle);
+	private static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, DataTag.class);
 
 	public static final String TAG_NAME = "<email:data>";
 

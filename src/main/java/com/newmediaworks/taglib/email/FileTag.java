@@ -63,7 +63,7 @@ public class FileTag extends EncodingBufferedTag {
 /**/
 
 /* SimpleTag only: */
-	public static final Resources RESOURCES = Resources.getResources(FileTag.class, ResourceBundle::getBundle);
+	public static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, FileTag.class);
 /**/
 
 	public FileTag() {
