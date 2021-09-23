@@ -25,4 +25,6 @@ module com.newmediaworks.taglib.email.devel {
 	// Direct
 	requires com.aoapps.hodgepodge; // <groupId>com.aoapps</groupId><artifactId>ao-hodgepodge</artifactId>
 	requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
+	// Java SE
+	requires java.logging;
 }

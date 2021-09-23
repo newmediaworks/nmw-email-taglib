@@ -27,6 +27,8 @@ import com.aoapps.hodgepodge.i18n.EditableResourceBundleSet;
 import com.aoapps.lang.i18n.Locales;
 import java.io.File;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
@@ -48,7 +50,16 @@ public final class ApplicationResources extends EditableResourceBundle {
 	);
 
 	static File getSourceFile(String filename) {
-		return new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email/i18n", filename);
+		try {
+			return new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email/i18n", filename);
+		} catch(SecurityException e) {
+			Logger.getLogger(ApplicationResources.class.getName()).log(
+				Level.WARNING,
+				"Unable to locate source file: " + filename,
+				e
+			);
+			return null;
+		}
 	}
 
 	public ApplicationResources() {
