@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T18:18:07-05:00"
-		dateModified="2021-07-22T06:18:09-05:00"
+		dateModified="2021-09-28T21:11:38-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -47,7 +47,15 @@ along with nmw-email-taglib.  If not, see <http://www.gnu.org/licenses />.
 				artifactId="@{documented.artifactId}"
 				repository="@{nexusUrl}content/repositories/snapshots/"
 				scmUrl="@{project.scm.url}"
-			/>
+			>
+				<ul>
+					<li>Updated dependencies.</li>
+					<li>
+						Renamed <code>EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE</code>
+						and changed type to <code>Scope.Request.Attribute</code>.
+					</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release

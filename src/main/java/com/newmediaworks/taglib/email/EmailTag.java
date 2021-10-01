@@ -22,7 +22,9 @@
  */
 package com.newmediaworks.taglib.email;
 
+import com.aoapps.lang.LocalizedIllegalArgumentException;
 import com.aoapps.lang.i18n.Resources;
+import com.aoapps.servlet.attribute.ScopeEE;
 import com.aoapps.servlet.jsp.LocalizedJspTagException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -40,7 +42,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.SkipPageException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TryCatchFinally;
@@ -60,10 +61,17 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	public static final String TAG_NAME = "<email:email>";
 
+	/**
+	 * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
+	 */
+	@Deprecated
 	public static final String ERROR_REQUEST_ATTRIBUTE_NAME = EmailTag.class.getName() + ".error";
 
+	public static final ScopeEE.Request.Attribute<String> ERROR_REQUEST_ATTRIBUTE =
+		ScopeEE.REQUEST.attribute(ERROR_REQUEST_ATTRIBUTE_NAME);
+
 	/**
-	 * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE_NAME} directly.
+	 * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
 	 */
 	@Deprecated
 	public static final String ERROR_REQUEST_PARAMETER_NAME = ERROR_REQUEST_ATTRIBUTE_NAME;
@@ -89,9 +97,9 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 		this.smtpPort = smtpPort;
 	}
 
-	private String var;
+	private ScopeEE.Page.Attribute<byte[]> var;
 	public void setVar(String var) {
-		this.var = var;
+		this.var = (var == null || var.isEmpty()) ? null : ScopeEE.PAGE.attribute(var);
 	}
 
 	private String scope;
@@ -111,10 +119,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 
 	@Override
 	public int doStartTag() throws JspException {
-		pageContext.getRequest().setAttribute(
-			ERROR_REQUEST_ATTRIBUTE_NAME,
-			RESOURCES.getMessage("emailNotSent")
-		);
+		ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).set(RESOURCES.getMessage("emailNotSent"));
 		Properties properties = new Properties();
 		if(smtpHost!=null) properties.put("mail.smtp.host", smtpHost);
 		if(smtpPort!=null) properties.put("mail.smtp.port", smtpPort.toString());
@@ -175,23 +180,20 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			if(var!=null) {
+			if(var != null) {
 				// Capture as a byte[] into variable
-				int scopeInt;
-				if(scope==null || "page".equals(scope)) scopeInt = PageContext.PAGE_SCOPE;
-				else if("request".equals(scope)) scopeInt = PageContext.REQUEST_SCOPE;
-				else if("session".equals(scope)) scopeInt = PageContext.SESSION_SCOPE;
-				else if("application".equals(scope)) scopeInt = PageContext.APPLICATION_SCOPE;
-				else throw new LocalizedJspTagException(RESOURCES, "unexpectedScope", scope);
+				int scopeInt = ScopeEE.Page.getScopeId(scope);
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				message.writeTo(bout);
-				pageContext.setAttribute(var, bout.toByteArray(), scopeInt);
+				var.context(pageContext).set(scopeInt, bout.toByteArray());
 			} else {
 				// Send the message
 				Transport.send(message);
 			}
-			pageContext.getRequest().removeAttribute(ERROR_REQUEST_ATTRIBUTE_NAME);
+			ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).remove();
 			return EVAL_PAGE;
+		} catch(LocalizedIllegalArgumentException e) {
+			throw new LocalizedJspTagException(e.getResources(), e.getKey(), e.getArgs());
 		} catch(MessagingException | IOException err) {
 			throw new JspTagException(err.getMessage(), err);
 		}
@@ -206,7 +208,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 			logger.log(Level.SEVERE, null, throwable);
 			String errorMessage = throwable.getMessage();
 			if(errorMessage==null || (errorMessage=errorMessage.trim()).length()==0) errorMessage = throwable.toString();
-			pageContext.getRequest().setAttribute(ERROR_REQUEST_ATTRIBUTE_NAME, errorMessage);
+			ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).set(errorMessage);
 		}
 	}
 

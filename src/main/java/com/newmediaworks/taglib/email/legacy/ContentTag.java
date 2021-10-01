@@ -33,8 +33,10 @@ import com.aoapps.hodgepodge.i18n.EditableResourceBundle.ThreadSettings;
 import com.aoapps.hodgepodge.i18n.EditableResourceBundle.ThreadSettings.Mode;
 import com.aoapps.io.buffer.BufferResult;
 import com.aoapps.lang.Strings;
+import com.aoapps.lang.attribute.Attribute;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.newmediaworks.taglib.email.BodyPartTag;
+import static com.newmediaworks.taglib.email.ContentTag.STRUTS_XHTML_KEY;
 import static com.newmediaworks.taglib.email.ContentTag.TAG_NAME;
 import com.newmediaworks.taglib.email.EmailTag;
 import com.newmediaworks.taglib.email.PartTag;
@@ -49,7 +51,6 @@ import javax.mail.Part;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
 
 /**
  * The body of this tag provides the content to the email or any of its parts.
@@ -64,16 +65,6 @@ public class ContentTag extends EncodingBufferedBodyTag {
 
 /* SimpleTag only:
 	public static final String TAG_NAME = "<email:content>";
-
-	/**
-	 * The old Struts XHTML mode page attribute.  To avoiding picking-up a big
-	 * legacy dependency, we've copied the value here instead of depending on
-	 * Globals.  Once we no longer have any code running on old Struts, this
-	 * value may be removed.
-	 */
-	// Java 9: module-private
-	// Matches ao-taglib:HtmlTag.java
-	public static final String STRUTS_XHTML_KEY = "org.apache.struts.globals.XHTML";
 /**/
 
 	public ContentTag() {
@@ -136,8 +127,8 @@ public class ContentTag extends EncodingBufferedBodyTag {
 /* BodyTag only: */
 	// Values that are used in doFinally
 	private transient Serialization oldSerialization;
-	private transient Object oldStrutsXhtml;
 	private transient boolean setSerialization;
+	private transient Attribute.OldValue oldStrutsXhtml;
 	private transient Doctype oldDoctype;
 	private transient boolean setDoctype;
 	private transient ThreadSettings oldThreadSettings;
@@ -151,8 +142,8 @@ public class ContentTag extends EncodingBufferedBodyTag {
 /* BodyTag only: */
 		// Values that are used in doFinally
 		oldSerialization = null;
-		oldStrutsXhtml = null;
 		setSerialization = false;
+		oldStrutsXhtml = null;
 		oldDoctype = null;
 		setDoctype = false;
 		oldThreadSettings = null;
@@ -165,9 +156,10 @@ public class ContentTag extends EncodingBufferedBodyTag {
 	protected int doStartTag(Writer out) throws JspException, IOException {
 		ServletRequest request = pageContext.getRequest();
 		oldSerialization = SerializationEE.replace(request, serialization);
-		oldStrutsXhtml = pageContext.getAttribute(STRUTS_XHTML_KEY, PageContext.PAGE_SCOPE);
-		pageContext.setAttribute(STRUTS_XHTML_KEY, Boolean.toString(serialization == Serialization.XML), PageContext.PAGE_SCOPE);
 		setSerialization = true;
+		oldStrutsXhtml = STRUTS_XHTML_KEY.context(pageContext).init(
+			Boolean.toString(serialization == Serialization.XML)
+		);
 		oldDoctype = DoctypeEE.replace(request, doctype);
 		setDoctype = true;
 		Mode maxMode =
@@ -189,9 +181,11 @@ public class ContentTag extends EncodingBufferedBodyTag {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
 		Serialization oldSerialization = SerializationEE.replace(request, serialization);
-		Object oldStrutsXhtml = pageContext.getAttribute(STRUTS_XHTML_KEY, PageContext.PAGE_SCOPE);
-		pageContext.setAttribute(STRUTS_XHTML_KEY, Boolean.toString(serialization == Serialization.XML), PageContext.PAGE_SCOPE);
-		try {
+		try (
+			Attributes.Backup oldStrutsXhtml = STRUTS_XHTML_KEY.context(pageContext).init(
+				Boolean.toString(serialization == Serialization.XML)
+			)
+		) {
 			Doctype oldDoctype = DoctypeEE.replace(request, doctype);
 			try {
 				Mode maxMode =
@@ -218,7 +212,6 @@ public class ContentTag extends EncodingBufferedBodyTag {
 			}
 		} finally {
 			SerializationEE.set(request, oldSerialization);
-			pageContext.setAttribute(STRUTS_XHTML_KEY, oldStrutsXhtml, PageContext.PAGE_SCOPE);
 		}
 	}
 /**/
@@ -256,10 +249,8 @@ public class ContentTag extends EncodingBufferedBodyTag {
 				if(setDoctype) {
 					DoctypeEE.set(request, oldDoctype);
 				}
-				if(setSerialization) {
-					SerializationEE.set(request, oldSerialization);
-					pageContext.setAttribute(STRUTS_XHTML_KEY, oldStrutsXhtml, PageContext.PAGE_SCOPE);
-				}
+				if(setSerialization) SerializationEE.set(request, oldSerialization);
+				if(oldStrutsXhtml != null) oldStrutsXhtml.close();
 			} finally {
 				init();
 			}

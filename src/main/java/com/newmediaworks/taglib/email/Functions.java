@@ -39,7 +39,7 @@ final public class Functions {
 	 * @see  GetErrorReasonTag
 	 */
 	public static String getErrorReason() {
-		return (String)getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
+		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(getRequest()).get();
 	}
 
 	/**
@@ -49,7 +49,7 @@ final public class Functions {
 	 * @see  GetErrorReasonTag
 	 */
 	public static boolean isError() {
-		return getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME) != null;
+		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(getRequest()).get() != null;
 	}
 
 	/**

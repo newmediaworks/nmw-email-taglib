@@ -60,7 +60,7 @@ public class GetErrorReasonTag extends EncodingNullTag {
 	protected void doTag(Writer out) throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 /**/
-		String error = (String)pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME);
+		String error = EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get();
 		if(error != null) out.write(error);
 /* BodyTag only:
 		return SKIP_BODY;

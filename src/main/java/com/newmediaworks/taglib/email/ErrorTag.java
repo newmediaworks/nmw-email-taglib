@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2019, 2020  New Media Works
+ * Copyright (C) 2010, 2011, 2019, 2020, 2021  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -44,7 +44,7 @@ public class ErrorTag extends BodyTagSupport {
 
 	@Override
 	public int doStartTag() throws JspException {
-		return pageContext.getRequest().getAttribute(EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME) != null
+		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get() != null
 			? EVAL_BODY_INCLUDE : SKIP_BODY;
 	}
 }
