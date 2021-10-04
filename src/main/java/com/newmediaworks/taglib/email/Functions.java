@@ -27,7 +27,7 @@ import static com.aoapps.servlet.filter.FunctionContext.getRequest;
 /**
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-final public class Functions {
+public final class Functions {
 
 	private Functions() {
 	}
