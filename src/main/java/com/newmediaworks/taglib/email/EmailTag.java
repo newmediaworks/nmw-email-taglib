@@ -64,7 +64,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 	/**
 	 * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
 	 */
-	@Deprecated
+	@Deprecated(forRemoval = true)
 	public static final String ERROR_REQUEST_ATTRIBUTE_NAME = EmailTag.class.getName() + ".error";
 
 	public static final ScopeEE.Request.Attribute<String> ERROR_REQUEST_ATTRIBUTE =
@@ -73,7 +73,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
 	/**
 	 * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
 	 */
-	@Deprecated
+	@Deprecated(forRemoval = true)
 	public static final String ERROR_REQUEST_PARAMETER_NAME = ERROR_REQUEST_ATTRIBUTE_NAME;
 
 	private static Integer parseInteger(String s) throws NumberFormatException {
