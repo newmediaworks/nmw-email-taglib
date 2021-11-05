@@ -27,10 +27,10 @@ import static com.aoapps.servlet.filter.FunctionContext.getRequest;
 /**
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-public final class Functions {
+public abstract class Functions {
 
-	private Functions() {
-	}
+	/** Make no instances. */
+	private Functions() {throw new AssertionError();}
 
 	/**
 	 * Gets the error reason for an email attempt.

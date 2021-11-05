@@ -29,7 +29,10 @@ import java.util.Properties;
 /**
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-class Maven {
+abstract class Maven {
+
+	/** Make no instances. */
+	private Maven() {throw new AssertionError();}
 
 	static final Properties properties;
 	static {
@@ -39,6 +42,4 @@ class Maven {
 			throw new ExceptionInInitializerError(e);
 		}
 	}
-
-	private Maven() {}
 }

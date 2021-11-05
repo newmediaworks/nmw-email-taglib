@@ -36,9 +36,6 @@ public class SuccessTag extends BodyTagSupport {
 
 	private static final long serialVersionUID = -3950518629224019824L;
 
-	public SuccessTag() {
-	}
-
 	@Override
 	public int doStartTag() throws JspException {
 		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get() == null

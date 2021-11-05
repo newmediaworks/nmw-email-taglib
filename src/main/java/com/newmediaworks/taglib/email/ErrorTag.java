@@ -39,9 +39,6 @@ public class ErrorTag extends BodyTagSupport {
 
 	private static final long serialVersionUID = -4181809894278592208L;
 
-	public ErrorTag() {
-	}
-
 	@Override
 	public int doStartTag() throws JspException {
 		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get() != null
