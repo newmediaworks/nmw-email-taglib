@@ -25,7 +25,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.14.3-POST-SNAPSHOT</version>
+		<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.14.4-SNAPSHOT</version>
 		<relativePath>../../parent/pom.xml</relativePath>
 	</parent>
 
@@ -95,6 +95,27 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 			</snapshots>
 		</repository>
 	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>require-development-profile</id><goals><goal>enforce</goal></goals>
+						<configuration>
+							<rules>
+								<requireActiveProfile>
+									<message>"*-devel" projects require "development" profile</message>
+									<profiles>development</profiles>
+								</requireActiveProfile>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencyManagement>
 		<dependencies>
