@@ -77,9 +77,15 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 	</issueManagement>
 
 	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://jenkins.aoindustries.com/job/nmw/job/oss/job/email-taglib-devel/</url>
+	</ciManagement>
+	<!-- Only one allowed in POM:
+	<ciManagement>
 		<system>GitHub Actions</system>
 		<url>https://github.com/newmediaworks/nmw-email-taglib/actions</url>
 	</ciManagement>
+	-->
 
 	<repositories>
 		<!-- Repository required here, too, so can find parent -->
@@ -106,7 +112,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 						<configuration>
 							<rules>
 								<requireActiveProfile>
-									<message>"*-devel" projects require "development" profile</message>
+									<message>"*-devel" projects require "development" profile to only run locally</message>
 									<profiles>development</profiles>
 								</requireActiveProfile>
 							</rules>
