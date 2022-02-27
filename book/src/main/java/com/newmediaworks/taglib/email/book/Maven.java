@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2019, 2021  New Media Works
+ * Copyright (C) 2019, 2021, 2022  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -29,7 +29,7 @@ import java.util.Properties;
 /**
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
-abstract class Maven {
+final class Maven {
 
 	/** Make no instances. */
 	private Maven() {throw new AssertionError();}
