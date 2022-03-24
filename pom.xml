@@ -41,8 +41,8 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 			<li><a target="${javadoc.target}" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>
 			<li><a target="${javadoc.target}" href="${project.url}nmw-email-legacy.tld/">Taglib Reference (Legacy)</a></li>
 		]]></javadoc.taglibReference>
-		<javadoc.relatedProjects><![CDATA[<div style="float:left; margin: 0 1em">
-			<h2 style="margin-top: 0em">Related Projects</h2>
+		<javadoc.relatedProjects><![CDATA[<div>
+			<h2>Related Projects</h2>
 			<ul>
 				<li><a target="${javadoc.target}" href="https://javaee.github.io/javamail/">JavaMail API</a></li>
 				<li><a target="${javadoc.target}" href="https://oss.aoapps.com/encoding/taglib/">AO Encoding Taglib</a></li>
