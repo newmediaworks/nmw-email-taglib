@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2020, 2021  New Media Works
+ * Copyright (C) 2020, 2021, 2022  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -20,6 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package com.newmediaworks.taglib.email.book;
 
 import com.semanticcms.tagreference.TagReferenceInitializer;

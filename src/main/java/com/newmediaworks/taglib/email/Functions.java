@@ -20,6 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package com.newmediaworks.taglib.email;
 
 import static com.aoapps.servlet.filter.FunctionContext.getRequest;
