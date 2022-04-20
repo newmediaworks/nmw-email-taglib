@@ -35,11 +35,11 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class SuccessTag extends BodyTagSupport {
 
-	private static final long serialVersionUID = -3950518629224019824L;
+  private static final long serialVersionUID = -3950518629224019824L;
 
-	@Override
-	public int doStartTag() throws JspException {
-		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get() == null
-			? EVAL_BODY_INCLUDE : SKIP_BODY;
-	}
+  @Override
+  public int doStartTag() throws JspException {
+    return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get() == null
+      ? EVAL_BODY_INCLUDE : SKIP_BODY;
+  }
 }

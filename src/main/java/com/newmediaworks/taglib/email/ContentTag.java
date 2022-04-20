@@ -61,215 +61,219 @@ import javax.servlet.jsp.tagext.JspFragment;
  */
 public class ContentTag extends EncodingBufferedTag {
 
-	private static final Logger logger = Logger.getLogger(ContentTag.class.getName());
+  private static final Logger logger = Logger.getLogger(ContentTag.class.getName());
 
 /* SimpleTag only: */
-	public static final String TAG_NAME = "<email:content>";
+  public static final String TAG_NAME = "<email:content>";
 /**/
 
-	public ContentTag() {
-		init();
-	}
+  public ContentTag() {
+    init();
+  }
 
-	@Override
-	public MediaType getContentType() {
-		return
-			(mediaType != null) ? mediaType // Recognized type is set
-			: (type != null) ? MediaType.TEXT // No character validation when unrecognized type is set
-			: MediaType.XHTML; // Default to (X)HTML when no type set
-	}
+  @Override
+  public MediaType getContentType() {
+    return
+      (mediaType != null) ? mediaType // Recognized type is set
+      : (type != null) ? MediaType.TEXT // No character validation when unrecognized type is set
+      : MediaType.XHTML; // Default to (X)HTML when no type set
+  }
 
-	@Override
-	public MediaType getOutputType() {
-		return null;
-	}
+  @Override
+  public MediaType getOutputType() {
+    return null;
+  }
 
 /* BodyTag only:
-	private static final long serialVersionUID = -7055705772215055501L;
+  private static final long serialVersionUID = -7055705772215055501L;
 /**/
 
-	private String type;
-	private MediaType mediaType;
-	public void setType(String type) {
-		String typeStr = Strings.trim(type);
-		MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
-		if(newMediaType != null) {
-			this.type = newMediaType.getContentType();
-		} else {
-			try {
-				newMediaType = MediaType.getMediaTypeForContentType(typeStr);
-			} catch(UnsupportedEncodingException e) {
-				if(logger.isLoggable(Level.WARNING)) {
-					logger.log(
-						Level.WARNING,
-						"Unrecognized content type (" + typeStr + "), both character validation and in-context translation markup will be disabled",
-						e
-					);
-				}
-				assert newMediaType == null : "newMediaType remains null";
-			}
-			this.type = typeStr;
-		}
-		this.mediaType = newMediaType;
-	}
+  private String type;
+  private MediaType mediaType;
+  public void setType(String type) {
+    String typeStr = Strings.trim(type);
+    MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
+    if (newMediaType != null) {
+      this.type = newMediaType.getContentType();
+    } else {
+      try {
+        newMediaType = MediaType.getMediaTypeForContentType(typeStr);
+      } catch (UnsupportedEncodingException e) {
+        if (logger.isLoggable(Level.WARNING)) {
+          logger.log(
+            Level.WARNING,
+            "Unrecognized content type (" + typeStr + "), both character validation and in-context translation markup will be disabled",
+            e
+          );
+        }
+        assert newMediaType == null : "newMediaType remains null";
+      }
+      this.type = typeStr;
+    }
+    this.mediaType = newMediaType;
+  }
 
-	private Serialization serialization;
-	public void setSerialization(String serialization) {
-		this.serialization = Serialization.valueOf(serialization.trim().toUpperCase(Locale.ROOT));
-	}
+  private Serialization serialization;
+  public void setSerialization(String serialization) {
+    this.serialization = Serialization.valueOf(serialization.trim().toUpperCase(Locale.ROOT));
+  }
 
-	private Doctype doctype;
-	public void setDoctype(String doctype) {
-		doctype = doctype.trim();
-		this.doctype = "default".equalsIgnoreCase(doctype) ? Doctype.DEFAULT : Doctype.valueOf(doctype.toUpperCase(Locale.ROOT));
-	}
+  private Doctype doctype;
+  public void setDoctype(String doctype) {
+    doctype = doctype.trim();
+    this.doctype = "default".equalsIgnoreCase(doctype) ? Doctype.DEFAULT : Doctype.valueOf(doctype.toUpperCase(Locale.ROOT));
+  }
 
 /* BodyTag only:
-	// Values that are used in doFinally
-	private transient Serialization oldSerialization;
-	private transient boolean setSerialization;
-	private transient Attributes.Backup oldStrutsXhtml;
-	private transient Doctype oldDoctype;
-	private transient boolean setDoctype;
-	private transient ThreadSettings oldThreadSettings;
-	private transient boolean setThreadSettings;
+  // Values that are used in doFinally
+  private transient Serialization oldSerialization;
+  private transient boolean setSerialization;
+  private transient Attributes.Backup oldStrutsXhtml;
+  private transient Doctype oldDoctype;
+  private transient boolean setDoctype;
+  private transient ThreadSettings oldThreadSettings;
+  private transient boolean setThreadSettings;
 /**/
 
-	private void init() {
-		type = null;
-		serialization = Serialization.SGML;
-		doctype = Doctype.DEFAULT;
+  private void init() {
+    type = null;
+    serialization = Serialization.SGML;
+    doctype = Doctype.DEFAULT;
 /* BodyTag only:
-		// Values that are used in doFinally
-		oldSerialization = null;
-		setSerialization = false;
-		oldStrutsXhtml = null;
-		oldDoctype = null;
-		setDoctype = false;
-		oldThreadSettings = null;
-		setThreadSettings = false;
+    // Values that are used in doFinally
+    oldSerialization = null;
+    setSerialization = false;
+    oldStrutsXhtml = null;
+    oldDoctype = null;
+    setDoctype = false;
+    oldThreadSettings = null;
+    setThreadSettings = false;
 /**/
-	}
+  }
 
 /* BodyTag only:
-	@Override
-	protected int doStartTag(Writer out) throws JspException, IOException {
-		ServletRequest request = pageContext.getRequest();
-		oldSerialization = SerializationEE.replace(request, serialization);
-		setSerialization = true;
-		oldStrutsXhtml = STRUTS_XHTML_KEY.context(pageContext).init(
-			Boolean.toString(serialization == Serialization.XML)
-		);
-		oldDoctype = DoctypeEE.replace(request, doctype);
-		setDoctype = true;
-		Mode maxMode =
-			(type != null && mediaType == null) ? Mode.LOOKUP // No markup when unrecognized type is set
-			: Mode.NOSCRIPT; // Recognized type is set or default (X)HTML
-		oldThreadSettings = EditableResourceBundle.getThreadSettings();
-		if(oldThreadSettings.getMode().compareTo(maxMode) > 0) {
-			ThreadSettings newThreadSettings = oldThreadSettings.setMode(maxMode);
-			assert newThreadSettings != oldThreadSettings;
-			EditableResourceBundle.setThreadSettings(newThreadSettings);
-			setThreadSettings = true;
-		}
-		return EVAL_BODY_BUFFERED;
-	}
+  @Override
+  protected int doStartTag(Writer out) throws JspException, IOException {
+    ServletRequest request = pageContext.getRequest();
+    oldSerialization = SerializationEE.replace(request, serialization);
+    setSerialization = true;
+    oldStrutsXhtml = STRUTS_XHTML_KEY.context(pageContext).init(
+      Boolean.toString(serialization == Serialization.XML)
+    );
+    oldDoctype = DoctypeEE.replace(request, doctype);
+    setDoctype = true;
+    Mode maxMode =
+      (type != null && mediaType == null) ? Mode.LOOKUP // No markup when unrecognized type is set
+      : Mode.NOSCRIPT; // Recognized type is set or default (X)HTML
+    oldThreadSettings = EditableResourceBundle.getThreadSettings();
+    if (oldThreadSettings.getMode().compareTo(maxMode) > 0) {
+      ThreadSettings newThreadSettings = oldThreadSettings.setMode(maxMode);
+      assert newThreadSettings != oldThreadSettings;
+      EditableResourceBundle.setThreadSettings(newThreadSettings);
+      setThreadSettings = true;
+    }
+    return EVAL_BODY_BUFFERED;
+  }
 /**/
 /* SimpleTag only: */
-	@Override
-	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
-		PageContext pageContext = (PageContext)getJspContext();
-		ServletRequest request = pageContext.getRequest();
-		Serialization oldSerialization = SerializationEE.replace(request, serialization);
-		try (
-			Attribute.OldValue oldStrutsXhtml = STRUTS_XHTML_KEY.context(pageContext).init(
-				Boolean.toString(serialization == Serialization.XML)
-			)
-		) {
-			Doctype oldDoctype = DoctypeEE.replace(request, doctype);
-			try {
-				Mode maxMode =
-					(type != null && mediaType == null) ? Mode.LOOKUP // No markup when unrecognized type is set
-					: Mode.NOSCRIPT; // Recognized type is set or default (X)HTML
-				ThreadSettings oldThreadSettings = EditableResourceBundle.getThreadSettings();
-				ThreadSettings newThreadSettings;
-				if(oldThreadSettings.getMode().compareTo(maxMode) > 0) {
-					newThreadSettings = oldThreadSettings.setMode(maxMode);
-					assert newThreadSettings != oldThreadSettings;
-					EditableResourceBundle.setThreadSettings(newThreadSettings);
-				} else {
-					newThreadSettings = oldThreadSettings;
-				}
-				try {
-					super.invoke(body, captureValidator);
-				} finally {
-					if(oldThreadSettings != newThreadSettings) {
-						EditableResourceBundle.setThreadSettings(oldThreadSettings);
-					}
-				}
-			} finally {
-				DoctypeEE.set(request, oldDoctype);
-			}
-		} finally {
-			SerializationEE.set(request, oldSerialization);
-		}
-	}
+  @Override
+  protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+    PageContext pageContext = (PageContext)getJspContext();
+    ServletRequest request = pageContext.getRequest();
+    Serialization oldSerialization = SerializationEE.replace(request, serialization);
+    try (
+      Attribute.OldValue oldStrutsXhtml = STRUTS_XHTML_KEY.context(pageContext).init(
+        Boolean.toString(serialization == Serialization.XML)
+      )
+    ) {
+      Doctype oldDoctype = DoctypeEE.replace(request, doctype);
+      try {
+        Mode maxMode =
+          (type != null && mediaType == null) ? Mode.LOOKUP // No markup when unrecognized type is set
+          : Mode.NOSCRIPT; // Recognized type is set or default (X)HTML
+        ThreadSettings oldThreadSettings = EditableResourceBundle.getThreadSettings();
+        ThreadSettings newThreadSettings;
+        if (oldThreadSettings.getMode().compareTo(maxMode) > 0) {
+          newThreadSettings = oldThreadSettings.setMode(maxMode);
+          assert newThreadSettings != oldThreadSettings;
+          EditableResourceBundle.setThreadSettings(newThreadSettings);
+        } else {
+          newThreadSettings = oldThreadSettings;
+        }
+        try {
+          super.invoke(body, captureValidator);
+        } finally {
+          if (oldThreadSettings != newThreadSettings) {
+            EditableResourceBundle.setThreadSettings(oldThreadSettings);
+          }
+        }
+      } finally {
+        DoctypeEE.set(request, oldDoctype);
+      }
+    } finally {
+      SerializationEE.set(request, oldSerialization);
+    }
+  }
 /**/
 
-	@Override
+  @Override
 /* BodyTag only:
-	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
 /* SimpleTag only: */
-	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
-		try {
-			JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
-				.setContent(
-					capturedBody.trim().toString(), // TODO: Optimization opportunity here between BufferResult and byte[], String, InputStream, or DataSource?
-					(type != null) ? type : serialization.getContentType()
-				);
+    try {
+      JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
+        .setContent(
+          capturedBody.trim().toString(), // TODO: Optimization opportunity here between BufferResult and byte[], String, InputStream, or DataSource?
+          (type != null) ? type : serialization.getContentType()
+        );
 /* BodyTag only:
-			return EVAL_PAGE;
+      return EVAL_PAGE;
 /**/
-		} catch(MessagingException err) {
-			throw new JspTagException(err.getMessage(), err);
-		}
-	}
+    } catch (MessagingException err) {
+      throw new JspTagException(err.getMessage(), err);
+    }
+  }
 
 /* BodyTag only:
-	@Override
-	public void doFinally() {
-		try {
-			try {
-				ServletRequest request = pageContext.getRequest();
-				if(setThreadSettings) {
-					EditableResourceBundle.setThreadSettings(oldThreadSettings);
-				}
-				if(setDoctype) {
-					DoctypeEE.set(request, oldDoctype);
-				}
-				if(setSerialization) SerializationEE.set(request, oldSerialization);
-				if(oldStrutsXhtml != null) oldStrutsXhtml.close();
-			} finally {
-				init();
-			}
-		} finally {
-			super.doFinally();
-		}
-	}
+  @Override
+  public void doFinally() {
+    try {
+      try {
+        ServletRequest request = pageContext.getRequest();
+        if (setThreadSettings) {
+          EditableResourceBundle.setThreadSettings(oldThreadSettings);
+        }
+        if (setDoctype) {
+          DoctypeEE.set(request, oldDoctype);
+        }
+        if (setSerialization) {
+          SerializationEE.set(request, oldSerialization);
+        }
+        if (oldStrutsXhtml != null) {
+          oldStrutsXhtml.close();
+        }
+      } finally {
+        init();
+      }
+    } finally {
+      super.doFinally();
+    }
+  }
 /**/
 
-	// <editor-fold desc="Static Utilities">
-	/**
-	 * The old Struts 1 XHTML mode page attribute.  To avoiding picking-up a big
-	 * legacy dependency, we've copied the value here instead of depending on
-	 * Globals.  Once we no longer have any code running on old Struts, this
-	 * value may be removed.
-	 */
-	// Java 9: module-private
-	// Matches ao-taglib:HtmlTag.java
-	public static final ScopeEE.Page.Attribute<String> STRUTS_XHTML_KEY =
-		ScopeEE.PAGE.attribute("org.apache.struts.globals.XHTML");
-	// </editor-fold>
+  // <editor-fold desc="Static Utilities">
+  /**
+   * The old Struts 1 XHTML mode page attribute.  To avoiding picking-up a big
+   * legacy dependency, we've copied the value here instead of depending on
+   * Globals.  Once we no longer have any code running on old Struts, this
+   * value may be removed.
+   */
+  // Java 9: module-private
+  // Matches ao-taglib:HtmlTag.java
+  public static final ScopeEE.Page.Attribute<String> STRUTS_XHTML_KEY =
+    ScopeEE.PAGE.attribute("org.apache.struts.globals.XHTML");
+  // </editor-fold>
 }

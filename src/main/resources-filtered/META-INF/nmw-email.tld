@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
-Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020, 2021  New Media Works
+Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020, 2021, 2022  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -38,709 +38,709 @@ For compatibility with legacy applications that use JSP scriptlets, please use &
 ]>
 <!-- <common> -->
 <taglib xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
-	version="2.1">
-	<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-	<!-- dateModified="2021-09-09T01:33:34-05:00" -->
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+  version="2.1">
+  <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+  <!-- dateModified="2021-09-09T01:33:34-05:00" -->
 <!-- </common> -->
-	<!-- allowRobots="auto" -->
+  <!-- allowRobots="auto" -->
 <!-- <common> -->
-	<description><![CDATA[
-		<p>@{description.html}</p>
-		<p>]]>&tld_description;<![CDATA[</p>
-		<p>Both implementations are interoperable and may be used simultaneously under different prefixes.</p>
-		<hr />
-		<p>
-			The structure of the tags matches that of the underlying <a href="https://javaee.github.io/javamail/">JavaMail API</a> with
-			the following mapping:
-		</p>
-		<ul>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html">Message</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-to">&lt;email:to&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#addRecipient-javax.mail.Message.RecipientType-javax.mail.Address-">Message.addRecipient(…)</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-from">&lt;email:from&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setFrom-javax.mail.Address-">Message.setFrom(…)</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setSubject-java.lang.String-">Message.setSubject(…)</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Multipart.html">Multipart</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/BodyPart.html">BodyPart</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-header">&lt;email:header&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#addHeader-java.lang.String-java.lang.String-">Part.addHeader(…)</a>
-				or <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setHeader-java.lang.String-java.lang.String-">Part.setHeader(…)</a>
-				<ul>
-					<li>
-						<a href="@{project.url}]]>&tld;<![CDATA[/tag-contentId">&lt;email:contentId&gt;</a>
-						⟶ Sets the <code>Content-ID:</code> header while trimming the body and surrounding with <code>&lt;…&gt;</code>.
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setContent-java.lang.Object-java.lang.String-">Part.setContent(…)</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-file">&lt;email:file&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
-			</li>
-			<li>
-				<a href="@{project.url}]]>&tld;<![CDATA[/tag-data">&lt;email:data&gt;</a>
-				⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
-			</li>
-		</ul>
-		<p>
-			The nesting allowed is:
-		</p>
-		<ul>
-			<li style="list-style:none"><a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				<ul>
-					<li style="list-style:none"><em style="font-family:monospace">+</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-to">&lt;email:to&gt;</a></li>
-					<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-from">&lt;email:from&gt;</a></li>
-					<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a></li>
-					<li style="list-style:none"><em style="font-family:monospace">*</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-header">&lt;email:header&gt;</a></li>
-					<li style="list-style:none"><em style="font-family:monospace">?</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-contentId">&lt;email:contentId&gt;</a></li>
-					<li style="list-style:none"><em style="font-family:monospace">!</em> Exactly one of:
-						<ul>
-							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a></li>
-							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-file">&lt;email:file&gt;</a></li>
-							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-data">&lt;email:data&gt;</a></li>
-							<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a>
-								<ul>
-									<li style="list-style:none"><em style="font-family:monospace">+</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a>
-										<ul>
-											<li style="list-style:none"><em style="font-family:monospace">*</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-header">&lt;email:header&gt;</a></li>
-											<li style="list-style:none"><em style="font-family:monospace">?</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-contentId">&lt;email:contentId&gt;</a></li>
-											<li style="list-style:none"><em style="font-family:monospace">!</em> Exactly one of:
-												<ul>
-													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a></li>
-													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-file">&lt;email:file&gt;</a></li>
-													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-data">&lt;email:data&gt;</a></li>
-													<li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a>
-														<ul>
-															<li style="list-style:none"><em style="font-family:monospace">+</em> …</li>
-														</ul>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
-		<p>
-			<em style="font-family:monospace">*</em> indicates zero or more uses allowed<br />
-			<em style="font-family:monospace">?</em> indicates zero or one use allowed<br />
-			<em style="font-family:monospace">+</em> indicates one or more uses required<br />
-			<em style="font-family:monospace">!</em> indicates exactly one use required
-		</p>
-		<hr />
-		<p>
-			This taglib is part of an extensible suite of interoperable, context-aware,
-			<a href="https://oss.aoapps.com/encoding/">auto-encoding</a> taglibs.
-			All auto-encoding tags generate correct output for their context, provide context information for nested
-			tags, and validate the output of nested tags.  For example,
-			<a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/tag-message">&lt;ao:message&gt;</a> within
-			<a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a> will write its output
-			encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html#TEXT">TEXT</a>,
-			while within <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a> (of type "text/html") will write its
-			output encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html#XHTML">XHTML</a>.
-		</p>
-		<p>
-			This suite includes, but is not limited to:
-		</p>
-		<ul>
-			<li><a href="https://oss.aoapps.com/encoding/taglib/]]>&aoEncodingTld;<![CDATA[/">AO Encoding Taglib</a></li>
-			<li><a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/">AO Taglib</a></li>
-			<li><a href="https://aoindustries.com/aoweb-struts/aoweb-struts-skin.tld/">AOWeb Struts Skin Taglib</a></li>
-			<li><a href="@{project.url}]]>&tld;<![CDATA[/">NMW Email Taglib</a> (this taglib)</li>
-			<li><a href="https://oss.newmediaworks.com/payment-taglib/]]>&nmwPaymentTld;<![CDATA[/">NMW Payment Taglib</a></li>
-			<!-- TODO: nmw-persistence-taglib once open-source, and many others -->
-		</ul>
-	]]></description>
-	<display-name>&tld_displayName;</display-name>
-	<tlib-version>
-		<!-- Release: @{project.version} -->
-		@{parsedVersion.majorVersion}.@{parsedVersion.minorVersion}.@{parsedVersion.incrementalVersion}
-	</tlib-version>
-	<short-name>email</short-name>
-	<uri>&tld_uri;</uri>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2021-06-16T14:18:10-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Formats an email then sends the message or stores in an attribute.  The message is constructed through nested tags.
-			</p>
-			<p>
-				The <a href="@{project.url}]]>&tld;<![CDATA[/tag-error">&lt;email:error&gt;</a>
-				and <a href="@{project.url}]]>&tld;<![CDATA[/tag-success">&lt;email:success&gt;</a>
-				tags may be used to determine the results.
-			</p>
-		]]></description>
-		<name>email</name>
-		<tag-class>com.newmediaworks.taglib.email.EmailTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					The SMTP host to use for sending email.
-					Defaults to the <code>mail.smtp.host</code> <a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/System.html#getProperty(java.lang.String)">system property</a>.
-				</p>
-			]]></description>
-			<name>smtpHost</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					The SMTP port to use for sending email.
-					Defaults to the <code>mail.smtp.port</code> <a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/System.html#getProperty(java.lang.String)">system property</a>.
-				</p>
-			]]></description>
-			<name>smtpPort</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					When provided, the email will not be sent.  Instead, it will be converted to
-					a <code>byte[]</code> binary format and stored in the variable with this name.
-				</p>
-			]]></description>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					Provides the scope of the variable that will be set when the var
-					attribute is provided.
-				</p>
-				<p>
-					Must be one of:
-				</p>
-				<ul>
-					<li><code>page</code> (the default)</li>
-					<li><code>request</code></li>
-					<li><code>session</code></li>
-					<li><code>application</code></li>
-				</ul>
-			]]></description>
-			<name>scope</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
-			</p>
-			<p>
-				Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>to</name>
-		<tag-class>&package;.ToTag</tag-class>
-		<body-content>&JSP;</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Provides the <code>To:</code> address.
-					When provided, the body is not invoked.
-					When not provided, the body content trimmed will be used as the address
-				</p>
-			]]></description>
-			<name>address</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				The <code>From:</code> address of the sender of the email.
-			</p>
-			<p>
-				Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>from</name>
-		<tag-class>&package;.FromTag</tag-class>
-		<body-content>&JSP;</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Provides the <code>From:</code> address.
-					When provided, the body is not invoked.
-					When not provided, the body content will be used as the address.
-				</p>
-			]]></description>
-			<name>address</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				The <code>Subject:</code> of the email.
-			</p>
-			<p>
-				Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>subject</name>
-		<tag-class>&package;.SubjectTag</tag-class>
-		<body-content>&JSP;</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					The optional charset for the subject.
-				</p>
-			]]></description>
-			<name>charset</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Provides the subject.
-					When provided, the body is not invoked.
-					When not provided, the body content trimmed will be used as the subject.
-				</p>
-			]]></description>
-			<name>value</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Adds or sets a header value to the email or any of its parts.
-			</p>
-			<p>
-				Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
-			</p>
-		]]></description>
-		<name>header</name>
-		<tag-class>&package;.HeaderTag</tag-class>
-		<body-content>&JSP;</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					The name of the header.
-				</p>
-			]]></description>
-			<name>name</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Provides the header value.
-					When provided, the body is not invoked.
-					When not provided, the body content trimmed will be used as the value.
-				</p>
-			]]></description>
-			<name>value</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					When <code>true</code> (the default), any existing headers will be replaced.
-				</p>
-				<p>
-					When <code>false</code>, the header will be added to any existing values.
-				</p>
-			]]></description>
-			<name>replace</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>boolean</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-28T01:44:29-05:00" -->
-		<!-- dateModified="2020-12-12T00:47:33-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Sets the <code>Content-ID:</code> header while surrounding with <code>&lt;…&gt;</code>.
-			</p>
-			<p>
-				Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
-			</p>
-		]]></description>
-		<name>contentId</name>
-		<tag-class>&package;.ContentIdTag</tag-class>
-		<body-content>&JSP;</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Provides the <code>Content-ID:</code> header value, will be surrounding with <code>&lt;…&gt;</code>.
-					When provided, the body is not invoked.
-					When not provided, the body content trimmed will be used as the value.
-				</p>
-			]]></description>
-			<name>value</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2021-06-16T13:09:39-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				The body of this tag provides the content to the email or any of its parts.
-			</p>
-			<p>
-				Leading and trailing whitespace on the content is trimmed.
-			</p>
-			<p>
-				Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
-			</p>
-			<p>
-				The content type depends on the value provided to the type attribute, and defaults to either
-				<code>text/html</code> or <code>application/xhtml+xml</code>, depending on the current
-				<code>serialization</code>.  The content is checked for well-formedness based on its type:
-			</p>
-			<ul>
-				<li><code>javascript</code>, <code>application/javascript</code>, or <code>text/javascript</code> - no validation</li>
-				<li><code>json</code> or <code>application/json</code> - no validation</li>
-				<li><code>ld_json</code> or <code>application/ld+json</code> - no validation</li>
-				<li><code>text</code> or <code>text/plain</code> - no validation</li>
-				<li><code>url</code> or <code>text/url</code> - must be a valid URL</li>
-				<li><code>xhtml</code> or <code>application/xhtml+xml</code> - must be well-formed XHTML content. (Note: Currently only checks character values.)</li>
-				<li><code>xhtml_attribute</code> or <code>application/xhtml+xml+attribute</code> - must be a valid XHTML attribute.</li>
-				<li><code>mysql</code> or <code>text/x+mysql</code> - must be valid for the MySQL command line "mysql"</li>
-				<li><code>psql</code> or <code>text/x+psql</code> - must be valid for the PostgreSQL command line "psql"</li>
-				<li><code>sh</code> or <code>text/x+sh</code> - must be valid shell script</li>
-			</ul>
-		]]></description>
-		<name>content</name>
-		<tag-class>&package;.ContentTag</tag-class>
-		<body-content>&JSP;</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Specifies the type of content as either short form for a
-					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html">media type</a>
-					or the full MIME type.
-				</p>
-				<p>
-					Defaults to the content type of the current <code>serialization</code>, which in-turn, defaults to
-					"text/html".
-				</p>
-			]]></description>
-			<name>type</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					When <code>SGML</code> (the default), sets the content-type to <code>text/html</code>.
-					When <code>XML</code>, sets the content-type to <code>application/xhtml+xml</code>.
-				</p>
-			]]></description>
-			<name>serialization</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					The <a href="https://www.w3schools.com/tags/tag_doctype.asp">&lt;!DOCTYPE&gt;</a> to use,
-					must be one of <code>default</code>, <code>HTML5</code>, <code>STRICT</code>, <code>TRANSITIONAL</code>,
-					<code>FRAMESET</code>, or <code>NONE</code>.
-				</p>
-				<p>
-					Defaults to <code><a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#DEFAULT">default</a></code>,
-					which is currently <code><a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#HTML5">HTML5</a></code>.
-				</p>
-				<p>
-					<em>Note:</em> The doctype is not written by this tag, however this setting affects
-					the output of nested context-aware tags.  To write the doctype, see
-					<a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/tag-html">&lt;ao:html&gt;</a>
-				</p>
-			]]></description>
-			<name>doctype</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-12T01:32:46-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Reads the contents of this email or part from a file.
-			</p>
-			<p>
-				Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
-			</p>
-		]]></description>
-		<name>file</name>
-		<tag-class>&package;.FileTag</tag-class>
-		<body-content>&JSP;</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Provides the context path (starting with <code>"/"</code>) or page-relative path to the file.
-					When provided, the body is not invoked.
-					When not provided, the body content will be used as the path.
-					The path is not trimmed so be careful of any extra whitespace.
-				</p>
-			]]></description>
-			<name>path</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2021-06-16T14:18:10-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Provides the raw data of this email or part content.
-			</p>
-			<p>
-				Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
-			</p>
-		]]></description>
-		<name>data</name>
-		<tag-class>com.newmediaworks.taglib.email.DataTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Specifies the type of content as either short form for a
-					recognized <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html">media type</a>
-					or the full MIME type.
-				</p>
-			]]></description>
-			<name>type</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					The filename used for the attached content.
-				</p>
-			]]></description>
-			<name>filename</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					Must be one of:
-				</p>
-				<ul>
-					<li><code>byte[]</code></li>
-					<li><a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/String.html">String</a></li>
-					<li><a rel="nofollow" href="@{javadoc.link.javase}java.base/java/io/InputStream.html">InputStream</a></li>
-					<!-- TODO: activation version from Maven property -->
-					<li><a rel="nofollow" href="https://jakarta.ee/specifications/activation/1.2/apidocs/javax/activation/DataSource.html">DataSource</a></li>
-				</ul>
-			]]></description>
-			<name>data</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2019-05-25T21:31:49-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				A multipart component of the email.
-			</p>
-			<p>
-				Must contain one or more nested <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
-			</p>
-			<p>
-				Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-				or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
-			</p>
-		]]></description>
-		<name>multipart</name>
-		<tag-class>com.newmediaworks.taglib.email.MultipartTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p>
-					The multipart subtype.
-					Defaults to <code>mixed</code>.
-					Some other values include <code>alternative</code> and <code>related</code>.
-				</p>
-			]]></description>
-			<name>subtype</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2019-05-25T21:03:55-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				A single part of a multipart component.
-			</p>
-			<p>
-				Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>bodypart</name>
-		<tag-class>com.newmediaworks.taglib.email.BodyPartTag</tag-class>
-		<body-content>JSP</body-content>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2019-05-25T21:03:55-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				The body of this tag will be processed when there was any type of error while formatting or sending the email.
-			</p>
-			<p>
-				May then use <a href="@{project.url}]]>&tld;<![CDATA[/tag-getErrorReason">&lt;email:getErrorReason&gt;</a>
-				or <a href="@{project.url}]]>&tld;<![CDATA[/function-getErrorReason">${email:getErrorReason()}</a>
-				to get the reason for the error.
-			</p>
-			<p>
-				Must follow an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>error</name>
-		<tag-class>com.newmediaworks.taglib.email.ErrorTag</tag-class>
-		<body-content>JSP</body-content>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2020-12-13T13:48:45-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets the error reason for an email attempt.
-			</p>
-		]]></description>
-		<name>getErrorReason</name>
-		<tag-class>&package;.GetErrorReasonTag</tag-class>
-		<body-content>empty</body-content>
-	</tag>
-	<tag>
-		<!-- datePublished="2011-05-20T04:37:04-05:00" -->
-		<!-- dateModified="2019-05-25T21:03:55-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				The body of this tag will be processed when the email was successfully formatted and sent (or stored in a variable).
-			</p>
-			<p>
-				Must follow an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>success</name>
-		<tag-class>com.newmediaworks.taglib.email.SuccessTag</tag-class>
-		<body-content>JSP</body-content>
-	</tag>
-	<function>
-		<!-- datePublished="2013-10-02T07:06:03-06:00" -->
-		<!-- dateModified="2020-12-13T13:48:45-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets the error reason for an email attempt.
-			</p>
-		]]></description>
-		<name>getErrorReason</name>
-		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
-		<function-signature>java.lang.String getErrorReason()</function-signature>
-		<example><![CDATA[<code>${email:getErrorReason()}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2020-12-13T13:48:45-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Determines if the last email resulted in an error.
-			</p>
-		]]></description>
-		<name>isError</name>
-		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
-		<function-signature>boolean isError()</function-signature>
-		<example><![CDATA[<code>${email:isError()}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2020-12-13T13:48:45-06:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Determines if the last email was successful.
-			</p>
-		]]></description>
-		<name>isSuccess</name>
-		<function-class>com.newmediaworks.taglib.email.Functions</function-class>
-		<function-signature>boolean isSuccess()</function-signature>
-		<example><![CDATA[<code>${email:isSuccess()}</code>]]></example>
-	</function>
+  <description><![CDATA[
+    <p>@{description.html}</p>
+    <p>]]>&tld_description;<![CDATA[</p>
+    <p>Both implementations are interoperable and may be used simultaneously under different prefixes.</p>
+    <hr />
+    <p>
+      The structure of the tags matches that of the underlying <a href="https://javaee.github.io/javamail/">JavaMail API</a> with
+      the following mapping:
+    </p>
+    <ul>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html">Message</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-to">&lt;email:to&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#addRecipient-javax.mail.Message.RecipientType-javax.mail.Address-">Message.addRecipient(…)</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-from">&lt;email:from&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setFrom-javax.mail.Address-">Message.setFrom(…)</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setSubject-java.lang.String-">Message.setSubject(…)</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Multipart.html">Multipart</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/BodyPart.html">BodyPart</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-header">&lt;email:header&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#addHeader-java.lang.String-java.lang.String-">Part.addHeader(…)</a>
+        or <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setHeader-java.lang.String-java.lang.String-">Part.setHeader(…)</a>
+        <ul>
+          <li>
+            <a href="@{project.url}]]>&tld;<![CDATA[/tag-contentId">&lt;email:contentId&gt;</a>
+            ⟶ Sets the <code>Content-ID:</code> header while trimming the body and surrounding with <code>&lt;…&gt;</code>.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setContent-java.lang.Object-java.lang.String-">Part.setContent(…)</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-file">&lt;email:file&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
+      </li>
+      <li>
+        <a href="@{project.url}]]>&tld;<![CDATA[/tag-data">&lt;email:data&gt;</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
+      </li>
+    </ul>
+    <p>
+      The nesting allowed is:
+    </p>
+    <ul>
+      <li style="list-style:none"><a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        <ul>
+          <li style="list-style:none"><em style="font-family:monospace">+</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-to">&lt;email:to&gt;</a></li>
+          <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-from">&lt;email:from&gt;</a></li>
+          <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a></li>
+          <li style="list-style:none"><em style="font-family:monospace">*</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-header">&lt;email:header&gt;</a></li>
+          <li style="list-style:none"><em style="font-family:monospace">?</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-contentId">&lt;email:contentId&gt;</a></li>
+          <li style="list-style:none"><em style="font-family:monospace">!</em> Exactly one of:
+            <ul>
+              <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a></li>
+              <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-file">&lt;email:file&gt;</a></li>
+              <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-data">&lt;email:data&gt;</a></li>
+              <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a>
+                <ul>
+                  <li style="list-style:none"><em style="font-family:monospace">+</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a>
+                    <ul>
+                      <li style="list-style:none"><em style="font-family:monospace">*</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-header">&lt;email:header&gt;</a></li>
+                      <li style="list-style:none"><em style="font-family:monospace">?</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-contentId">&lt;email:contentId&gt;</a></li>
+                      <li style="list-style:none"><em style="font-family:monospace">!</em> Exactly one of:
+                        <ul>
+                          <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a></li>
+                          <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-file">&lt;email:file&gt;</a></li>
+                          <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-data">&lt;email:data&gt;</a></li>
+                          <li style="list-style:none"><em style="font-family:monospace">!</em> <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a>
+                            <ul>
+                              <li style="list-style:none"><em style="font-family:monospace">+</em> …</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      <em style="font-family:monospace">*</em> indicates zero or more uses allowed<br />
+      <em style="font-family:monospace">?</em> indicates zero or one use allowed<br />
+      <em style="font-family:monospace">+</em> indicates one or more uses required<br />
+      <em style="font-family:monospace">!</em> indicates exactly one use required
+    </p>
+    <hr />
+    <p>
+      This taglib is part of an extensible suite of interoperable, context-aware,
+      <a href="https://oss.aoapps.com/encoding/">auto-encoding</a> taglibs.
+      All auto-encoding tags generate correct output for their context, provide context information for nested
+      tags, and validate the output of nested tags.  For example,
+      <a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/tag-message">&lt;ao:message&gt;</a> within
+      <a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a> will write its output
+      encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html#TEXT">TEXT</a>,
+      while within <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a> (of type "text/html") will write its
+      output encoded as <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html#XHTML">XHTML</a>.
+    </p>
+    <p>
+      This suite includes, but is not limited to:
+    </p>
+    <ul>
+      <li><a href="https://oss.aoapps.com/encoding/taglib/]]>&aoEncodingTld;<![CDATA[/">AO Encoding Taglib</a></li>
+      <li><a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/">AO Taglib</a></li>
+      <li><a href="https://aoindustries.com/aoweb-struts/aoweb-struts-skin.tld/">AOWeb Struts Skin Taglib</a></li>
+      <li><a href="@{project.url}]]>&tld;<![CDATA[/">NMW Email Taglib</a> (this taglib)</li>
+      <li><a href="https://oss.newmediaworks.com/payment-taglib/]]>&nmwPaymentTld;<![CDATA[/">NMW Payment Taglib</a></li>
+      <!-- TODO: nmw-persistence-taglib once open-source, and many others -->
+    </ul>
+  ]]></description>
+  <display-name>&tld_displayName;</display-name>
+  <tlib-version>
+    <!-- Release: @{project.version} -->
+    @{parsedVersion.majorVersion}.@{parsedVersion.minorVersion}.@{parsedVersion.incrementalVersion}
+  </tlib-version>
+  <short-name>email</short-name>
+  <uri>&tld_uri;</uri>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2021-06-16T14:18:10-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Formats an email then sends the message or stores in an attribute.  The message is constructed through nested tags.
+      </p>
+      <p>
+        The <a href="@{project.url}]]>&tld;<![CDATA[/tag-error">&lt;email:error&gt;</a>
+        and <a href="@{project.url}]]>&tld;<![CDATA[/tag-success">&lt;email:success&gt;</a>
+        tags may be used to determine the results.
+      </p>
+    ]]></description>
+    <name>email</name>
+    <tag-class>com.newmediaworks.taglib.email.EmailTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          The SMTP host to use for sending email.
+          Defaults to the <code>mail.smtp.host</code> <a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/System.html#getProperty(java.lang.String)">system property</a>.
+        </p>
+      ]]></description>
+      <name>smtpHost</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          The SMTP port to use for sending email.
+          Defaults to the <code>mail.smtp.port</code> <a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/System.html#getProperty(java.lang.String)">system property</a>.
+        </p>
+      ]]></description>
+      <name>smtpPort</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          When provided, the email will not be sent.  Instead, it will be converted to
+          a <code>byte[]</code> binary format and stored in the variable with this name.
+        </p>
+      ]]></description>
+      <name>var</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          Provides the scope of the variable that will be set when the var
+          attribute is provided.
+        </p>
+        <p>
+          Must be one of:
+        </p>
+        <ul>
+          <li><code>page</code> (the default)</li>
+          <li><code>request</code></li>
+          <li><code>session</code></li>
+          <li><code>application</code></li>
+        </ul>
+      ]]></description>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2020-12-12T00:47:33-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
+      </p>
+      <p>
+        Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>to</name>
+    <tag-class>&package;.ToTag</tag-class>
+    <body-content>&JSP;</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Provides the <code>To:</code> address.
+          When provided, the body is not invoked.
+          When not provided, the body content trimmed will be used as the address
+        </p>
+      ]]></description>
+      <name>address</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2020-12-12T00:47:33-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        The <code>From:</code> address of the sender of the email.
+      </p>
+      <p>
+        Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>from</name>
+    <tag-class>&package;.FromTag</tag-class>
+    <body-content>&JSP;</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Provides the <code>From:</code> address.
+          When provided, the body is not invoked.
+          When not provided, the body content will be used as the address.
+        </p>
+      ]]></description>
+      <name>address</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2020-12-12T00:47:33-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        The <code>Subject:</code> of the email.
+      </p>
+      <p>
+        Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>subject</name>
+    <tag-class>&package;.SubjectTag</tag-class>
+    <body-content>&JSP;</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          The optional charset for the subject.
+        </p>
+      ]]></description>
+      <name>charset</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Provides the subject.
+          When provided, the body is not invoked.
+          When not provided, the body content trimmed will be used as the subject.
+        </p>
+      ]]></description>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2020-12-12T00:47:33-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Adds or sets a header value to the email or any of its parts.
+      </p>
+      <p>
+        Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+      </p>
+    ]]></description>
+    <name>header</name>
+    <tag-class>&package;.HeaderTag</tag-class>
+    <body-content>&JSP;</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          The name of the header.
+        </p>
+      ]]></description>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Provides the header value.
+          When provided, the body is not invoked.
+          When not provided, the body content trimmed will be used as the value.
+        </p>
+      ]]></description>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          When <code>true</code> (the default), any existing headers will be replaced.
+        </p>
+        <p>
+          When <code>false</code>, the header will be added to any existing values.
+        </p>
+      ]]></description>
+      <name>replace</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>boolean</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-28T01:44:29-05:00" -->
+    <!-- dateModified="2020-12-12T00:47:33-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Sets the <code>Content-ID:</code> header while surrounding with <code>&lt;…&gt;</code>.
+      </p>
+      <p>
+        Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+      </p>
+    ]]></description>
+    <name>contentId</name>
+    <tag-class>&package;.ContentIdTag</tag-class>
+    <body-content>&JSP;</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Provides the <code>Content-ID:</code> header value, will be surrounding with <code>&lt;…&gt;</code>.
+          When provided, the body is not invoked.
+          When not provided, the body content trimmed will be used as the value.
+        </p>
+      ]]></description>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2021-06-16T13:09:39-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        The body of this tag provides the content to the email or any of its parts.
+      </p>
+      <p>
+        Leading and trailing whitespace on the content is trimmed.
+      </p>
+      <p>
+        Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+      </p>
+      <p>
+        The content type depends on the value provided to the type attribute, and defaults to either
+        <code>text/html</code> or <code>application/xhtml+xml</code>, depending on the current
+        <code>serialization</code>.  The content is checked for well-formedness based on its type:
+      </p>
+      <ul>
+        <li><code>javascript</code>, <code>application/javascript</code>, or <code>text/javascript</code> - no validation</li>
+        <li><code>json</code> or <code>application/json</code> - no validation</li>
+        <li><code>ld_json</code> or <code>application/ld+json</code> - no validation</li>
+        <li><code>text</code> or <code>text/plain</code> - no validation</li>
+        <li><code>url</code> or <code>text/url</code> - must be a valid URL</li>
+        <li><code>xhtml</code> or <code>application/xhtml+xml</code> - must be well-formed XHTML content. (Note: Currently only checks character values.)</li>
+        <li><code>xhtml_attribute</code> or <code>application/xhtml+xml+attribute</code> - must be a valid XHTML attribute.</li>
+        <li><code>mysql</code> or <code>text/x+mysql</code> - must be valid for the MySQL command line "mysql"</li>
+        <li><code>psql</code> or <code>text/x+psql</code> - must be valid for the PostgreSQL command line "psql"</li>
+        <li><code>sh</code> or <code>text/x+sh</code> - must be valid shell script</li>
+      </ul>
+    ]]></description>
+    <name>content</name>
+    <tag-class>&package;.ContentTag</tag-class>
+    <body-content>&JSP;</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Specifies the type of content as either short form for a
+          recognized <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html">media type</a>
+          or the full MIME type.
+        </p>
+        <p>
+          Defaults to the content type of the current <code>serialization</code>, which in-turn, defaults to
+          "text/html".
+        </p>
+      ]]></description>
+      <name>type</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          When <code>SGML</code> (the default), sets the content-type to <code>text/html</code>.
+          When <code>XML</code>, sets the content-type to <code>application/xhtml+xml</code>.
+        </p>
+      ]]></description>
+      <name>serialization</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          The <a href="https://www.w3schools.com/tags/tag_doctype.asp">&lt;!DOCTYPE&gt;</a> to use,
+          must be one of <code>default</code>, <code>HTML5</code>, <code>STRICT</code>, <code>TRANSITIONAL</code>,
+          <code>FRAMESET</code>, or <code>NONE</code>.
+        </p>
+        <p>
+          Defaults to <code><a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#DEFAULT">default</a></code>,
+          which is currently <code><a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#HTML5">HTML5</a></code>.
+        </p>
+        <p>
+          <em>Note:</em> The doctype is not written by this tag, however this setting affects
+          the output of nested context-aware tags.  To write the doctype, see
+          <a href="https://oss.aoapps.com/taglib/]]>&aoTld;<![CDATA[/tag-html">&lt;ao:html&gt;</a>
+        </p>
+      ]]></description>
+      <name>doctype</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2020-12-12T01:32:46-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Reads the contents of this email or part from a file.
+      </p>
+      <p>
+        Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+      </p>
+    ]]></description>
+    <name>file</name>
+    <tag-class>&package;.FileTag</tag-class>
+    <body-content>&JSP;</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Provides the context path (starting with <code>"/"</code>) or page-relative path to the file.
+          When provided, the body is not invoked.
+          When not provided, the body content will be used as the path.
+          The path is not trimmed so be careful of any extra whitespace.
+        </p>
+      ]]></description>
+      <name>path</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2021-06-16T14:18:10-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Provides the raw data of this email or part content.
+      </p>
+      <p>
+        Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+      </p>
+    ]]></description>
+    <name>data</name>
+    <tag-class>com.newmediaworks.taglib.email.DataTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Specifies the type of content as either short form for a
+          recognized <a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html">media type</a>
+          or the full MIME type.
+        </p>
+      ]]></description>
+      <name>type</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          The filename used for the attached content.
+        </p>
+      ]]></description>
+      <name>filename</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          Must be one of:
+        </p>
+        <ul>
+          <li><code>byte[]</code></li>
+          <li><a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/String.html">String</a></li>
+          <li><a rel="nofollow" href="@{javadoc.link.javase}java.base/java/io/InputStream.html">InputStream</a></li>
+          <!-- TODO: activation version from Maven property -->
+          <li><a rel="nofollow" href="https://jakarta.ee/specifications/activation/1.2/apidocs/javax/activation/DataSource.html">DataSource</a></li>
+        </ul>
+      ]]></description>
+      <name>data</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Object</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2019-05-25T21:31:49-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        A multipart component of the email.
+      </p>
+      <p>
+        Must contain one or more nested <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+      </p>
+      <p>
+        Allowed within <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
+        or <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a> tags.
+      </p>
+    ]]></description>
+    <name>multipart</name>
+    <tag-class>com.newmediaworks.taglib.email.MultipartTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p>
+          The multipart subtype.
+          Defaults to <code>mixed</code>.
+          Some other values include <code>alternative</code> and <code>related</code>.
+        </p>
+      ]]></description>
+      <name>subtype</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2019-05-25T21:03:55-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        A single part of a multipart component.
+      </p>
+      <p>
+        Only allowed within an <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>bodypart</name>
+    <tag-class>com.newmediaworks.taglib.email.BodyPartTag</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2019-05-25T21:03:55-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        The body of this tag will be processed when there was any type of error while formatting or sending the email.
+      </p>
+      <p>
+        May then use <a href="@{project.url}]]>&tld;<![CDATA[/tag-getErrorReason">&lt;email:getErrorReason&gt;</a>
+        or <a href="@{project.url}]]>&tld;<![CDATA[/function-getErrorReason">${email:getErrorReason()}</a>
+        to get the reason for the error.
+      </p>
+      <p>
+        Must follow an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>error</name>
+    <tag-class>com.newmediaworks.taglib.email.ErrorTag</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2020-12-13T13:48:45-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets the error reason for an email attempt.
+      </p>
+    ]]></description>
+    <name>getErrorReason</name>
+    <tag-class>&package;.GetErrorReasonTag</tag-class>
+    <body-content>empty</body-content>
+  </tag>
+  <tag>
+    <!-- datePublished="2011-05-20T04:37:04-05:00" -->
+    <!-- dateModified="2019-05-25T21:03:55-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        The body of this tag will be processed when the email was successfully formatted and sent (or stored in a variable).
+      </p>
+      <p>
+        Must follow an <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>success</name>
+    <tag-class>com.newmediaworks.taglib.email.SuccessTag</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+  <function>
+    <!-- datePublished="2013-10-02T07:06:03-06:00" -->
+    <!-- dateModified="2020-12-13T13:48:45-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets the error reason for an email attempt.
+      </p>
+    ]]></description>
+    <name>getErrorReason</name>
+    <function-class>com.newmediaworks.taglib.email.Functions</function-class>
+    <function-signature>java.lang.String getErrorReason()</function-signature>
+    <example><![CDATA[<code>${email:getErrorReason()}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2020-12-13T13:48:45-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Determines if the last email resulted in an error.
+      </p>
+    ]]></description>
+    <name>isError</name>
+    <function-class>com.newmediaworks.taglib.email.Functions</function-class>
+    <function-signature>boolean isError()</function-signature>
+    <example><![CDATA[<code>${email:isError()}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2020-12-13T13:48:45-06:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Determines if the last email was successful.
+      </p>
+    ]]></description>
+    <name>isSuccess</name>
+    <function-class>com.newmediaworks.taglib.email.Functions</function-class>
+    <function-signature>boolean isSuccess()</function-signature>
+    <example><![CDATA[<code>${email:isSuccess()}</code>]]></example>
+  </function>
 </taglib>
 <!-- </common> -->

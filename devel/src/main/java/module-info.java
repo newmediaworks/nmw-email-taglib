@@ -21,11 +21,11 @@
  * along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.newmediaworks.taglib.email.devel {
-	exports com.newmediaworks.taglib.email.i18n;
-	// Direct
-	requires com.aoapps.hodgepodge; // <groupId>com.aoapps</groupId><artifactId>ao-hodgepodge</artifactId>
-	requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
-	requires static jsr305; // <groupId>com.google.code.findbugs</groupId><artifactId>jsr305</artifactId>
-	// Java SE
-	requires java.logging;
+  exports com.newmediaworks.taglib.email.i18n;
+  // Direct
+  requires com.aoapps.hodgepodge; // <groupId>com.aoapps</groupId><artifactId>ao-hodgepodge</artifactId>
+  requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
+  requires static jsr305; // <groupId>com.google.code.findbugs</groupId><artifactId>jsr305</artifactId>
+  // Java SE
+  requires java.logging;
 }

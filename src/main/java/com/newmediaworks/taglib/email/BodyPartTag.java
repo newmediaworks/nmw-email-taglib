@@ -43,74 +43,74 @@ import javax.servlet.jsp.tagext.TryCatchFinally;
  */
 public class BodyPartTag extends BodyTagSupport implements PartTag, TryCatchFinally {
 
-	public static final String TAG_NAME = "<email:bodypart>";
+  public static final String TAG_NAME = "<email:bodypart>";
 
-	public BodyPartTag() {
-		init();
-	}
+  public BodyPartTag() {
+    init();
+  }
 
-	private static final long serialVersionUID = 2918414786024763557L;
+  private static final long serialVersionUID = 2918414786024763557L;
 
-	private transient BodyPart bodypart;
+  private transient BodyPart bodypart;
 
-	private void init() {
-		bodypart = null;
-	}
+  private void init() {
+    bodypart = null;
+  }
 
-	@Override
-	public int doStartTag() throws JspException {
-		bodypart = new MimeBodyPart();
-		return EVAL_BODY_INCLUDE;
-	}
+  @Override
+  public int doStartTag() throws JspException {
+    bodypart = new MimeBodyPart();
+    return EVAL_BODY_INCLUDE;
+  }
 
-	@Override
-	public void addHeader(String name, String value) throws MessagingException {
-		bodypart.addHeader(name, value);
-	}
+  @Override
+  public void addHeader(String name, String value) throws MessagingException {
+    bodypart.addHeader(name, value);
+  }
 
-	@Override
-	public void setHeader(String name, String value) throws MessagingException {
-		bodypart.setHeader(name, value);
-	}
+  @Override
+  public void setHeader(String name, String value) throws MessagingException {
+    bodypart.setHeader(name, value);
+  }
 
-	@Override
-	public void setContent(Multipart content) throws MessagingException {
-		bodypart.setContent(content);
-	}
+  @Override
+  public void setContent(Multipart content) throws MessagingException {
+    bodypart.setContent(content);
+  }
 
-	@Override
-	public void setContent(Object o, String type) throws MessagingException {
-		bodypart.setContent(o, type);
-	}
+  @Override
+  public void setContent(Object o, String type) throws MessagingException {
+    bodypart.setContent(o, type);
+  }
 
-	@Override
-	public void setDataHandler(DataHandler dh) throws MessagingException {
-		bodypart.setDataHandler(dh);
-	}
+  @Override
+  public void setDataHandler(DataHandler dh) throws MessagingException {
+    bodypart.setDataHandler(dh);
+  }
 
-	@Override
-	public void setFileName(String filename) throws MessagingException {
-		bodypart.setFileName(filename);
-	}
+  @Override
+  public void setFileName(String filename) throws MessagingException {
+    bodypart.setFileName(filename);
+  }
 
-	@Override
-	public int doEndTag() throws JspException {
-		try {
-			JspTagUtils.requireAncestor(TAG_NAME, this, MultipartTag.TAG_NAME, MultipartTag.class)
-				.addBodyPart(bodypart);
-			return EVAL_PAGE;
-		} catch(MessagingException err) {
-			throw new JspTagException(err.getMessage(), err);
-		}
-	}
+  @Override
+  public int doEndTag() throws JspException {
+    try {
+      JspTagUtils.requireAncestor(TAG_NAME, this, MultipartTag.TAG_NAME, MultipartTag.class)
+        .addBodyPart(bodypart);
+      return EVAL_PAGE;
+    } catch (MessagingException err) {
+      throw new JspTagException(err.getMessage(), err);
+    }
+  }
 
-	@Override
-	public void doCatch(Throwable t) throws Throwable {
-		throw t;
-	}
+  @Override
+  public void doCatch(Throwable t) throws Throwable {
+    throw t;
+  }
 
-	@Override
-	public void doFinally() {
-		init();
-	}
+  @Override
+  public void doFinally() {
+    init();
+  }
 }

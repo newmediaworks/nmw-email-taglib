@@ -42,56 +42,56 @@ import javax.servlet.jsp.tagext.TryCatchFinally;
  */
 public class MultipartTag extends BodyTagSupport implements TryCatchFinally {
 
-	public static final String TAG_NAME = "<email:multipart>";
+  public static final String TAG_NAME = "<email:multipart>";
 
-	public MultipartTag() {
-		init();
-	}
+  public MultipartTag() {
+    init();
+  }
 
-	private static final long serialVersionUID = 1164641608254963685L;
+  private static final long serialVersionUID = 1164641608254963685L;
 
-	private String subtype;
-	public String getSubtype() {
-		return subtype;
-	}
-	public void setSubtype(String subtype) {
-		this.subtype = subtype;
-	}
+  private String subtype;
+  public String getSubtype() {
+    return subtype;
+  }
+  public void setSubtype(String subtype) {
+    this.subtype = subtype;
+  }
 
-	private Multipart multipart;
-	void addBodyPart(BodyPart part) throws MessagingException {
-		multipart.addBodyPart(part);
-	}
+  private Multipart multipart;
+  void addBodyPart(BodyPart part) throws MessagingException {
+    multipart.addBodyPart(part);
+  }
 
-	private void init() {
-		subtype = "mixed";
-		multipart = null;
-	}
+  private void init() {
+    subtype = "mixed";
+    multipart = null;
+  }
 
-	@Override
-	public int doStartTag() throws JspException {
-		multipart = new MimeMultipart(subtype);
-		return EVAL_BODY_INCLUDE;
-	}
+  @Override
+  public int doStartTag() throws JspException {
+    multipart = new MimeMultipart(subtype);
+    return EVAL_BODY_INCLUDE;
+  }
 
-	@Override
-	public int doEndTag() throws JspException {
-		try {
-			JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
-				.setContent(multipart);
-			return EVAL_PAGE;
-		} catch(MessagingException err) {
-			throw new JspTagException(err.getMessage(), err);
-		}
-	}
+  @Override
+  public int doEndTag() throws JspException {
+    try {
+      JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
+        .setContent(multipart);
+      return EVAL_PAGE;
+    } catch (MessagingException err) {
+      throw new JspTagException(err.getMessage(), err);
+    }
+  }
 
-	@Override
-	public void doCatch(Throwable t) throws Throwable {
-		throw t;
-	}
+  @Override
+  public void doCatch(Throwable t) throws Throwable {
+    throw t;
+  }
 
-	@Override
-	public void doFinally() {
-		init();
-	}
+  @Override
+  public void doFinally() {
+    init();
+  }
 }

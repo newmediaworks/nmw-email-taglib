@@ -27,17 +27,17 @@ import com.semanticcms.tagreference.TagReferenceInitializer;
 
 public class NmwEmailTldInitializer extends TagReferenceInitializer {
 
-	public NmwEmailTldInitializer() {
-		super(
-			Maven.properties.getProperty("documented.name") + " Reference",
-			"Taglib Reference",
-			"/email-taglib",
-			"/nmw-email.tld",
-			true,
-			Maven.properties.getProperty("documented.javadoc.link.javase"),
-			Maven.properties.getProperty("documented.javadoc.link.javaee"),
-			// Self
-			"com.newmediaworks.taglib.email", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/"
-		);
-	}
+  public NmwEmailTldInitializer() {
+    super(
+      Maven.properties.getProperty("documented.name") + " Reference",
+      "Taglib Reference",
+      "/email-taglib",
+      "/nmw-email.tld",
+      true,
+      Maven.properties.getProperty("documented.javadoc.link.javase"),
+      Maven.properties.getProperty("documented.javadoc.link.javaee"),
+      // Self
+      "com.newmediaworks.taglib.email", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/"
+    );
+  }
 }

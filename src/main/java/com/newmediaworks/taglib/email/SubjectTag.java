@@ -46,79 +46,81 @@ import javax.servlet.jsp.tagext.JspFragment;
 public class SubjectTag extends EncodingBufferedTag {
 
 /* SimpleTag only: */
-	public static final String TAG_NAME = "<email:subject>";
+  public static final String TAG_NAME = "<email:subject>";
 /**/
 
-	public SubjectTag() {
-		init();
-	}
+  public SubjectTag() {
+    init();
+  }
 
-	@Override
-	public MediaType getContentType() {
-		return MediaType.TEXT;
-	}
+  @Override
+  public MediaType getContentType() {
+    return MediaType.TEXT;
+  }
 
-	@Override
-	public MediaType getOutputType() {
-		return null;
-	}
+  @Override
+  public MediaType getOutputType() {
+    return null;
+  }
 
 /* BodyTag only:
-	private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 2L;
 /**/
 
-	private String charset;
-	public void setCharset(String charset) {
-		this.charset = charset;
-	}
+  private String charset;
+  public void setCharset(String charset) {
+    this.charset = charset;
+  }
 
-	private String value;
-	public void setValue(String value) {
-		this.value = value;
-	}
+  private String value;
+  public void setValue(String value) {
+    this.value = value;
+  }
 
-	private void init() {
-		charset = null;
-		value = null;
-	}
+  private void init() {
+    charset = null;
+    value = null;
+  }
 
-	@Override
+  @Override
 /* BodyTag only:
-	protected int doStartTag(Writer out) throws JspException, IOException {
-		return (value != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
+  protected int doStartTag(Writer out) throws JspException, IOException {
+    return (value != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
 /**/
 /* SimpleTag only: */
-	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
-		if(value == null) super.invoke(body, captureValidator);
+  protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+    if (value == null) {
+      super.invoke(body, captureValidator);
+    }
 /**/
-	}
+  }
 
-	@Override
+  @Override
 /* BodyTag only:
-	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
 /* SimpleTag only: */
-	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
-		try {
-			JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
-				.setSubject((value != null) ? value : capturedBody.trim().toString(), charset);
+    try {
+      JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
+        .setSubject((value != null) ? value : capturedBody.trim().toString(), charset);
 /* BodyTag only:
-			return EVAL_PAGE;
+      return EVAL_PAGE;
 /**/
-		} catch(MessagingException err) {
-			throw new JspTagException(err.getMessage(), err);
-		}
-	}
+    } catch (MessagingException err) {
+      throw new JspTagException(err.getMessage(), err);
+    }
+  }
 
 /* BodyTag only:
-	@Override
-	public void doFinally() {
-		try {
-			init();
-		} finally {
-			super.doFinally();
-		}
-	}
+  @Override
+  public void doFinally() {
+    try {
+      init();
+    } finally {
+      super.doFinally();
+    }
+  }
 /**/
 }

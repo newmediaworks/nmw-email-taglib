@@ -27,18 +27,18 @@ import com.semanticcms.tagreference.TagReferenceInitializer;
 
 public class NmwEmailLegacyTldInitializer extends TagReferenceInitializer {
 
-	public NmwEmailLegacyTldInitializer() {
-		super(
-			Maven.properties.getProperty("documented.name") + " Reference (Legacy)",
-			"Taglib Reference (Legacy)",
-			"/email-taglib",
-			"/nmw-email-legacy.tld",
-			true,
-			Maven.properties.getProperty("documented.javadoc.link.javase"),
-			Maven.properties.getProperty("documented.javadoc.link.javaee"),
-			// Self
-			"com.newmediaworks.taglib.email", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/",
-			"com.newmediaworks.taglib.email.legacy", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/"
-		);
-	}
+  public NmwEmailLegacyTldInitializer() {
+    super(
+      Maven.properties.getProperty("documented.name") + " Reference (Legacy)",
+      "Taglib Reference (Legacy)",
+      "/email-taglib",
+      "/nmw-email-legacy.tld",
+      true,
+      Maven.properties.getProperty("documented.javadoc.link.javase"),
+      Maven.properties.getProperty("documented.javadoc.link.javaee"),
+      // Self
+      "com.newmediaworks.taglib.email", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/",
+      "com.newmediaworks.taglib.email.legacy", Maven.properties.getProperty("project.url") + "apidocs/com.newmediaworks.taglib.email/"
+    );
+  }
 }

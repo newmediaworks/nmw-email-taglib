@@ -47,87 +47,92 @@ import javax.servlet.jsp.tagext.JspFragment;
 public class HeaderTag extends EncodingBufferedTag {
 
 /* SimpleTag only: */
-	public static final String TAG_NAME = "<email:header>";
+  public static final String TAG_NAME = "<email:header>";
 /**/
 
-	public HeaderTag() {
-		init();
-	}
+  public HeaderTag() {
+    init();
+  }
 
-	@Override
-	public MediaType getContentType() {
-		return MediaType.TEXT;
-	}
+  @Override
+  public MediaType getContentType() {
+    return MediaType.TEXT;
+  }
 
-	@Override
-	public MediaType getOutputType() {
-		return null;
-	}
+  @Override
+  public MediaType getOutputType() {
+    return null;
+  }
 
 /* BodyTag only:
-	private static final long serialVersionUID = 2318039931799092070L;
+  private static final long serialVersionUID = 2318039931799092070L;
 /**/
 
-	private String name;
-	public void setName(String name) {
-		this.name = name;
-	}
+  private String name;
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	private String value;
-	public void setValue(String value) {
-		this.value = value;
-	}
+  private String value;
+  public void setValue(String value) {
+    this.value = value;
+  }
 
-	private boolean replace;
-	public void setReplace(boolean replace) {
-		this.replace = replace;
-	}
+  private boolean replace;
+  public void setReplace(boolean replace) {
+    this.replace = replace;
+  }
 
-	private void init() {
-		name = null;
-		value = null;
-		replace = true;
-	}
+  private void init() {
+    name = null;
+    value = null;
+    replace = true;
+  }
 
-	@Override
+  @Override
 /* BodyTag only:
-	protected int doStartTag(Writer out) throws JspException, IOException {
-		return (value != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
+  protected int doStartTag(Writer out) throws JspException, IOException {
+    return (value != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
 /**/
 /* SimpleTag only: */
-	protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
-		if(value == null) super.invoke(body, captureValidator);
+  protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
+    if (value == null) {
+      super.invoke(body, captureValidator);
+    }
 /**/
-	}
+  }
 
-	@Override
+  @Override
 /* BodyTag only:
-	protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
 /* SimpleTag only: */
-	protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
 /**/
-		try {
-			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
-			String headerValue = (value != null) ? value : capturedBody.trim().toString();
-			if(replace) partTag.setHeader(name, headerValue);
-			else partTag.addHeader(name, headerValue);
+    try {
+      PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
+      String headerValue = (value != null) ? value : capturedBody.trim().toString();
+      if (replace) {
+        partTag.setHeader(name, headerValue);
+      } else {
+        partTag.addHeader(name, headerValue);
+      }
 /* BodyTag only:
-			return EVAL_PAGE;
+      return EVAL_PAGE;
 /**/
-		} catch(MessagingException err) {
-			throw new JspTagException(err.getMessage(), err);
-		}
-	}
+    } catch (MessagingException err) {
+      throw new JspTagException(err.getMessage(), err);
+    }
+  }
 
 /* BodyTag only:
-	@Override
-	public void doFinally() {
-		try {
-			init();
-		} finally {
-			super.doFinally();
-		}
-	}
+  @Override
+  public void doFinally() {
+    try {
+      init();
+    } finally {
+      super.doFinally();
+    }
+  }
 /**/
 }

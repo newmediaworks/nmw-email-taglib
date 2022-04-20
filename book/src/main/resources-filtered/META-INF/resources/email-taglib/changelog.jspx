@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
-Copyright (C) 2019, 2020, 2021  New Media Works
+Copyright (C) 2019, 2020, 2021, 2022  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -22,277 +22,277 @@ You should have received a copy of the GNU Lesser General Public License
 along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <jsp:root
-	xmlns:ao="https://oss.aoapps.com/taglib/"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:changelog="https://semanticcms.com/changelog/taglib/"
-	xmlns:core="https://semanticcms.com/core/taglib/"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-	xmlns:jsp="http://java.sun.com/JSP/Page"
-	version="2.1"
+  xmlns:ao="https://oss.aoapps.com/taglib/"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:changelog="https://semanticcms.com/changelog/taglib/"
+  xmlns:core="https://semanticcms.com/core/taglib/"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:jsp="http://java.sun.com/JSP/Page"
+  version="2.1"
 >
-	<jsp:directive.page language="java" pageEncoding="UTF-8" />
-	<jsp:directive.page session="false" />
-	<core:page
-		title="@{documented.name} Changelog"
-		shortTitle="Changelog"
-		tocLevels="1"
-		datePublished="2019-05-24T18:18:07-05:00"
-		dateModified="2021-10-19T20:40:51-05:00"
-	>
-		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
-			<changelog:release
-				projectName="@{documented.name}"
-				version="@{project.version}"
-				groupId="@{project.groupId}"
-				artifactId="@{documented.artifactId}"
-				repository="@{nexusUrl}content/repositories/snapshots/"
-				scmUrl="@{project.scm.url}"
-			/>
-		</c:if>
+  <jsp:directive.page language="java" pageEncoding="UTF-8" />
+  <jsp:directive.page session="false" />
+  <core:page
+    title="@{documented.name} Changelog"
+    shortTitle="Changelog"
+    tocLevels="1"
+    datePublished="2019-05-24T18:18:07-05:00"
+    dateModified="2021-10-19T20:40:51-05:00"
+  >
+    <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
+      <changelog:release
+        projectName="@{documented.name}"
+        version="@{project.version}"
+        groupId="@{project.groupId}"
+        artifactId="@{documented.artifactId}"
+        repository="@{nexusUrl}content/repositories/snapshots/"
+        scmUrl="@{project.scm.url}"
+      />
+    </c:if>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="2.1.1"
-			datePublished="2021-10-19T20:40:51-05:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>Updated dependencies.</li>
-				<li>
-					Renamed <code>EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE</code>
-					and changed type to <code>Scope.Request.Attribute</code>.
-				</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="2.1.1"
+      datePublished="2021-10-19T20:40:51-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Updated dependencies.</li>
+        <li>
+          Renamed <code>EmailTag.ERROR_REQUEST_ATTRIBUTE_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE</code>
+          and changed type to <code>Scope.Request.Attribute</code>.
+        </li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="2.1.0"
-			datePublished="2021-07-22T06:18:09-05:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>Updated to <ao:a rel="nofollow" href="https://www.oracle.com/java/technologies/javaee/javaeetechnologies.html#javaee7">Java™ EE 7 Web Profile</ao:a> (Servlet 3.1, JSP 2.3, EL 3.0, and JSTL 1.2).</li>
-				<li>Minimum Java version changed from 1.8 to 11.</li>
-				<li>
-					Now supports Java 9+ modules.  Due to still having filename-based automatic module dependencies,
-					*-SNAPSHOT versions include <code>module-info.class</code> while releases include the
-					<code>Automatic-Module-Name</code> manifest entry.  To minimize the difference between these
-					modes, <code>module-info.java</code> does not perform any transitive requires.
-				</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="2.1.0"
+      datePublished="2021-07-22T06:18:09-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Updated to <ao:a rel="nofollow" href="https://www.oracle.com/java/technologies/javaee/javaeetechnologies.html#javaee7">Java™ EE 7 Web Profile</ao:a> (Servlet 3.1, JSP 2.3, EL 3.0, and JSTL 1.2).</li>
+        <li>Minimum Java version changed from 1.8 to 11.</li>
+        <li>
+          Now supports Java 9+ modules.  Due to still having filename-based automatic module dependencies,
+          *-SNAPSHOT versions include <code>module-info.class</code> while releases include the
+          <code>Automatic-Module-Name</code> manifest entry.  To minimize the difference between these
+          modes, <code>module-info.java</code> does not perform any transitive requires.
+        </li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="2.0.3"
-			datePublished="2020-12-29T21:54:29-06:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>
-					<core:link page="nmw-email.tld/tag-email" /> now propagates
-					<ao:a rel="nofollow" href="@{javadoc.link.javaee}javax/servlet/jsp/SkipPageException.html">SkipPageException</ao:a>
-					so the page processing may correctly terminate.  Previously, the exception would be caught as if
-					it were an error in sending mail, and page processing would continue.
-				</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="2.0.3"
+      datePublished="2020-12-29T21:54:29-06:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>
+          <core:link page="nmw-email.tld/tag-email" /> now propagates
+          <ao:a rel="nofollow" href="@{javadoc.link.javaee}javax/servlet/jsp/SkipPageException.html">SkipPageException</ao:a>
+          so the page processing may correctly terminate.  Previously, the exception would be caught as if
+          it were an error in sending mail, and page processing would continue.
+        </li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="2.0.2"
-			datePublished="2020-12-17T12:09:05-06:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>Switched to strict InetAddress parsing.</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="2.0.2"
+      datePublished="2020-12-17T12:09:05-06:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Switched to strict InetAddress parsing.</li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="2.0.1"
-			datePublished="2020-12-14T04:16:30-06:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>
-					<core:link page="nmw-email.tld/tag-data" /> "type" attribute now accepts short forms for
-					recognized <ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html">media types</ao:a>.
-					This matches the changes made to <core:link page="nmw-email.tld/tag-content" />.
-				</li>
-				<li>
-					<core:link page="nmw-email.tld/tag-content" /> once again accepts all values for "type" attribute.
-					Instead of throwing an exception, which was behavior changed in the previous release, it now
-					logs a warning, disables character validation, and disables any in-context translator markup.
-				</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="2.0.1"
+      datePublished="2020-12-14T04:16:30-06:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>
+          <core:link page="nmw-email.tld/tag-data" /> "type" attribute now accepts short forms for
+          recognized <ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html">media types</ao:a>.
+          This matches the changes made to <core:link page="nmw-email.tld/tag-content" />.
+        </li>
+        <li>
+          <core:link page="nmw-email.tld/tag-content" /> once again accepts all values for "type" attribute.
+          Instead of throwing an exception, which was behavior changed in the previous release, it now
+          logs a warning, disables character validation, and disables any in-context translator markup.
+        </li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="2.0.0"
-			datePublished="2020-12-13T14:19:41-06:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>
-					<strong>Taglib URI changed</strong> from <code>http://taglibs.newmediaworks.com/email</code> to
-					<code>@{project.url}</code>.
-				</li>
-				<li>Updated dependencies.</li>
-				<li>
-					Cleaned-up use of <code>JspTagException</code> versus <code>JspException</code>.  Generally,
-					methods declare <code>throws JspException</code> while actually throwing instances of
-					<code>JspTagException</code>.  The exception to this is private implementation methods that
-					both declare and throw <code>JspTagException</code>.
-				</li>
-				<li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
-				<li>
-					Split development-only classes into a new sub-project in <code>devel/</code>.  This
-					sub-project is used only for development and is never deployed to artifact repositories.
-				</li>
-				<li>
-					Renamed <code>EmailTag.ERROR_REQUEST_PARAMETER_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE_NAME</code>,
-					since the error is in request attributes, not parameters.
-				</li>
-				<li>
-					<p>
-						Integrated with <ao:a href="https://oss.aoapps.com/encoding/taglib/">AO Encoding Taglib</ao:a>
-						for automatic encoding based on tag context.  This means more seamless interaction with other
-						AO Encoding-aware tools, such as <ao:a href="https://oss.aoapps.com/taglib/">AO Taglib</ao:a>.
-					</p>
-					<p>
-						As an example, use of <ao:a href="https://oss.aoapps.com/taglib/ao.tld/tag-message"><![CDATA[&lt;ao:message&gt;]]></ao:a>
-						within <core:link page="nmw-email.tld/tag-subject" /> will automatically encode its output
-						as <ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html#TEXT">TEXT</ao:a>.
-					</p>
-				</li>
-				<li>
-					<core:link page="nmw-email.tld/tag-file" /> now copies into a
-					<ao:a href="https://oss.aoapps.com/tempfiles/servlet/apidocs/com.aoapps.tempfiles/com/aoapps/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
-					when unable to directly access the resource as a file.  This enables:
-					<ol>
-						<li>Access to web resources contained in <code>/META-INF/resources/</code> within <code>/WEB-INF/lib/*.jar</code></li>
-						<li>Access to web resources while running as an unexploded <code>*.war</code> file</li>
-					</ol>
-				</li>
-				<li>
-					Added more attributes for <ao:a rel="nofollow" href="https://docs.oracle.com/cd/E19226-01/820-7627/gjddd/">JSP Expression Language</ao:a>
-					integration.  Implementations still fall-back to body content when the attribute is not specified.
-				</li>
-				<li><core:link page="nmw-email.tld/tag-file" /> now supports page-relative paths.</li>
-				<li>
-					<core:link page="nmw-email.tld/tag-content" /> has new <code>serialization</code> and <code>doctype</code>
-					attributes, that default to <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Serialization.html#SGML">SGML</ao:a></code>
-					and <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
-					is currently <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
-				</li>
-				<li>
-					<core:link page="nmw-email.tld/tag-content" /> now disables in-context translation editor scripting.
-					Text or comment markup may still be performed on the content.
-				</li>
-				<li>
-					Added <core:link page="nmw-email-legacy.tld/">alternate implementation</core:link> compatible
-					with legacy JSP that use scriptlets.
-				</li>
-				<li>
-					<core:link page="nmw-email.tld/tag-getErrorReason" /> no longer has to be nested inside
-					<core:link page="nmw-email.tld/tag-error" />.  It will still get any error reason from the last
-					invocation of <core:link page="nmw-email.tld/tag-email" />.
-				</li>
-				<li>
-					New function <core:link page="nmw-email.tld/function-isError" /> as a functional counterpart to
-					<core:link page="nmw-email.tld/tag-error" />.
-				</li>
-				<li>
-					New function <core:link page="nmw-email.tld/function-isSuccess" /> as a functional counterpart to
-					<core:link page="nmw-email.tld/tag-success" />.
-				</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="2.0.0"
+      datePublished="2020-12-13T14:19:41-06:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>
+          <strong>Taglib URI changed</strong> from <code>http://taglibs.newmediaworks.com/email</code> to
+          <code>@{project.url}</code>.
+        </li>
+        <li>Updated dependencies.</li>
+        <li>
+          Cleaned-up use of <code>JspTagException</code> versus <code>JspException</code>.  Generally,
+          methods declare <code>throws JspException</code> while actually throwing instances of
+          <code>JspTagException</code>.  The exception to this is private implementation methods that
+          both declare and throw <code>JspTagException</code>.
+        </li>
+        <li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
+        <li>
+          Split development-only classes into a new sub-project in <code>devel/</code>.  This
+          sub-project is used only for development and is never deployed to artifact repositories.
+        </li>
+        <li>
+          Renamed <code>EmailTag.ERROR_REQUEST_PARAMETER_NAME</code> to <code>ERROR_REQUEST_ATTRIBUTE_NAME</code>,
+          since the error is in request attributes, not parameters.
+        </li>
+        <li>
+          <p>
+            Integrated with <ao:a href="https://oss.aoapps.com/encoding/taglib/">AO Encoding Taglib</ao:a>
+            for automatic encoding based on tag context.  This means more seamless interaction with other
+            AO Encoding-aware tools, such as <ao:a href="https://oss.aoapps.com/taglib/">AO Taglib</ao:a>.
+          </p>
+          <p>
+            As an example, use of <ao:a href="https://oss.aoapps.com/taglib/ao.tld/tag-message"><![CDATA[&lt;ao:message&gt;]]></ao:a>
+            within <core:link page="nmw-email.tld/tag-subject" /> will automatically encode its output
+            as <ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/MediaType.html#TEXT">TEXT</ao:a>.
+          </p>
+        </li>
+        <li>
+          <core:link page="nmw-email.tld/tag-file" /> now copies into a
+          <ao:a href="https://oss.aoapps.com/tempfiles/servlet/apidocs/com.aoapps.tempfiles/com/aoapps/tempfiles/servlet/TempFileContextEE.html#get(javax.servlet.ServletRequest)">request-scope temporary file</ao:a>
+          when unable to directly access the resource as a file.  This enables:
+          <ol>
+            <li>Access to web resources contained in <code>/META-INF/resources/</code> within <code>/WEB-INF/lib/*.jar</code></li>
+            <li>Access to web resources while running as an unexploded <code>*.war</code> file</li>
+          </ol>
+        </li>
+        <li>
+          Added more attributes for <ao:a rel="nofollow" href="https://docs.oracle.com/cd/E19226-01/820-7627/gjddd/">JSP Expression Language</ao:a>
+          integration.  Implementations still fall-back to body content when the attribute is not specified.
+        </li>
+        <li><core:link page="nmw-email.tld/tag-file" /> now supports page-relative paths.</li>
+        <li>
+          <core:link page="nmw-email.tld/tag-content" /> has new <code>serialization</code> and <code>doctype</code>
+          attributes, that default to <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Serialization.html#SGML">SGML</ao:a></code>
+          and <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#DEFAULT">default</ao:a></code> (which
+          is currently <code><ao:a href="https://oss.aoapps.com/encoding/apidocs/com.aoapps.encoding/com/aoapps/encoding/Doctype.html#HTML5">HTML5</ao:a></code>).
+        </li>
+        <li>
+          <core:link page="nmw-email.tld/tag-content" /> now disables in-context translation editor scripting.
+          Text or comment markup may still be performed on the content.
+        </li>
+        <li>
+          Added <core:link page="nmw-email-legacy.tld/">alternate implementation</core:link> compatible
+          with legacy JSP that use scriptlets.
+        </li>
+        <li>
+          <core:link page="nmw-email.tld/tag-getErrorReason" /> no longer has to be nested inside
+          <core:link page="nmw-email.tld/tag-error" />.  It will still get any error reason from the last
+          invocation of <core:link page="nmw-email.tld/tag-email" />.
+        </li>
+        <li>
+          New function <core:link page="nmw-email.tld/function-isError" /> as a functional counterpart to
+          <core:link page="nmw-email.tld/tag-error" />.
+        </li>
+        <li>
+          New function <core:link page="nmw-email.tld/function-isSuccess" /> as a functional counterpart to
+          <core:link page="nmw-email.tld/tag-success" />.
+        </li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="1.0.3"
-			datePublished="2020-06-11T11:05:41-05:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>
-					Fixed French translations properly encode <code>'</code> as <code>''</code> inside
-					resource bundles.
-				</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.0.3"
+      datePublished="2020-06-11T11:05:41-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>
+          Fixed French translations properly encode <code>'</code> as <code>''</code> inside
+          resource bundles.
+        </li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="1.0.2"
-			datePublished="2020-03-30T02:32:25-05:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>Minimum Java version changed from 1.7 to 1.8.</li>
-				<li>
-					Reduced use of property substitutions in <code>pom.xml</code>.
-					This is to help 3rd-party parsers that fail to perform full Maven-compatible substitutions.
-				</li>
-				<li>Using constants from new <code>ContentType</code> class.</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.0.2"
+      datePublished="2020-03-30T02:32:25-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Minimum Java version changed from 1.7 to 1.8.</li>
+        <li>
+          Reduced use of property substitutions in <code>pom.xml</code>.
+          This is to help 3rd-party parsers that fail to perform full Maven-compatible substitutions.
+        </li>
+        <li>Using constants from new <code>ContentType</code> class.</li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="1.0.1"
-			datePublished="2019-10-12T10:17:26-05:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>Updated dependencies.</li>
-			</ul>
-		</changelog:release>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.0.1"
+      datePublished="2019-10-12T10:17:26-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Updated dependencies.</li>
+      </ul>
+    </changelog:release>
 
-		<changelog:release
-			projectName="@{documented.name}"
-			version="1.0.0"
-			datePublished="2019-06-24T16:21:01-05:00"
-			groupId="@{project.groupId}"
-			artifactId="@{documented.artifactId}"
-			scmUrl="@{project.scm.url}"
-		>
-			<ul>
-				<li>Project moved to GitHub and Maven.</li>
-				<li>Minimum Java version changed from 1.6 to 1.7.</li>
-				<li>Tag library version changed from 2.0 to 2.1.</li>
-				<li>Significantly improved the <core:link page="nmw-email.tld/">taglib documentation</core:link>.</li>
-				<li>Improved the <core:link page="apidocs/index.jspx">Java API documentation</core:link>.</li>
-				<li>Using managed dependencies:
-					<ol>
-						<li>This project uses managed dependencies.</li>
-						<li>This project's managed dependencies may also be imported by other projects.</li>
-					</ol>
-				</li>
-			</ul>
-		</changelog:release>
-	</core:page>
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.0.0"
+      datePublished="2019-06-24T16:21:01-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Project moved to GitHub and Maven.</li>
+        <li>Minimum Java version changed from 1.6 to 1.7.</li>
+        <li>Tag library version changed from 2.0 to 2.1.</li>
+        <li>Significantly improved the <core:link page="nmw-email.tld/">taglib documentation</core:link>.</li>
+        <li>Improved the <core:link page="apidocs/index.jspx">Java API documentation</core:link>.</li>
+        <li>Using managed dependencies:
+          <ol>
+            <li>This project uses managed dependencies.</li>
+            <li>This project's managed dependencies may also be imported by other projects.</li>
+          </ol>
+        </li>
+      </ul>
+    </changelog:release>
+  </core:page>
 </jsp:root>

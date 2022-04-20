@@ -30,35 +30,37 @@ import static com.aoapps.servlet.filter.FunctionContext.getRequest;
  */
 public final class Functions {
 
-	/** Make no instances. */
-	private Functions() {throw new AssertionError();}
+  /** Make no instances. */
+  private Functions() {
+    throw new AssertionError();
+  }
 
-	/**
-	 * Gets the error reason for an email attempt.
-	 *
-	 * @see  ErrorTag
-	 * @see  GetErrorReasonTag
-	 */
-	public static String getErrorReason() {
-		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(getRequest()).get();
-	}
+  /**
+   * Gets the error reason for an email attempt.
+   *
+   * @see  ErrorTag
+   * @see  GetErrorReasonTag
+   */
+  public static String getErrorReason() {
+    return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(getRequest()).get();
+  }
 
-	/**
-	 * Determines if the last email resulted in an error.
-	 *
-	 * @see  ErrorTag
-	 * @see  GetErrorReasonTag
-	 */
-	public static boolean isError() {
-		return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(getRequest()).get() != null;
-	}
+  /**
+   * Determines if the last email resulted in an error.
+   *
+   * @see  ErrorTag
+   * @see  GetErrorReasonTag
+   */
+  public static boolean isError() {
+    return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(getRequest()).get() != null;
+  }
 
-	/**
-	 * Determines if the last email was successful.
-	 *
-	 * @see  SuccessTag
-	 */
-	public static boolean isSuccess() {
-		return !isError();
-	}
+  /**
+   * Determines if the last email was successful.
+   *
+   * @see  SuccessTag
+   */
+  public static boolean isSuccess() {
+    return !isError();
+  }
 }

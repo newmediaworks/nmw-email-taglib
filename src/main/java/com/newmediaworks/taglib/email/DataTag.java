@@ -52,68 +52,76 @@ import javax.servlet.jsp.tagext.TryCatchFinally;
  */
 public class DataTag extends TagSupport implements TryCatchFinally {
 
-	private static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, DataTag.class);
+  private static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, DataTag.class);
 
-	public static final String TAG_NAME = "<email:data>";
+  public static final String TAG_NAME = "<email:data>";
 
-	public DataTag() {
-		init();
-	}
+  public DataTag() {
+    init();
+  }
 
-	private static final long serialVersionUID = -4452366609111031502L;
+  private static final long serialVersionUID = -4452366609111031502L;
 
-	private String type;
-	public void setType(String type) {
-		String typeStr = Strings.trim(type);
-		MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
-		if(newMediaType != null) {
-			this.type = newMediaType.getContentType();
-		} else {
-			this.type = typeStr;
-		}
-	}
+  private String type;
+  public void setType(String type) {
+    String typeStr = Strings.trim(type);
+    MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
+    if (newMediaType != null) {
+      this.type = newMediaType.getContentType();
+    } else {
+      this.type = typeStr;
+    }
+  }
 
-	private String filename;
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
+  private String filename;
+  public void setFilename(String filename) {
+    this.filename = filename;
+  }
 
-	private Object data;
-	public void setData(Object data) {
-		this.data = data;
-	}
+  private Object data;
+  public void setData(Object data) {
+    this.data = data;
+  }
 
-	private void init() {
-		type = null;
-		filename = null;
-		data = null;
-	}
+  private void init() {
+    type = null;
+    filename = null;
+    data = null;
+  }
 
-	@Override
-	public int doStartTag() throws JspException {
-		try {
-			PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
-			DataSource ds;
-			if(data instanceof byte[]) ds = new ByteArrayDataSource((byte[])data, type);
-			else if(data instanceof String) ds = new ByteArrayDataSource((String)data, type);
-			else if(data instanceof InputStream) ds = new ByteArrayDataSource((InputStream)data, type);
-			else if(data instanceof DataSource) ds = (DataSource)data;
-			else throw new LocalizedJspTagException(RESOURCES, "invalidDataType");
-			partTag.setDataHandler(new DataHandler(ds));
-			if(filename!=null) partTag.setFileName(filename);
-			return SKIP_BODY;
-		} catch(IOException | MessagingException err) {
-			throw new JspTagException(err.getMessage(), err);
-		}
-	}
+  @Override
+  public int doStartTag() throws JspException {
+    try {
+      PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
+      DataSource ds;
+      if (data instanceof byte[]) {
+        ds = new ByteArrayDataSource((byte[])data, type);
+      } else if (data instanceof String) {
+        ds = new ByteArrayDataSource((String)data, type);
+      } else if (data instanceof InputStream) {
+        ds = new ByteArrayDataSource((InputStream)data, type);
+      } else if (data instanceof DataSource) {
+        ds = (DataSource)data;
+      } else {
+        throw new LocalizedJspTagException(RESOURCES, "invalidDataType");
+      }
+      partTag.setDataHandler(new DataHandler(ds));
+      if (filename != null) {
+        partTag.setFileName(filename);
+      }
+      return SKIP_BODY;
+    } catch (IOException | MessagingException err) {
+      throw new JspTagException(err.getMessage(), err);
+    }
+  }
 
-	@Override
-	public void doCatch(Throwable t) throws Throwable {
-		throw t;
-	}
+  @Override
+  public void doCatch(Throwable t) throws Throwable {
+    throw t;
+  }
 
-	@Override
-	public void doFinally() {
-		init();
-	}
+  @Override
+  public void doFinally() {
+    init();
+  }
 }
