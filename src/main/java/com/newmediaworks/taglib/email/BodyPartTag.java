@@ -97,7 +97,7 @@ public class BodyPartTag extends BodyTagSupport implements PartTag, TryCatchFina
   public int doEndTag() throws JspException {
     try {
       JspTagUtils.requireAncestor(TAG_NAME, this, MultipartTag.TAG_NAME, MultipartTag.class)
-        .addBodyPart(bodypart);
+          .addBodyPart(bodypart);
       return EVAL_PAGE;
     } catch (MessagingException err) {
       throw new JspTagException(err.getMessage(), err);

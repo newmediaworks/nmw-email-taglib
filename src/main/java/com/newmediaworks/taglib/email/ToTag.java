@@ -45,9 +45,10 @@ import javax.servlet.jsp.tagext.JspFragment;
  */
 public class ToTag extends EncodingBufferedTag {
 
-/* SimpleTag only: */
+  /* SimpleTag only: */
   public static final String TAG_NAME = "<email:to>";
-/**/
+
+  /**/
 
   public ToTag() {
     init();
@@ -63,11 +64,12 @@ public class ToTag extends EncodingBufferedTag {
     return null;
   }
 
-/* BodyTag only:
-  private static final long serialVersionUID = 2L;
-/**/
+  /* BodyTag only:
+    private static final long serialVersionUID = 2L;
+  /**/
 
   private String address;
+
   public void setAddress(String address) {
     this.address = address;
   }
@@ -77,37 +79,37 @@ public class ToTag extends EncodingBufferedTag {
   }
 
   @Override
-/* BodyTag only:
-  protected int doStartTag(Writer out) throws JspException, IOException {
-    return (address != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
-/**/
-/* SimpleTag only: */
+  /* BodyTag only:
+    protected int doStartTag(Writer out) throws JspException, IOException {
+      return (address != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
+  /**/
+  /* SimpleTag only: */
   protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
     if (address == null) {
       super.invoke(body, captureValidator);
     }
-/**/
+    /**/
   }
 
   @Override
-/* BodyTag only:
-  protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
-/**/
-/* SimpleTag only: */
+  /* BodyTag only:
+    protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  /**/
+  /* SimpleTag only: */
   protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
-/**/
+    /**/
     try {
       JspTagUtils.requireAncestor(TAG_NAME, this, EmailTag.TAG_NAME, EmailTag.class)
-        .addToAddress((address != null) ? address : capturedBody.trim().toString());
-/* BodyTag only:
-      return EVAL_PAGE;
-/**/
+          .addToAddress((address != null) ? address : capturedBody.trim().toString());
+      /* BodyTag only:
+          return EVAL_PAGE;
+    /**/
     } catch (MessagingException err) {
       throw new JspTagException(err.getMessage(), err);
     }
   }
 
-/* BodyTag only:
+  /* BodyTag only:
   @Override
   public void doFinally() {
     try {

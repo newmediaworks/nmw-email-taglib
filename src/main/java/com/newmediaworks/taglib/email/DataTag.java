@@ -63,6 +63,7 @@ public class DataTag extends TagSupport implements TryCatchFinally {
   private static final long serialVersionUID = -4452366609111031502L;
 
   private String type;
+
   public void setType(String type) {
     String typeStr = Strings.trim(type);
     MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
@@ -74,11 +75,13 @@ public class DataTag extends TagSupport implements TryCatchFinally {
   }
 
   private String filename;
+
   public void setFilename(String filename) {
     this.filename = filename;
   }
 
   private Object data;
+
   public void setData(Object data) {
     this.data = data;
   }
@@ -95,13 +98,13 @@ public class DataTag extends TagSupport implements TryCatchFinally {
       PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
       DataSource ds;
       if (data instanceof byte[]) {
-        ds = new ByteArrayDataSource((byte[])data, type);
+        ds = new ByteArrayDataSource((byte[]) data, type);
       } else if (data instanceof String) {
-        ds = new ByteArrayDataSource((String)data, type);
+        ds = new ByteArrayDataSource((String) data, type);
       } else if (data instanceof InputStream) {
-        ds = new ByteArrayDataSource((InputStream)data, type);
+        ds = new ByteArrayDataSource((InputStream) data, type);
       } else if (data instanceof DataSource) {
-        ds = (DataSource)data;
+        ds = (DataSource) data;
       } else {
         throw new LocalizedJspTagException(RESOURCES, "invalidDataType");
       }

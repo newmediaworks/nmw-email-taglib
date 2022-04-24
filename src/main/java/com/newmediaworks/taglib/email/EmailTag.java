@@ -69,7 +69,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
   public static final String ERROR_REQUEST_ATTRIBUTE_NAME = EmailTag.class.getName() + ".error";
 
   public static final ScopeEE.Request.Attribute<String> ERROR_REQUEST_ATTRIBUTE =
-    ScopeEE.REQUEST.attribute(ERROR_REQUEST_ATTRIBUTE_NAME);
+      ScopeEE.REQUEST.attribute(ERROR_REQUEST_ATTRIBUTE_NAME);
 
   /**
    * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
@@ -78,7 +78,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
   public static final String ERROR_REQUEST_PARAMETER_NAME = ERROR_REQUEST_ATTRIBUTE_NAME;
 
   private static Integer parseInteger(String s) throws NumberFormatException {
-    if (s == null || (s=s.trim()).isEmpty()) {
+    if (s == null || (s = s.trim()).isEmpty()) {
       return null;
     }
     return Integer.valueOf(s);
@@ -91,21 +91,25 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
   private static final long serialVersionUID = -345960017501587726L;
 
   private String smtpHost;
+
   public void setSmtpHost(String smtpHost) {
     this.smtpHost = smtpHost;
   }
 
   private Integer smtpPort;
+
   public void setSmtpPort(Integer smtpPort) {
     this.smtpPort = smtpPort;
   }
 
   private ScopeEE.Page.Attribute<byte[]> var;
+
   public void setVar(String var) {
     this.var = (var == null || var.isEmpty()) ? null : ScopeEE.PAGE.attribute(var);
   }
 
   private String scope;
+
   public void setScope(String scope) {
     this.scope = scope;
   }
@@ -211,11 +215,11 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
   public void doCatch(Throwable throwable) throws Throwable {
     assert throwable != null;
     if (throwable instanceof SkipPageException) {
-      throw (SkipPageException)throwable;
+      throw (SkipPageException) throwable;
     } else {
       logger.log(Level.SEVERE, null, throwable);
       String errorMessage = throwable.getMessage();
-      if (errorMessage == null || (errorMessage=errorMessage.trim()).length() == 0) {
+      if (errorMessage == null || (errorMessage = errorMessage.trim()).length() == 0) {
         errorMessage = throwable.toString();
       }
       ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).set(errorMessage);

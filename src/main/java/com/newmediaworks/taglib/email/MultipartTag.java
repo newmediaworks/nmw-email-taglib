@@ -51,14 +51,17 @@ public class MultipartTag extends BodyTagSupport implements TryCatchFinally {
   private static final long serialVersionUID = 1164641608254963685L;
 
   private String subtype;
+
   public String getSubtype() {
     return subtype;
   }
+
   public void setSubtype(String subtype) {
     this.subtype = subtype;
   }
 
   private Multipart multipart;
+
   void addBodyPart(BodyPart part) throws MessagingException {
     multipart.addBodyPart(part);
   }
@@ -78,7 +81,7 @@ public class MultipartTag extends BodyTagSupport implements TryCatchFinally {
   public int doEndTag() throws JspException {
     try {
       JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class)
-        .setContent(multipart);
+          .setContent(multipart);
       return EVAL_PAGE;
     } catch (MessagingException err) {
       throw new JspTagException(err.getMessage(), err);

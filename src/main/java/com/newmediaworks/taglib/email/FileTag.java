@@ -59,13 +59,14 @@ import javax.servlet.jsp.tagext.JspFragment;
  */
 public class FileTag extends EncodingBufferedTag {
 
-/* SimpleTag only: */
+  /* SimpleTag only: */
   public static final String TAG_NAME = "<email:file>";
-/**/
+  /**/
 
-/* SimpleTag only: */
+  /* SimpleTag only: */
   public static final Resources RESOURCES = Resources.getResources(ResourceBundle::getBundle, FileTag.class);
-/**/
+
+  /**/
 
   public FileTag() {
     init();
@@ -81,11 +82,12 @@ public class FileTag extends EncodingBufferedTag {
     return null;
   }
 
-/* BodyTag only:
-  private static final long serialVersionUID = 2L;
-/**/
+  /* BodyTag only:
+    private static final long serialVersionUID = 2L;
+  /**/
 
   private String path;
+
   public void setPath(String path) {
     this.path = path;
   }
@@ -97,33 +99,33 @@ public class FileTag extends EncodingBufferedTag {
   // TODO: realPath (which gets from filesystem) attribute, too?  Might be dangerous if misused - wait until an application requires it.
 
   @Override
-/* BodyTag only:
-  protected int doStartTag(Writer out) throws JspException, IOException {
-    return (path != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
-/**/
-/* SimpleTag only: */
+  /* BodyTag only:
+    protected int doStartTag(Writer out) throws JspException, IOException {
+      return (path != null) ? SKIP_BODY : EVAL_BODY_BUFFERED;
+  /**/
+  /* SimpleTag only: */
   protected void invoke(JspFragment body, MediaValidator captureValidator) throws JspException, IOException {
     if (path == null) {
       super.invoke(body, captureValidator);
     }
-/**/
+    /**/
   }
 
   @Override
-/* BodyTag only:
-  protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
-/**/
-/* SimpleTag only: */
+  /* BodyTag only:
+    protected int doEndTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
+  /**/
+  /* SimpleTag only: */
   protected void doTag(BufferResult capturedBody, Writer out) throws JspException, IOException {
-    PageContext pageContext = (PageContext)getJspContext();
-/**/
+    PageContext pageContext = (PageContext) getJspContext();
+    /**/
     try {
       PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
       ServletContext servletContext = pageContext.getServletContext();
-      HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+      HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
       String _path = HttpServletUtil.getAbsolutePath(
-        request,
-        (path != null) ? path : capturedBody.toString()
+          request,
+          (path != null) ? path : capturedBody.toString()
       );
       String fileName = _path.substring(_path.lastIndexOf('/') + 1);
       File file;
@@ -153,15 +155,15 @@ public class FileTag extends EncodingBufferedTag {
       FileDataSource fds = new FileDataSource(file);
       partTag.setDataHandler(new DataHandler(fds));
       partTag.setFileName(fileName);
-/* BodyTag only:
-      return EVAL_PAGE;
-/**/
+      /* BodyTag only:
+          return EVAL_PAGE;
+    /**/
     } catch (MessagingException err) {
       throw new JspTagException(err.getMessage(), err);
     }
   }
 
-/* BodyTag only:
+  /* BodyTag only:
   @Override
   public void doFinally() {
     try {

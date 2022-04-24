@@ -42,33 +42,34 @@ import javax.servlet.jsp.JspException;
  */
 public class GetErrorReasonTag extends EncodingNullBodyTag {
 
-/* SimpleTag only:
-  public static final String TAG_NAME = "<email:getErrorReason>";
-/**/
+  /* SimpleTag only:
+    public static final String TAG_NAME = "<email:getErrorReason>";
+  /**/
 
   @Override
   public MediaType getOutputType() {
     return MediaType.TEXT;
   }
 
-/* BodyTag only: */
+  /* BodyTag only: */
   private static final long serialVersionUID = -5884622703073716930L;
-/**/
+
+  /**/
 
   @Override
-/* BodyTag only: */
+  /* BodyTag only: */
   protected int doStartTag(Writer out) throws JspException, IOException {
-/**/
-/* SimpleTag only:
-  protected void doTag(Writer out) throws JspException, IOException {
-    PageContext pageContext = (PageContext)getJspContext();
-/**/
+    /**/
+    /* SimpleTag only:
+      protected void doTag(Writer out) throws JspException, IOException {
+        PageContext pageContext = (PageContext)getJspContext();
+    /**/
     String error = EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get();
     if (error != null) {
       out.write(error);
     }
-/* BodyTag only: */
+    /* BodyTag only: */
     return SKIP_BODY;
-/**/
+    /**/
   }
 }

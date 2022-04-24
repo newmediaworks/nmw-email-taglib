@@ -43,6 +43,6 @@ public class ErrorTag extends BodyTagSupport {
   @Override
   public int doStartTag() throws JspException {
     return EmailTag.ERROR_REQUEST_ATTRIBUTE.context(pageContext.getRequest()).get() != null
-      ? EVAL_BODY_INCLUDE : SKIP_BODY;
+        ? EVAL_BODY_INCLUDE : SKIP_BODY;
   }
 }
