@@ -92,6 +92,9 @@ public class ContentTag extends EncodingBufferedTag {
   private String type;
   private MediaType mediaType;
 
+  /**
+   * Sets the type.
+   */
   public void setType(String type) {
     String typeStr = Strings.trim(type);
     MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);
@@ -280,5 +283,5 @@ public class ContentTag extends EncodingBufferedTag {
   // Matches ao-taglib:HtmlTag.java
   public static final ScopeEE.Page.Attribute<String> STRUTS_XHTML_KEY =
       ScopeEE.PAGE.attribute("org.apache.struts.globals.XHTML");
-  // </editor-fold>
+      // </editor-fold>
 }

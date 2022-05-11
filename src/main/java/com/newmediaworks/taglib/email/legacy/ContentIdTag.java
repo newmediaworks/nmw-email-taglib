@@ -23,12 +23,13 @@
 
 package com.newmediaworks.taglib.email.legacy;
 
+import static com.newmediaworks.taglib.email.ContentIdTag.TAG_NAME;
+
 import com.aoapps.encoding.MediaType;
 import com.aoapps.encoding.taglib.legacy.EncodingBufferedBodyTag;
 import com.aoapps.io.buffer.BufferResult;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.newmediaworks.taglib.email.BodyPartTag;
-import static com.newmediaworks.taglib.email.ContentIdTag.TAG_NAME;
 import com.newmediaworks.taglib.email.EmailTag;
 import com.newmediaworks.taglib.email.PartTag;
 import java.io.IOException;
@@ -103,8 +104,8 @@ public class ContentIdTag extends EncodingBufferedBodyTag {
     /**/
     try {
       PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
-      String _value = (value != null) ? value : capturedBody.trim().toString();
-      partTag.setHeader(CONTENT_ID_HEADER, '<' + _value + '>');
+      String myValue = (value != null) ? value : capturedBody.trim().toString();
+      partTag.setHeader(CONTENT_ID_HEADER, '<' + myValue + '>');
       /* BodyTag only: */
       return EVAL_PAGE;
       /**/

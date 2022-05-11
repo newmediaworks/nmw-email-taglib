@@ -26,6 +26,8 @@ package com.newmediaworks.taglib.email;
 import static com.aoapps.servlet.filter.FunctionContext.getRequest;
 
 /**
+ * Tag library function implementations.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 public final class Functions {

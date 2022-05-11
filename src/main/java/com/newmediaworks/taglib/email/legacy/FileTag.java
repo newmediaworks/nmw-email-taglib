@@ -23,6 +23,9 @@
 
 package com.newmediaworks.taglib.email.legacy;
 
+import static com.newmediaworks.taglib.email.FileTag.RESOURCES;
+import static com.newmediaworks.taglib.email.FileTag.TAG_NAME;
+
 import com.aoapps.encoding.MediaType;
 import com.aoapps.encoding.taglib.legacy.EncodingBufferedBodyTag;
 import com.aoapps.io.buffer.BufferResult;
@@ -33,8 +36,6 @@ import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.aoapps.tempfiles.servlet.TempFileContextEE;
 import com.newmediaworks.taglib.email.BodyPartTag;
 import com.newmediaworks.taglib.email.EmailTag;
-import static com.newmediaworks.taglib.email.FileTag.RESOURCES;
-import static com.newmediaworks.taglib.email.FileTag.TAG_NAME;
 import com.newmediaworks.taglib.email.PartTag;
 import java.io.File;
 import java.io.IOException;
@@ -122,35 +123,35 @@ public class FileTag extends EncodingBufferedBodyTag {
       PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
       ServletContext servletContext = pageContext.getServletContext();
       HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-      String _path = HttpServletUtil.getAbsolutePath(
+      String myPath = HttpServletUtil.getAbsolutePath(
           request,
           (path != null) ? path : capturedBody.toString()
       );
-      String fileName = _path.substring(_path.lastIndexOf('/') + 1);
+      String fileName = myPath.substring(myPath.lastIndexOf('/') + 1);
       File file;
-      {
-        String realPath = servletContext.getRealPath(_path);
-        if (realPath != null) {
-          // The file is directly accessible
-          file = new File(realPath);
-          if (!file.exists()) {
-            throw new LocalizedJspTagException(RESOURCES, "fileNotExists", realPath);
-          }
-          if (!file.isFile()) {
-            throw new LocalizedJspTagException(RESOURCES, "notRegularFile", realPath);
-          }
-        } else {
-          // Copy from web resource into a temporary file, to run from *.war file directly or to access
-          // resources in /META-INF/resources/ within /WEB-INF/lib/*.jar
-          try (InputStream in = servletContext.getResourceAsStream(_path)) {
-            if (in == null) {
-              throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", _path);
+        {
+          String realPath = servletContext.getRealPath(myPath);
+          if (realPath != null) {
+            // The file is directly accessible
+            file = new File(realPath);
+            if (!file.exists()) {
+              throw new LocalizedJspTagException(RESOURCES, "fileNotExists", realPath);
             }
-            file = TempFileContextEE.get(request).createTempFile(fileName).getFile();
-            FileUtils.copyToFile(in, file);
+            if (!file.isFile()) {
+              throw new LocalizedJspTagException(RESOURCES, "notRegularFile", realPath);
+            }
+          } else {
+            // Copy from web resource into a temporary file, to run from *.war file directly or to access
+            // resources in /META-INF/resources/ within /WEB-INF/lib/*.jar
+            try (InputStream in = servletContext.getResourceAsStream(myPath)) {
+              if (in == null) {
+                throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", myPath);
+              }
+              file = TempFileContextEE.get(request).createTempFile(fileName).getFile();
+              FileUtils.copyToFile(in, file);
+            }
           }
         }
-      }
       FileDataSource fds = new FileDataSource(file);
       partTag.setDataHandler(new DataHandler(fds));
       partTag.setFileName(fileName);

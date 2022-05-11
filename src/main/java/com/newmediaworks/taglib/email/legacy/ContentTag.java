@@ -23,6 +23,9 @@
 
 package com.newmediaworks.taglib.email.legacy;
 
+import static com.newmediaworks.taglib.email.ContentTag.STRUTS_XHTML_KEY;
+import static com.newmediaworks.taglib.email.ContentTag.TAG_NAME;
+
 import com.aoapps.encoding.Doctype;
 import com.aoapps.encoding.MediaType;
 import com.aoapps.encoding.Serialization;
@@ -37,8 +40,6 @@ import com.aoapps.lang.Strings;
 import com.aoapps.lang.attribute.Attribute;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.newmediaworks.taglib.email.BodyPartTag;
-import static com.newmediaworks.taglib.email.ContentTag.STRUTS_XHTML_KEY;
-import static com.newmediaworks.taglib.email.ContentTag.TAG_NAME;
 import com.newmediaworks.taglib.email.EmailTag;
 import com.newmediaworks.taglib.email.PartTag;
 import java.io.IOException;
@@ -92,6 +93,9 @@ public class ContentTag extends EncodingBufferedBodyTag {
   private String type;
   private MediaType mediaType;
 
+  /**
+   * Sets the type.
+   */
   public void setType(String type) {
     String typeStr = Strings.trim(type);
     MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);

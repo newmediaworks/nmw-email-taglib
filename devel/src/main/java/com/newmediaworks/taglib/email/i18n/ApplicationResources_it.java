@@ -28,11 +28,16 @@ import java.util.Locale;
 import javax.annotation.concurrent.ThreadSafe;
 
 /**
+ * Development-only editable resource bundle.
+ *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */
 @ThreadSafe
 public final class ApplicationResources_it extends EditableResourceBundle {
 
+  /**
+   * Loads the editable resource bundle.
+   */
   public ApplicationResources_it() {
     super(
         Locale.ITALIAN,

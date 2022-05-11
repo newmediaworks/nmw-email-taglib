@@ -101,8 +101,8 @@ public class ContentIdTag extends EncodingBufferedTag {
     /**/
     try {
       PartTag partTag = JspTagUtils.requireAncestor(TAG_NAME, this, BodyPartTag.TAG_NAME + " or " + EmailTag.TAG_NAME, PartTag.class);
-      String _value = (value != null) ? value : capturedBody.trim().toString();
-      partTag.setHeader(CONTENT_ID_HEADER, '<' + _value + '>');
+      String myValue = (value != null) ? value : capturedBody.trim().toString();
+      partTag.setHeader(CONTENT_ID_HEADER, '<' + myValue + '>');
       /* BodyTag only:
           return EVAL_PAGE;
     /**/

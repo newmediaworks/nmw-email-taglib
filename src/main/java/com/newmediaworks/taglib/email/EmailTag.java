@@ -63,15 +63,22 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
   public static final String TAG_NAME = "<email:email>";
 
   /**
+   * The request attribute name that stores the error message.
+   *
    * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
    */
   @Deprecated(forRemoval = true)
   public static final String ERROR_REQUEST_ATTRIBUTE_NAME = EmailTag.class.getName() + ".error";
 
+  /**
+   * The request attribute that stores the error message.
+   */
   public static final ScopeEE.Request.Attribute<String> ERROR_REQUEST_ATTRIBUTE =
       ScopeEE.REQUEST.attribute(ERROR_REQUEST_ATTRIBUTE_NAME);
 
   /**
+   * The request attribute name that stores the error message.
+   *
    * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
    */
   @Deprecated(forRemoval = true)
@@ -138,14 +145,23 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
     return EVAL_BODY_INCLUDE;
   }
 
+  /**
+   * Adds a to address.
+   */
   public void addToAddress(String to) throws MessagingException {
     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to, true));
   }
 
+  /**
+   * Sets the from address.
+   */
   public void setFrom(String from) throws MessagingException {
     message.setFrom(new InternetAddress(from, true));
   }
 
+  /**
+   * Sets the subject.
+   */
   public void setSubject(String subject, String charset) throws MessagingException {
     if (charset == null) {
       message.setSubject(subject);

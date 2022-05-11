@@ -64,6 +64,9 @@ public class DataTag extends TagSupport implements TryCatchFinally {
 
   private String type;
 
+  /**
+   * Sets the type.
+   */
   public void setType(String type) {
     String typeStr = Strings.trim(type);
     MediaType newMediaType = MediaType.getMediaTypeByName(typeStr);

@@ -24,9 +24,16 @@
 package com.newmediaworks.taglib.email.book;
 
 import com.semanticcms.tagreference.TagReferenceInitializer;
+import javax.servlet.ServletContainerInitializer;
 
+/**
+ * Initializes a tag reference during {@linkplain ServletContainerInitializer application start-up}.
+ */
 public class NmwEmailLegacyTldInitializer extends TagReferenceInitializer {
 
+  /**
+   * Parses the TLD file.
+   */
   public NmwEmailLegacyTldInitializer() {
     super(
         Maven.properties.getProperty("documented.name") + " Reference (Legacy)",
