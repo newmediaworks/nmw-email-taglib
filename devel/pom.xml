@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
-Copyright (C) 2020, 2021, 2022  New Media Works
+Copyright (C) 2020, 2021, 2022, 2023  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -25,7 +25,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.17.1-POST-SNAPSHOT</version>
+    <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.17.2-SNAPSHOT</version>
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
