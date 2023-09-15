@@ -26,6 +26,8 @@
 def upstreamProjects = [
   // Parent
   'parent', // <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId>
+  // Parent Plugin Dependencies (Avoid cyclic dependency)
+  'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
 
   // Direct
   // No Jenkins: <groupId>javax.activation</groupId><artifactId>activation</artifactId>
