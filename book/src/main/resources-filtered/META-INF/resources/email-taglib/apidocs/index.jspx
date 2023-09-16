@@ -39,5 +39,6 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="API Docs"
     datePublished="2019-05-24T18:16:45-05:00"
     dateModified="${ao:getLastModified('index.html')}"
+    allowRobots="false"
   />
 </jsp:root>
