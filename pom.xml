@@ -38,7 +38,6 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
     <module.name>com.newmediaworks.taglib.email</module.name>
     <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="https://oss.newmediaworks.com/">NMW OSS</a>
 / <a target="${javadoc.target}" href="${project.url}">Email Taglib</a>]]></javadoc.breadcrumbs>
-    <description.html><![CDATA[JSP taglib encapsulating the <a target="${javadoc.target}" href="https://javaee.github.io/javamail/">JavaMail API</a>.]]></description.html>
     <javadoc.taglibReference><![CDATA[
       <li><a target="${javadoc.target}" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>
       <li><a target="${javadoc.target}" href="${project.url}nmw-email-legacy.tld/">Taglib Reference (Legacy)</a></li>
@@ -50,6 +49,8 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
         <li><a target="${javadoc.target}" href="https://oss.aoapps.com/encoding/taglib/">AO Encoding Taglib</a></li>
       </ul>
     </div>]]></javadoc.relatedProjects>
+
+    <description.html><![CDATA[JSP taglib encapsulating the <a target="${javadoc.target}" href="https://javaee.github.io/javamail/">JavaMail API</a>.]]></description.html>
     <!-- TODO: Implement tests -->
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
   </properties>
