@@ -49,6 +49,8 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
         <li><a target="${javadoc.target}" href="https://oss.aoapps.com/encoding/taglib/">AO Encoding Taglib</a></li>
       </ul>
     </div>]]></javadoc.relatedProjects>
+    <!-- Exclude legacy package since is largely a duplicate -->
+    <seo-javadoc-filter.nofollow>default, /com.newmediaworks.taglib.email/com/newmediaworks/taglib/email/legacy/</seo-javadoc-filter.nofollow>
 
     <description.html><![CDATA[JSP taglib encapsulating the <a target="${javadoc.target}" href="https://javaee.github.io/javamail/">JavaMail API</a>.]]></description.html>
     <!-- TODO: Implement tests -->
