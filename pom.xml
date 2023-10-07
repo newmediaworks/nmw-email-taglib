@@ -40,7 +40,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 / <a target="${javadoc.target}" href="${project.url}">Email Taglib</a>]]></javadoc.breadcrumbs>
     <javadoc.taglibReference><![CDATA[
       <li><a target="${javadoc.target}" href="${project.url}nmw-email.tld/">Taglib Reference</a></li>
-      <li><a target="${javadoc.target}" href="${project.url}nmw-email-legacy.tld/">Taglib Reference (Legacy)</a></li>
+      <li><a target="${javadoc.target}" rel="nofollow" href="${project.url}nmw-email-legacy.tld/">Taglib Reference (Legacy)</a></li>
     ]]></javadoc.taglibReference>
     <javadoc.relatedProjects><![CDATA[<div>
       <h2>Related Projects</h2>

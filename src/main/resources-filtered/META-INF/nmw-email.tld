@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
-Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020, 2021, 2022  New Media Works
+Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020, 2021, 2022, 2023  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -28,7 +28,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
 <!ENTITY tld_displayName "@{project.name}">
 <!ENTITY tld_uri "@{project.url}">
 <!ENTITY tld_description "&lt;em&gt;This is the scriptless implementation based on &lt;a rel=&quot;nofollow&quot; href=&quot;@{javadoc.link.javaee}javax/servlet/jsp/tagext/SimpleTagSupport.html&quot;&gt;javax.servlet.jsp.tagext.SimpleTagSupport&lt;/a&gt;.&lt;/em&gt;
-For compatibility with legacy applications that use JSP scriptlets, please use &lt;a href=&quot;@{project.url}nmw-email-legacy.tld/&quot;&gt;@{project.name} Reference (Legacy)&lt;/a&gt;.">
+For compatibility with legacy applications that use JSP scriptlets, please use &lt;a rel=&quot;nofollow&quot; href=&quot;@{project.url}nmw-email-legacy.tld/&quot;&gt;@{project.name} Reference (Legacy)&lt;/a&gt;.">
 <!ENTITY package "com.newmediaworks.taglib.email">
 <!ENTITY JSP "scriptless">
 <!ENTITY aoTld "ao.tld">
