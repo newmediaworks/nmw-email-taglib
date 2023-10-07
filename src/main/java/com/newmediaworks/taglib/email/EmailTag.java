@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -29,6 +29,7 @@ import com.aoapps.servlet.attribute.ScopeEE;
 import com.aoapps.servlet.jsp.LocalizedJspTagException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -91,31 +92,36 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
     return Integer.valueOf(s);
   }
 
+  private static final long serialVersionUID = -345960017501587726L;
+
   public EmailTag() {
     init();
   }
 
-  private static final long serialVersionUID = -345960017501587726L;
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    init();
+  }
 
-  private String smtpHost;
+  private transient String smtpHost;
 
   public void setSmtpHost(String smtpHost) {
     this.smtpHost = smtpHost;
   }
 
-  private Integer smtpPort;
+  private transient Integer smtpPort;
 
   public void setSmtpPort(Integer smtpPort) {
     this.smtpPort = smtpPort;
   }
 
-  private ScopeEE.Page.Attribute<byte[]> var;
+  private transient ScopeEE.Page.Attribute<byte[]> var;
 
   public void setVar(String var) {
     this.var = (var == null || var.isEmpty()) ? null : ScopeEE.PAGE.attribute(var);
   }
 
-  private String scope;
+  private transient String scope;
 
   public void setScope(String scope) {
     this.scope = scope;

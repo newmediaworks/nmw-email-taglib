@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2010, 2011, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2006, 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -43,6 +43,7 @@ import com.newmediaworks.taglib.email.BodyPartTag;
 import com.newmediaworks.taglib.email.EmailTag;
 import com.newmediaworks.taglib.email.PartTag;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Locale;
@@ -73,6 +74,11 @@ public class ContentTag extends EncodingBufferedBodyTag {
     init();
   }
 
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    init();
+  }
+
   @Override
   public MediaType getContentType() {
     return
@@ -90,8 +96,8 @@ public class ContentTag extends EncodingBufferedBodyTag {
   private static final long serialVersionUID = -7055705772215055501L;
   /**/
 
-  private String type;
-  private MediaType mediaType;
+  private transient String type;
+  private transient MediaType mediaType;
 
   /**
    * Sets the type.
@@ -119,13 +125,13 @@ public class ContentTag extends EncodingBufferedBodyTag {
     this.mediaType = newMediaType;
   }
 
-  private Serialization serialization;
+  private transient Serialization serialization;
 
   public void setSerialization(String serialization) {
     this.serialization = Serialization.valueOf(serialization.trim().toUpperCase(Locale.ROOT));
   }
 
-  private Doctype doctype;
+  private transient Doctype doctype;
 
   public void setDoctype(String doctype) {
     doctype = doctype.trim();

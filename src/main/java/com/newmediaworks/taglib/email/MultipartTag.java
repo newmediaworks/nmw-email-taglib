@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -24,6 +24,8 @@
 package com.newmediaworks.taglib.email;
 
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import javax.mail.BodyPart;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -44,13 +46,18 @@ public class MultipartTag extends BodyTagSupport implements TryCatchFinally {
 
   public static final String TAG_NAME = "<email:multipart>";
 
+  private static final long serialVersionUID = 1164641608254963685L;
+
   public MultipartTag() {
     init();
   }
 
-  private static final long serialVersionUID = 1164641608254963685L;
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    init();
+  }
 
-  private String subtype;
+  private transient String subtype;
 
   public String getSubtype() {
     return subtype;
@@ -60,7 +67,7 @@ public class MultipartTag extends BodyTagSupport implements TryCatchFinally {
     this.subtype = subtype;
   }
 
-  private Multipart multipart;
+  private transient Multipart multipart;
 
   void addBodyPart(BodyPart part) throws MessagingException {
     multipart.addBodyPart(part);

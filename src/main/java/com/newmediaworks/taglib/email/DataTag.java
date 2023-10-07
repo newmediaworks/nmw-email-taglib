@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -30,6 +30,7 @@ import com.aoapps.servlet.jsp.LocalizedJspTagException;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.ResourceBundle;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -56,13 +57,18 @@ public class DataTag extends TagSupport implements TryCatchFinally {
 
   public static final String TAG_NAME = "<email:data>";
 
+  private static final long serialVersionUID = -4452366609111031502L;
+
   public DataTag() {
     init();
   }
 
-  private static final long serialVersionUID = -4452366609111031502L;
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    init();
+  }
 
-  private String type;
+  private transient String type;
 
   /**
    * Sets the type.
@@ -77,13 +83,13 @@ public class DataTag extends TagSupport implements TryCatchFinally {
     }
   }
 
-  private String filename;
+  private transient String filename;
 
   public void setFilename(String filename) {
     this.filename = filename;
   }
 
-  private Object data;
+  private transient Object data;
 
   public void setData(Object data) {
     this.data = data;

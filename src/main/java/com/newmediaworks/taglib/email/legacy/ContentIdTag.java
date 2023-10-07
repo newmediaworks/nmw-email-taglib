@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2011, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2011, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -33,6 +33,7 @@ import com.newmediaworks.taglib.email.BodyPartTag;
 import com.newmediaworks.taglib.email.EmailTag;
 import com.newmediaworks.taglib.email.PartTag;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Writer;
 import javax.mail.MessagingException;
 import javax.mail.Part;
@@ -58,6 +59,11 @@ public class ContentIdTag extends EncodingBufferedBodyTag {
     init();
   }
 
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    init();
+  }
+
   @Override
   public MediaType getContentType() {
     return MediaType.TEXT;
@@ -72,7 +78,7 @@ public class ContentIdTag extends EncodingBufferedBodyTag {
   private static final long serialVersionUID = 2L;
   /**/
 
-  private String value;
+  private transient String value;
 
   public void setValue(String value) {
     this.value = value;

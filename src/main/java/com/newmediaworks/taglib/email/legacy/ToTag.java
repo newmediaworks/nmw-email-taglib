@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -31,6 +31,7 @@ import com.aoapps.io.buffer.BufferResult;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.newmediaworks.taglib.email.EmailTag;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Writer;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -54,6 +55,11 @@ public class ToTag extends EncodingBufferedBodyTag {
     init();
   }
 
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    init();
+  }
+
   @Override
   public MediaType getContentType() {
     return MediaType.TEXT;
@@ -68,7 +74,7 @@ public class ToTag extends EncodingBufferedBodyTag {
   private static final long serialVersionUID = 2L;
   /**/
 
-  private String address;
+  private transient String address;
 
   public void setAddress(String address) {
     this.address = address;
