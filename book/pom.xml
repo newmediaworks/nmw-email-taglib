@@ -29,12 +29,12 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib-book</artifactId><version>2.1.2</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib-book</artifactId><version>2.1.2-POST-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>2024-05-12T23:20:09Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
     <module.name>com.newmediaworks.taglib.email.book</module.name>
     <subproject.subpath>book/</subproject.subpath>
     <!-- These values are copied from the project being documented -->
@@ -90,7 +90,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/newmediaworks/nmw-email-taglib.git</connection>
     <developerConnection>scm:git:git@github.com:newmediaworks/nmw-email-taglib.git</developerConnection>
     <url>https://github.com/newmediaworks/nmw-email-taglib</url>
-    <tag>nmw-email-taglib-book-2.1.2</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
