@@ -29,12 +29,12 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib</artifactId><version>2.1.2-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib</artifactId><version>2.1.2</version>
   <packaging>jar</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2024-05-12T22:41:05Z</project.build.outputTimestamp>
     <module.name>com.newmediaworks.taglib.email</module.name>
     <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="https://oss.newmediaworks.com/">NMW OSS</a>
 / <a target="${javadoc.target}" href="${project.url}">Email Taglib</a>]]></javadoc.breadcrumbs>
@@ -89,7 +89,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/newmediaworks/nmw-email-taglib.git</connection>
     <developerConnection>scm:git:git@github.com:newmediaworks/nmw-email-taglib.git</developerConnection>
     <url>https://github.com/newmediaworks/nmw-email-taglib</url>
-    <tag>HEAD</tag>
+    <tag>nmw-email-taglib-2.1.2</tag>
   </scm>
 
   <issueManagement>
