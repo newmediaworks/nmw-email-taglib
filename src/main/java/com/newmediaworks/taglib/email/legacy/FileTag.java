@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023, 2025  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -135,29 +135,29 @@ public class FileTag extends EncodingBufferedBodyTag {
       );
       String fileName = myPath.substring(myPath.lastIndexOf('/') + 1);
       File file;
-        {
-          String realPath = servletContext.getRealPath(myPath);
-          if (realPath != null) {
-            // The file is directly accessible
-            file = new File(realPath);
-            if (!file.exists()) {
-              throw new LocalizedJspTagException(RESOURCES, "fileNotExists", realPath);
+      {
+        String realPath = servletContext.getRealPath(myPath);
+        if (realPath != null) {
+          // The file is directly accessible
+          file = new File(realPath);
+          if (!file.exists()) {
+            throw new LocalizedJspTagException(RESOURCES, "fileNotExists", realPath);
+          }
+          if (!file.isFile()) {
+            throw new LocalizedJspTagException(RESOURCES, "notRegularFile", realPath);
+          }
+        } else {
+          // Copy from web resource into a temporary file, to run from *.war file directly or to access
+          // resources in /META-INF/resources/ within /WEB-INF/lib/*.jar
+          try (InputStream in = servletContext.getResourceAsStream(myPath)) {
+            if (in == null) {
+              throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", myPath);
             }
-            if (!file.isFile()) {
-              throw new LocalizedJspTagException(RESOURCES, "notRegularFile", realPath);
-            }
-          } else {
-            // Copy from web resource into a temporary file, to run from *.war file directly or to access
-            // resources in /META-INF/resources/ within /WEB-INF/lib/*.jar
-            try (InputStream in = servletContext.getResourceAsStream(myPath)) {
-              if (in == null) {
-                throw new LocalizedJspTagException(RESOURCES, "resourceNotExists", myPath);
-              }
-              file = TempFileContextEE.get(request).createTempFile(fileName).getFile();
-              FileUtils.copyToFile(in, file);
-            }
+            file = TempFileContextEE.get(request).createTempFile(fileName).getFile();
+            FileUtils.copyToFile(in, file);
           }
         }
+      }
       FileDataSource fds = new FileDataSource(file);
       partTag.setDataHandler(new DataHandler(fds));
       partTag.setFileName(fileName);
