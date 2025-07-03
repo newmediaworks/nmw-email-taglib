@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
-Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024  New Media Works
+Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024, 2025  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -37,7 +37,7 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2019-05-24T18:18:07-05:00"
-    dateModified="2024-05-12T22:43:55Z"
+    dateModified="2025-07-02T23:05:45Z"
   >
     <c:set var="latestRelease" value="2.1.2" />
     <c:if test="${
@@ -50,7 +50,6 @@ along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
         version="@{project.version}"
         groupId="@{project.groupId}"
         artifactId="@{documented.artifactId}"
-        repository="@{nexusUrl}content/repositories/snapshots/"
         scmUrl="@{project.scm.url}"
       />
     </c:if>
