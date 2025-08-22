@@ -173,11 +173,11 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
       message.setSubject(subject);
     } else {
       message.setSubject(subject, charset);
-      //try {
-      //    message.setSubject(MimeUtility.encodeText(subject, charset, null));
-      //} catch (UnsupportedEncodingException e) {
-      //    throw new MessagingException(e.toString(), e);
-      //}
+      // try {
+      //     message.setSubject(MimeUtility.encodeText(subject, charset, null));
+      // } catch (UnsupportedEncodingException e) {
+      //     throw new MessagingException(e.toString(), e);
+      // }
     }
   }
 
