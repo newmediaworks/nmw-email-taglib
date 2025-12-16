@@ -30,12 +30,12 @@ def upstreamProjects = [
   'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
 
   // Plugins
-  'email-taglib', // <groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib</artifactId>
+  'email-taglib-javaee', // <groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib</artifactId>
 
   // Direct
   '../../ao/oss/badges-1.x', // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
   '../../ao/oss/lang', // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
-  '../../ao/oss/taglib', // <groupId>com.aoapps</groupId><artifactId>ao-taglib</artifactId>
+  '../../ao/oss/taglib-javaee', // <groupId>com.aoapps</groupId><artifactId>ao-taglib</artifactId>
   // No Jenkins: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId>
   '../../ao/semanticcms-1.x/changelog-taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-changelog-taglib</artifactId>
   '../../ao/semanticcms-1.x/core/taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>

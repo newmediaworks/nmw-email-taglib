@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2013, 2019, 2020, 2021, 2022, 2025  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -56,7 +56,7 @@ public final class ApplicationResources extends EditableResourceBundle {
 
   static File getSourceFile(String filename) {
     try {
-      return new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib/src/main/resources/com/newmediaworks/taglib/email/i18n", filename);
+      return new File(System.getProperty("user.home") + "/maven2/nmw/oss/email-taglib-javaee/src/main/resources/com/newmediaworks/taglib/email/i18n", filename);
     } catch (SecurityException e) {
       Logger.getLogger(ApplicationResources.class.getName()).log(
           Level.WARNING,
