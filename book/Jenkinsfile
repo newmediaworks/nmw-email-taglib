@@ -44,7 +44,7 @@ def upstreamProjects = [
   // No Jenkins: <groupId>org.apache.taglibs</groupId><artifactId>taglibs-standard-spec</artifactId>
 
   // Runtime Direct
-  '../../ao/oss/mime-mappings', // <groupId>com.aoapps</groupId><artifactId>mime-mappings</artifactId>
+  '../../ao/oss/mime-mappings-javaee', // <groupId>com.aoapps</groupId><artifactId>mime-mappings</artifactId>
   // No Jenkins: <groupId>org.apache.taglibs</groupId><artifactId>taglibs-standard-impl</artifactId>
 
   // BOM
