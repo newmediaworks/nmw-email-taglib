@@ -33,7 +33,7 @@ def upstreamProjects = [
   'email-taglib', // <groupId>com.newmediaworks</groupId><artifactId>nmw-email-taglib</artifactId>
 
   // Direct
-  '../../ao/oss/badges-1.x', // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
+  '../../ao/oss/badges', // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
   '../../ao/oss/lang', // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
   '../../ao/oss/taglib', // <groupId>com.aoapps</groupId><artifactId>ao-taglib</artifactId>
   // No Jenkins: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId>
