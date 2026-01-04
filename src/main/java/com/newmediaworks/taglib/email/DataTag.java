@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2023, 2025, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -28,24 +28,24 @@ import com.aoapps.lang.Strings;
 import com.aoapps.lang.i18n.Resources;
 import com.aoapps.servlet.jsp.LocalizedJspTagException;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
+import jakarta.activation.DataHandler;
+import jakarta.activation.DataSource;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Part;
+import jakarta.mail.util.ByteArrayDataSource;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.tagext.TagSupport;
+import jakarta.servlet.jsp.tagext.TryCatchFinally;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ResourceBundle;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.mail.MessagingException;
-import javax.mail.Part;
-import javax.mail.util.ByteArrayDataSource;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.TagSupport;
-import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * Provides the raw data of this email or part content.
  *
- * @see  Part#setDataHandler(javax.activation.DataHandler)
+ * @see  Part#setDataHandler(jakarta.activation.DataHandler)
  * @see  ByteArrayDataSource
  * @see  DataSource
  *

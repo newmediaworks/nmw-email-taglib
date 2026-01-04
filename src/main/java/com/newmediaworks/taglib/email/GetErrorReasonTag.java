@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2025, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -25,10 +25,10 @@ package com.newmediaworks.taglib.email;
 
 import com.aoapps.encoding.MediaType;
 import com.aoapps.encoding.taglib.EncodingNullTag;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.PageContext;
 import java.io.IOException;
 import java.io.Writer;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 
 /**
  * Gets the error reason for an email attempt.

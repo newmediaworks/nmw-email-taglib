@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2019, 2022  New Media Works
+ * Copyright (C) 2010, 2011, 2019, 2022, 2025, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -23,10 +23,10 @@
 
 package com.newmediaworks.taglib.email;
 
-import javax.activation.DataHandler;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Part;
+import jakarta.activation.DataHandler;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.Part;
 
 /**
  * A tag that provides values to JavaMail {@link Part} interface.

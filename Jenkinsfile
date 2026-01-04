@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2021, 2022, 2023, 2024, 2025  New Media Works
+ * Copyright (C) 2021, 2022, 2023, 2024, 2025, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -30,7 +30,6 @@ def upstreamProjects = [
   'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
 
   // Direct
-  // No Jenkins: <groupId>javax.activation</groupId><artifactId>activation</artifactId>
   '../../ao/oss/encoding', // <groupId>com.aoapps</groupId><artifactId>ao-encoding</artifactId>
   '../../ao/oss/encoding-servlet', // <groupId>com.aoapps</groupId><artifactId>ao-encoding-servlet</artifactId>
   '../../ao/oss/encoding-taglib', // <groupId>com.aoapps</groupId><artifactId>ao-encoding-taglib</artifactId>
@@ -41,12 +40,13 @@ def upstreamProjects = [
   '../../ao/oss/servlet-util', // <groupId>com.aoapps</groupId><artifactId>ao-servlet-util</artifactId>
   '../../ao/oss/tempfiles', // <groupId>com.aoapps</groupId><artifactId>ao-tempfiles</artifactId>
   '../../ao/oss/tempfiles-servlet', // <groupId>com.aoapps</groupId><artifactId>ao-tempfiles-servlet</artifactId>
-  // No Jenkins: <groupId>com.sun.mail</groupId><artifactId>javax.mail</artifactId>
-  // No Jenkins: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId>
-  // No Jenkins: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId>
+  // No Jenkins: <groupId>jakarta.activation</groupId><artifactId>jakarta.activation-api</artifactId>
+  // No Jenkins: <groupId>jakarta.mail</groupId><artifactId>jakarta.mail-api</artifactId>
+  // No Jenkins: <groupId>jakarta.servlet</groupId><artifactId>jakarta.servlet-api</artifactId>
+  // No Jenkins: <groupId>jakarta.servlet.jsp</groupId><artifactId>jakarta.servlet.jsp-api</artifactId>
 
   // BOM
-  '../../ao/oss/javaee-web-api-bom', // <groupId>com.aoapps</groupId><artifactId>javaee-web-api-bom</artifactId>
+  '../../ao/oss/jakartaee-web-profile-bom', // <groupId>com.aoapps</groupId><artifactId>jakartaee-web-profile-bom</artifactId>
 ]
 
 /******************************************************************************************

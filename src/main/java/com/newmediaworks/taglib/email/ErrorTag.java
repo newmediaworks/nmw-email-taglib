@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2010, 2011, 2019, 2020, 2021, 2022, 2025, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -23,8 +23,8 @@
 
 package com.newmediaworks.taglib.email;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The body of this tag will be processed when there was any type of error while formatting or sending the email.

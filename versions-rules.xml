@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
+Copyright (C) 2025  New Media Works
+    info@newmediaworks.com
+    703 2nd Street #465
+    Santa Rosa, CA 95404
+
+This file is part of nmw-email-taglib.
+
+nmw-email-taglib is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+nmw-email-taglib is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<ruleset
+  comparisonMethod="maven"
+  xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 https://www.mojohaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd"
+>
+  <rules>
+    <rule groupId="jakarta.activation" artifactId="jakarta.activation-api" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.*-M[0-9]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="jakarta.mail" artifactId="jakarta.mail-api" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.*-M[0-9]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+  </rules>
+</ruleset>

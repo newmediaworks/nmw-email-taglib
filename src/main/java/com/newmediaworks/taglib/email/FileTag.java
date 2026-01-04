@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2025  New Media Works
+ * Copyright (C) 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2025, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -33,26 +33,26 @@ import com.aoapps.servlet.http.HttpServletUtil;
 import com.aoapps.servlet.jsp.LocalizedJspTagException;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
 import com.aoapps.tempfiles.servlet.TempFileContextEE;
+import jakarta.activation.DataHandler;
+import jakarta.activation.FileDataSource;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Part;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.JspFragment;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
 import java.util.ResourceBundle;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-import javax.mail.MessagingException;
-import javax.mail.Part;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * Reads the contents of this email or part from a file.
  *
- * @see  Part#setDataHandler(javax.activation.DataHandler)
+ * @see  Part#setDataHandler(jakarta.activation.DataHandler)
  * @see  FileDataSource
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>

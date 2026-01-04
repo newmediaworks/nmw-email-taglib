@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011, 2013, 2019, 2020, 2021, 2022  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2013, 2019, 2020, 2021, 2022, 2025, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -28,18 +28,18 @@ import com.aoapps.encoding.MediaValidator;
 import com.aoapps.encoding.taglib.EncodingBufferedTag;
 import com.aoapps.io.buffer.BufferResult;
 import com.aoapps.servlet.jsp.tagext.JspTagUtils;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.tagext.JspFragment;
 import java.io.IOException;
 import java.io.Writer;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.JspFragment;
 
 /**
  * The <code>To:</code> recipient of the email.  Multiple tags will send email to multiple recipients.
  *
- * @see  Message#addRecipient(javax.mail.Message.RecipientType, javax.mail.Address)
+ * @see  Message#addRecipient(jakarta.mail.Message.RecipientType, jakarta.mail.Address)
  *
  * @author  <a href="mailto:info@newmediaworks.com">New Media Works</a>
  */

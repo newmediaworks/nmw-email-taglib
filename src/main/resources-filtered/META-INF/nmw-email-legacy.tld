@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
-Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020, 2021, 2022  New Media Works
+Copyright (C) 2006, 2010, 2011, 2012, 2019, 2020, 2021, 2022, 2023, 2025, 2026  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -37,12 +37,13 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
 
 ]>
 <!-- <common> -->
-<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+<taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
-  version="2.1">
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_1.xsd"
+  version="3.1">
   <!-- datePublished="2011-05-20T04:37:04-05:00" -->
-  <!-- dateModified="2021-09-09T01:33:34-05:00" -->
+  <!-- dateModified="2025-12-30T13:42:11Z" -->
 <!-- </common> -->
   <!-- allowRobots="false" -->
 <!-- <common> -->
@@ -58,32 +59,32 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
     <ul>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-email">&lt;email:email&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html">Message</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Message.html">Message</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-to">&lt;email:to&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#addRecipient-javax.mail.Message.RecipientType-javax.mail.Address-">Message.addRecipient(…)</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Message.html#addRecipient-jakarta.mail.Message.RecipientType-jakarta.mail.Address-">Message.addRecipient(…)</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-from">&lt;email:from&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setFrom-javax.mail.Address-">Message.setFrom(…)</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Message.html#setFrom-jakarta.mail.Address-">Message.setFrom(…)</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-subject">&lt;email:subject&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Message.html#setSubject-java.lang.String-">Message.setSubject(…)</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Message.html#setSubject-java.lang.String-">Message.setSubject(…)</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-multipart">&lt;email:multipart&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Multipart.html">Multipart</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Multipart.html">Multipart</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-bodypart">&lt;email:bodypart&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/BodyPart.html">BodyPart</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/BodyPart.html">BodyPart</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-header">&lt;email:header&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#addHeader-java.lang.String-java.lang.String-">Part.addHeader(…)</a>
-        or <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setHeader-java.lang.String-java.lang.String-">Part.setHeader(…)</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Part.html#addHeader-java.lang.String-java.lang.String-">Part.addHeader(…)</a>
+        or <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Part.html#setHeader-java.lang.String-java.lang.String-">Part.setHeader(…)</a>
         <ul>
           <li>
             <a href="@{project.url}]]>&tld;<![CDATA[/tag-contentId">&lt;email:contentId&gt;</a>
@@ -93,15 +94,15 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-content">&lt;email:content&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setContent-java.lang.Object-java.lang.String-">Part.setContent(…)</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Part.html#setContent-java.lang.Object-java.lang.String-">Part.setContent(…)</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-file">&lt;email:file&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Part.html#setDataHandler-jakarta.activation.DataHandler-">Part.setDataHandler(…)</a>
       </li>
       <li>
         <a href="@{project.url}]]>&tld;<![CDATA[/tag-data">&lt;email:data&gt;</a>
-        ⟶ <a rel="nofollow" href="@{javadoc.link.javamail}javax/mail/Part.html#setDataHandler-javax.activation.DataHandler-">Part.setDataHandler(…)</a>
+        ⟶ <a rel="nofollow" href="@{javadoc.link.javaee}jakarta/mail/Part.html#setDataHandler-jakarta.activation.DataHandler-">Part.setDataHandler(…)</a>
       </li>
     </ul>
     <p>
@@ -555,7 +556,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
   </tag>
   <tag>
     <!-- datePublished="2011-05-20T04:37:04-05:00" -->
-    <!-- dateModified="2021-06-16T14:18:10-05:00" -->
+    <!-- dateModified="2025-12-30T13:42:11Z" -->
     <description><![CDATA[
       <p class="semanticcms-tag-reference-summary">
         Provides the raw data of this email or part content.
@@ -601,8 +602,7 @@ When JSP scriptlets are not required, please use &lt;a href=&quot;@{project.url}
           <li><code>byte[]</code></li>
           <li><a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/String.html">String</a></li>
           <li><a rel="nofollow" href="@{javadoc.link.javase}java.base/java/io/InputStream.html">InputStream</a></li>
-          <!-- TODO: activation version from Maven property -->
-          <li><a rel="nofollow" href="https://jakarta.ee/specifications/activation/1.2/apidocs/javax/activation/DataSource.html">DataSource</a></li>
+          <li><a rel="nofollow" href="@{javadoc.link.javaee}jakarta/activation/DataSource.html">DataSource</a></li>
         </ul>
       ]]></description>
       <name>data</name>
