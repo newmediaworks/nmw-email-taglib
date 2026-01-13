@@ -1,7 +1,7 @@
 # [<img src="nmw-logo.png" alt="NMW Logo" width="40" height="40">](https://github.com/newmediaworks) [NMW OSS](https://github.com/newmediaworks/nmw-oss) / [Email Taglib](https://github.com/newmediaworks/nmw-email-taglib)
 
-[![project: current stable](https://oss.newmediaworks.com/ao-badges/project-current-stable.svg)](https://aoindustries.com/life-cycle#project-current-stable)
-[![management: production](https://oss.newmediaworks.com/ao-badges/management-production.svg)](https://aoindustries.com/life-cycle#management-production)
+[![project: old stable](https://oss.newmediaworks.com/ao-badges/project-old-stable.svg)](https://aoindustries.com/life-cycle#project-old-stable)
+[![management: migration](https://oss.newmediaworks.com/ao-badges/management-migration.svg)](https://aoindustries.com/life-cycle#management-migration)
 [![packaging: active](https://oss.newmediaworks.com/ao-badges/packaging-active.svg)](https://aoindustries.com/life-cycle#packaging-active)  
 [![java: &gt;= 11](https://oss.newmediaworks.com/ao-badges/java-11.svg)](https://docs.oracle.com/en/java/javase/11/)
 [![java ee: &gt;= 7](https://oss.newmediaworks.com/ao-badges/javaee-7.svg)](https://docs.oracle.com/javaee/7/)
