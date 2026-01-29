@@ -66,7 +66,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
   /**
    * The request attribute name that stores the error message.
    *
-   * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
+   * @deprecated  Please use {@link EmailTag#ERROR_REQUEST_ATTRIBUTE} instead.
    */
   @Deprecated(forRemoval = true)
   public static final String ERROR_REQUEST_ATTRIBUTE_NAME = EmailTag.class.getName() + ".error";
@@ -80,7 +80,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
   /**
    * The request attribute name that stores the error message.
    *
-   * @deprecated  Please use {@link #ERROR_REQUEST_ATTRIBUTE} instead.
+   * @deprecated  Please use {@link EmailTag#ERROR_REQUEST_ATTRIBUTE} instead.
    */
   @Deprecated(forRemoval = true)
   public static final String ERROR_REQUEST_PARAMETER_NAME = ERROR_REQUEST_ATTRIBUTE_NAME;
