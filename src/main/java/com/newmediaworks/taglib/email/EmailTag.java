@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013, 2019, 2020, 2021, 2022, 2023  New Media Works
+ * Copyright (C) 2006, 2008, 2010, 2011, 2012, 2013, 2019, 2020, 2021, 2022, 2023, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -239,7 +239,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
     if (throwable instanceof SkipPageException) {
       throw (SkipPageException) throwable;
     } else {
-      logger.log(Level.SEVERE, null, throwable);
+      logger.log(Level.SEVERE, "TODO: message here", throwable);
       String errorMessage = throwable.getMessage();
       if (errorMessage == null || (errorMessage = errorMessage.trim()).length() == 0) {
         errorMessage = throwable.toString();
