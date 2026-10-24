@@ -239,7 +239,7 @@ public class EmailTag extends BodyTagSupport implements PartTag, TryCatchFinally
     if (throwable instanceof SkipPageException) {
       throw (SkipPageException) throwable;
     } else {
-      logger.log(Level.SEVERE, null, throwable);
+      logger.log(Level.SEVERE, "TODO: message here", throwable);
       String errorMessage = throwable.getMessage();
       if (errorMessage == null || (errorMessage = errorMessage.trim()).length() == 0) {
         errorMessage = throwable.toString();
