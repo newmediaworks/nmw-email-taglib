@@ -21,10 +21,6 @@
  * along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.newmediaworks.taglib.email.book {
-  exports com.newmediaworks.taglib.email.book;
-  provides jakarta.servlet.ServletContainerInitializer with
-    com.newmediaworks.taglib.email.book.NmwEmailTldInitializer,
-    com.newmediaworks.taglib.email.book.NmwEmailLegacyTldInitializer;
   // Direct
   requires com.aoapps.badges; // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
   requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
@@ -35,4 +31,10 @@ module com.newmediaworks.taglib.email.book {
   requires com.semanticcms.core.taglib; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
   requires com.semanticcms.section.taglib; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-section-taglib</artifactId>
   requires com.semanticcms.tagreference; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-tag-reference</artifactId>
+
+  exports com.newmediaworks.taglib.email.book;
+
+  provides jakarta.servlet.ServletContainerInitializer with
+    com.newmediaworks.taglib.email.book.NmwEmailTldInitializer,
+    com.newmediaworks.taglib.email.book.NmwEmailLegacyTldInitializer;
 }

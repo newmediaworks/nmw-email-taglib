@@ -21,8 +21,6 @@
  * along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.newmediaworks.taglib.email {
-  exports com.newmediaworks.taglib.email;
-  exports com.newmediaworks.taglib.email.legacy;
   // Direct
   requires com.aoapps.encoding; // <groupId>com.aoapps</groupId><artifactId>ao-encoding</artifactId>
   requires com.aoapps.encoding.servlet; // <groupId>com.aoapps</groupId><artifactId>ao-encoding-servlet</artifactId>
@@ -40,4 +38,7 @@ module com.newmediaworks.taglib.email {
   requires jakarta.servlet.jsp; // <groupId>jakarta.servlet.jsp</groupId><artifactId>jakarta.servlet.jsp-api</artifactId>
   // Java SE
   requires java.logging;
+
+  exports com.newmediaworks.taglib.email;
+  exports com.newmediaworks.taglib.email.legacy;
 }
