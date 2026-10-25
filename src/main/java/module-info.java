@@ -1,6 +1,6 @@
 /*
  * nmw-email-taglib - JSP taglib encapsulating the JavaMail API.
- * Copyright (C) 2021, 2022  New Media Works
+ * Copyright (C) 2021, 2022, 2026  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -21,8 +21,6 @@
  * along with nmw-email-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.newmediaworks.taglib.email {
-  exports com.newmediaworks.taglib.email;
-  exports com.newmediaworks.taglib.email.legacy;
   // Direct
   requires activation; // <groupId>javax.activation</groupId><artifactId>activation</artifactId>
   requires com.aoapps.encoding; // <groupId>com.aoapps</groupId><artifactId>ao-encoding</artifactId>
@@ -40,4 +38,7 @@ module com.newmediaworks.taglib.email {
   requires javax.servlet.jsp.api; // <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId>
   // Java SE
   requires java.logging;
+
+  exports com.newmediaworks.taglib.email;
+  exports com.newmediaworks.taglib.email.legacy;
 }
